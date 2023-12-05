@@ -241,16 +241,7 @@ namespace ProjetPOO {
 			this->listView1->View = System::Windows::Forms::View::List;
 			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &PageClient::listView1_SelectedIndexChanged_1);
 
-			void searchBox_TextChanged(object sender, EventArgs e)
-			{
-				// Call FindItemWithText with the contents of the textbox.
-				ListViewItem foundItem =
-					listView1->FindItemWithText(Recherche->Text, false, 0, true);
-				if (foundItem != null)
-				{
-					listView1->TopItem = foundItem;
-				}
-			}
+
 
 			// 
 			// PageClient
@@ -287,6 +278,30 @@ private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, Syst
 private: System::Void Recherche_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void listView1_SelectedIndexChanged_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void InitializeComponent() {
+	this->SuspendLayout();
+	// 
+	// PageClient
+	// 
+	this->ClientSize = System::Drawing::Size(503, 325);
+	this->Name = L"PageClient";
+	this->Load += gcnew System::EventHandler(this, &PageClient::PageClient_Load);
+	this->ResumeLayout(false);
+}
+private: System::Void PageClient_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void InitializeComponent() {
+	this->SuspendLayout();
+	// 
+	// PageClient
+	// 
+	this->ClientSize = System::Drawing::Size(654, 364);
+	this->Name = L"PageClient";
+	this->Load += gcnew System::EventHandler(this, &PageClient::PageClient_Load);
+	this->ResumeLayout(false);
+}
+private: System::Void PageClient_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
