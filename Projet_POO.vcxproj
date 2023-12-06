@@ -121,16 +121,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CreationCompte.cpp" />
+    <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
+    <ClCompile Include="PageConnexion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CreationCompte.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageChoixUtilisateur.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PageClient.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexion.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CreationCompte.resx">
+      <DependentUpon>CreationCompte.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageChoixUtilisateur.resx">
+      <DependentUpon>PageChoixUtilisateur.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageClient.resx">
       <DependentUpon>PageClient.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexion.resx">
+      <DependentUpon>PageConnexion.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

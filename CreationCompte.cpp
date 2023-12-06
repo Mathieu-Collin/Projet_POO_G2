@@ -1,4 +1,4 @@
-#include "PageClient.h"
+#include "CreationCompte.h"
 /*
 using namespace System;
 using namespace System::Windows::Forms;
@@ -6,7 +6,7 @@ using namespace System::Windows::Forms;
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	ProjetPOO::PageClient form;
+	ProjetPOO::CreationCompte form;
 	Application::Run(% form);
 }
 */
