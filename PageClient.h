@@ -41,6 +41,7 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::TabPage^ Commande;
 	private: System::Windows::Forms::TabPage^ Compte;
 	private: System::Windows::Forms::TabPage^ Panier;
+	private: int objetPanier = 0;
 	public: System::Windows::Forms::TextBox^ Recherche;
 
 	private: System::Windows::Forms::ImageList^ imageList1;
@@ -54,6 +55,13 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::RichTextBox^ richTextBox2;
 	private: System::Windows::Forms::ListView^ listView2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ AjouterPanier;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom;
+	private: System::Windows::Forms::DataGridViewImageColumn^ Image;
+	private: System::Windows::Forms::DataGridViewImageColumn^ Prix_TTC;
+
+
 
 
 
@@ -108,6 +116,8 @@ namespace ProjetPOO {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PageClient::typeid));
 			this->OngletsClient = (gcnew System::Windows::Forms::TabControl());
 			this->Commande = (gcnew System::Windows::Forms::TabPage());
+			this->AjouterPanier = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->richTextBox5 = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox4 = (gcnew System::Windows::Forms::RichTextBox());
@@ -118,12 +128,17 @@ namespace ProjetPOO {
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->Compte = (gcnew System::Windows::Forms::TabPage());
 			this->Panier = (gcnew System::Windows::Forms::TabPage());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->imageList1 = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->Nom = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Image = (gcnew System::Windows::Forms::DataGridViewImageColumn());
+			this->Prix_TTC = (gcnew System::Windows::Forms::DataGridViewImageColumn());
 			this->OngletsClient->SuspendLayout();
 			this->Commande->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->Panier->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// OngletsClient
@@ -140,6 +155,7 @@ namespace ProjetPOO {
 			// Commande
 			// 
 			this->Commande->AutoScroll = true;
+			this->Commande->Controls->Add(this->AjouterPanier);
 			this->Commande->Controls->Add(this->pictureBox1);
 			this->Commande->Controls->Add(this->listView2);
 			this->Commande->Controls->Add(this->richTextBox5);
@@ -157,6 +173,24 @@ namespace ProjetPOO {
 			this->Commande->TabIndex = 0;
 			this->Commande->Text = L"Commande";
 			this->Commande->UseVisualStyleBackColor = true;
+			// 
+			// AjouterPanier
+			// 
+			this->AjouterPanier->Location = System::Drawing::Point(673, 275);
+			this->AjouterPanier->Name = L"AjouterPanier";
+			this->AjouterPanier->Size = System::Drawing::Size(244, 35);
+			this->AjouterPanier->TabIndex = 11;
+			this->AjouterPanier->Text = L"Ajouter au panier";
+			this->AjouterPanier->UseVisualStyleBackColor = true;
+			this->AjouterPanier->Click += gcnew System::EventHandler(this, &PageClient::AjouterPanier_Click);
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Location = System::Drawing::Point(276, 90);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(349, 295);
+			this->pictureBox1->TabIndex = 10;
+			this->pictureBox1->TabStop = false;
 			// 
 			// listView2
 			// 
@@ -176,6 +210,7 @@ namespace ProjetPOO {
 			this->listView2->UseCompatibleStateImageBehavior = false;
 			this->listView2->View = System::Windows::Forms::View::List;
 			this->listView2->Visible = false;
+			this->listView2->SelectedIndexChanged += gcnew System::EventHandler(this, &PageClient::listView2_SelectedIndexChanged);
 			// 
 			// richTextBox5
 			// 
@@ -269,6 +304,7 @@ namespace ProjetPOO {
 			// 
 			// Panier
 			// 
+			this->Panier->Controls->Add(this->dataGridView1);
 			this->Panier->Location = System::Drawing::Point(4, 25);
 			this->Panier->Name = L"Panier";
 			this->Panier->Padding = System::Windows::Forms::Padding(3);
@@ -276,6 +312,20 @@ namespace ProjetPOO {
 			this->Panier->TabIndex = 2;
 			this->Panier->Text = L"Panier";
 			this->Panier->UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->Nom, this->Image,
+					this->Prix_TTC
+			});
+			this->dataGridView1->Location = System::Drawing::Point(6, 6);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersWidth = 51;
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(898, 393);
+			this->dataGridView1->TabIndex = 0;
 			// 
 			// imageList1
 			// 
@@ -289,13 +339,26 @@ namespace ProjetPOO {
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
 			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
 			// 
-			// pictureBox1
+			// Nom
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(276, 90);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(349, 295);
-			this->pictureBox1->TabIndex = 10;
-			this->pictureBox1->TabStop = false;
+			this->Nom->HeaderText = L"Nom";
+			this->Nom->MinimumWidth = 6;
+			this->Nom->Name = L"Nom";
+			this->Nom->Width = 125;
+			// 
+			// Image
+			// 
+			this->Image->HeaderText = L"Image";
+			this->Image->MinimumWidth = 6;
+			this->Image->Name = L"Image";
+			this->Image->Width = 125;
+			// 
+			// Prix_TTC
+			// 
+			this->Prix_TTC->HeaderText = L"Prix TTC";
+			this->Prix_TTC->MinimumWidth = 6;
+			this->Prix_TTC->Name = L"Prix_TTC";
+			this->Prix_TTC->Width = 125;
 			// 
 			// PageClient
 			// 
@@ -310,6 +373,8 @@ namespace ProjetPOO {
 			this->Commande->ResumeLayout(false);
 			this->Commande->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->Panier->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -365,6 +430,25 @@ private: System::Void listView1_SelectedIndexChanged_1(System::Object^ sender, S
 private: System::Void richTextBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void listView2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void AjouterPanier_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Nombre d'objets dans le panier mis à jour
+	objetPanier++;
+    // Création cellule si nécessaire
+	if (dataGridView1->Rows->Count < objetPanier) {
+		dataGridView1->Rows->Add();
+	}
+
+    // Création d'une TextBox
+    DataGridViewTextBoxCell^ textBoxCell = gcnew DataGridViewTextBoxCell();
+    textBoxCell->Value = listView1->SelectedItems[0]->Text; // Texte à mettre dans la cellule
+
+    // La TextBox est mise dans une cellule spécifique
+    dataGridView1->Rows[objetPanier-1]->Cells[0] = textBoxCell;
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

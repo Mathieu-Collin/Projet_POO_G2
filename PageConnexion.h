@@ -1,4 +1,5 @@
 #pragma once
+#include "PageClient.h"
 
 namespace ProjetPOO {
 
@@ -177,6 +178,8 @@ namespace ProjetPOO {
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void Connect_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+		PageClient^ pageClientForm = gcnew PageClient();
+		pageClientForm->ShowDialog();
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
