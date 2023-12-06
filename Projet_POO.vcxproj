@@ -83,7 +83,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>Main</EntryPointSymbol>
+      <EntryPointSymbol>WinMain</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAD.cpp" />
+    <ClCompile Include="CLClient.cpp" />
     <ClCompile Include="CLmap.cpp" />
     <ClCompile Include="CLservice.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAD.h" />
+    <ClInclude Include="CLClient.h" />
     <ClInclude Include="CLmap.h" />
     <ClInclude Include="CLservice.h" />
     <ClInclude Include="MyForm.h">

@@ -169,7 +169,7 @@ namespace P6new {
 	private: System::Void btn_load_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->dgv_enr->Refresh();
-		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+		this->oDs = this->oSvc->("Rsl");
 		this->dgv_enr->DataSource = this->oDs;
 		this->dgv_enr->DataMember = "Rsl";
 	}
