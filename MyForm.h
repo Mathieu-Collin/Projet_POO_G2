@@ -1,6 +1,7 @@
 //MyForm.H*********************************************************************************************
 #pragma once
 #include "CLservice.h"
+#include "CLClient.h"
 
 namespace P6new {
 
@@ -48,7 +49,7 @@ namespace P6new {
 	private: System::Windows::Forms::TextBox^ txt_prenom;
 
 
-
+	private: NS_Comp_Client::CLclient^ oClient;
 	private: NS_Comp_Svc::CLservices^ oSvc;
 	private: System::Data::DataSet^ oDs;
 	protected:
@@ -166,13 +167,14 @@ namespace P6new {
 
 		}
 #pragma endregion
-	private: System::Void btn_load_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void btn_load_Click(System::Object^ sender, System::EventArgs^ e) //Affiche l'entièreté de la table Client dans le DataGridView
 	{
-		this->dgv_enr->Refresh();
-		this->oDs = this->oSvc->("Rsl");
-		this->dgv_enr->DataSource = this->oDs;
-		this->dgv_enr->DataMember = "Rsl";
+		this->oDs = gcnew System::Data::DataSet();
+		this->oDs = oClient->selectionnerToutesLesClients();
+		DataSet^ oDs = gcnew DataSet();
+		this->dgv_enr->DataSource = this->oDs->Tables["Client"];
 	}
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->oSvc = gcnew NS_Comp_Svc::CLservices();

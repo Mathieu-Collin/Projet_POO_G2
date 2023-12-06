@@ -6,6 +6,12 @@ System::String^ NS_Comp_Mappage::CLmapTB::Select(void)
     return "SELECT [id_client], [nom], [prenom] FROM [Projet].[dbo].[Client]";
 }
 
+System::String^ NS_Comp_Mappage::CLmapTB::AfficheTBClient(void)
+{
+    return "SELECT * FROM [Projet].[dbo].[Client]";
+}
+
+
 System::String^ NS_Comp_Mappage::CLmapTB::Insert(void)
 {
     return "INSERT INTO Client (nom, prenom) VALUES('" + this->nom + "','" + this->prenom + "');";

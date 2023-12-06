@@ -7,12 +7,10 @@ NS_Comp_Data::CLcad::CLcad(void)
 	this->sCnx = "Data Source = PC-MATHIEU;Initial Catalog = Projet;User ID = Test; Password=123";
 
 	this->sSql = "Rien";
-
 	this->oCnx = gcnew System::Data::SqlClient::SqlConnection(this->sCnx);
 	this->oCmd = gcnew System::Data::SqlClient::SqlCommand(this->sSql, this->oCnx);
 	this->oDA = gcnew System::Data::SqlClient::SqlDataAdapter();
 	this->oDs = gcnew System::Data::DataSet();
-
 	this->oCmd->CommandType = System::Data::CommandType::Text;
 }
 System::Data::DataSet^ NS_Comp_Data::CLcad::getRows(System::String^ sSql, System::String^ sDataTableName)
