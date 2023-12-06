@@ -78,10 +78,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CallingConvention>
+      </CallingConvention>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <EntryPointSymbol>main</EntryPointSymbol>
+      <EntryPointSymbol>Main</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -125,8 +127,7 @@
     <ClCompile Include="CLmapTB.cpp" />
     <ClCompile Include="CLservices.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Page_Creation_Compte.cpp" />
-    <ClCompile Include="Pop_Up_CreationCompte.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAD.h" />
@@ -135,22 +136,10 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Page_Creation_Compte.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="Pop_Up_CreationCompte.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page_Creation_Compte.resx">
-      <DependentUpon>Page_Creation_Compte.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pop_Up_CreationCompte.resx">
-      <DependentUpon>Pop_Up_CreationCompte.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

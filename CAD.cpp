@@ -1,10 +1,10 @@
+//CAD.CPP**************************************************************************************
 #include "CAD.h"
 
 
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Data Source=PC-MATHIEU;Initial Catalog=Projet;User ID=Test;Password=123";
-
+	this->sCnx = "Data Source=PC-MATHIEU;Initial Catalog=Projet ;User ID=Test ;Password=123";
 
 	this->sSql = "Rien";
 
