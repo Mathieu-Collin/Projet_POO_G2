@@ -124,15 +124,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAD.cpp" />
-    <ClCompile Include="CLmapTB.cpp" />
-    <ClCompile Include="CLservices.cpp" />
+    <ClCompile Include="CLmap.cpp" />
+    <ClCompile Include="CLservice.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAD.h" />
-    <ClInclude Include="CLmapTB.h" />
-    <ClInclude Include="CLservices.h" />
+    <ClInclude Include="CLmap.h" />
+    <ClInclude Include="CLservice.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

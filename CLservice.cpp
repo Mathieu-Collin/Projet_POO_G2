@@ -1,5 +1,5 @@
 //CLservice.CPP**************************************************************************************
-#include "CLservices.h"
+#include "CLservice.h"
 
 NS_Comp_Svc::CLservices::CLservices(void)
 {
