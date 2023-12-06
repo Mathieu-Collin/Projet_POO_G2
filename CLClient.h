@@ -6,45 +6,32 @@ namespace NS_Comp_Client
 	ref class CLclient : public NS_Comp_Svc::CLservices
 	{
 	private:
+		System::String^ sSql;
+		int Id;
 		NS_Comp_Data::CLcad^ oCad;
 		NS_Comp_Mappage::CLmapTB^ oMappTB;
 		System::String^ Nom;
 		System::String^ Prenom;
 		System::String^ Date_Naissance;
 		int Nb_Achats;
+		int Nb_Achats = 0;
+
 
 	public:
 		CLclient(void);
+		CLclient(System::String^ Nom, System::String^ Prenom, System::String^ Date_Naissance, int nb_achats, int Id)
 		~CLclient(void);
-		System::String^ Insert(void) override;
+		System::String^ Insert() override;
 		System::String^ Delete(int Id) override;
 		System::String^ Update(int Id)override;
-		void setId(int)override;
-		System::String getId(System::String^Nom,System::String^Prenom, )override;
+		System::String getId(System::String^ Prenom, System::String^ Nom, System::String^ Date_Naissance, int nb_achats)override;
 		System::String^ select()override;
-		System::String AffichePersonnes()override;
-		void AddPersonne()override;
-		void AffichePersonnesById(System::String^ PersonId)override;
-		void UpdatePersonne()override;
+		void SelectById(System::String^ PersonId)override;
+		void SelectAll() override;
 		System::String^ getNom(int Id)override;
 		System::String^ getPrenom(void)override;
 		void setNom(System::String^)override;
 		void setPrenom(System::String^)override;
 		void setDateNaissance(System::String^)override;
-
-		// Méthode pour afficher tous les clients
-		virtual void AffichePersonnes() override;
-
-		// Méthode pour ajouter un nouveau client
-		virtual void AddPersonne(System::String ^Nom, System::String^Prenom, System::String^Date_Naissance, int Nb_Achats) override;
-
-		// Méthode pour afficher un client par son ID
-		virtual void AffichePersonnesById(System::String^ PersonId) override;
-
-		// Méthode pour mettre à jour un client
-		virtual void UpdatePersonne(System::String^ PersonId) override;
-
-		// Méthode pour supprimer un client
-		virtual void DeletePersonne(System::String^ PersonId) override;
 	};
 }

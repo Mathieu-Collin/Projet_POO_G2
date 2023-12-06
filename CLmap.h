@@ -6,7 +6,7 @@ namespace NS_Comp_Mappage
 	{
 	private:
 		System::String^ sSql;
-		int Id;
+		int Id_Increment;
 		System::String^ nom;
 		System::String^ prenom;
 	public:
