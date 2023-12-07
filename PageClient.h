@@ -423,6 +423,7 @@ namespace ProjetPOO {
 			this->textBoxModifDate->Name = L"textBoxModifDate";
 			this->textBoxModifDate->Size = System::Drawing::Size(100, 20);
 			this->textBoxModifDate->TabIndex = 5;
+			this->textBoxModifDate->Click += gcnew System::EventHandler(this, &PageClient::textBoxModifDate_Click);
 			// 
 			// textBoxModifPrenom
 			// 
@@ -621,5 +622,7 @@ namespace ProjetPOO {
 
 	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void textBoxModifDate_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

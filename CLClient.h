@@ -18,5 +18,5 @@ public:
     virtual void SetPrenom(System::String^ prenom) override;
 
     virtual System::String^ GetDateNaissance() override;
-    virtual void SetAge(int age) override;
+    virtual void SetDateNaissance(System::String^ Date_Naissance) override;
 };

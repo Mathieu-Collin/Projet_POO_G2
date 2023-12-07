@@ -32,7 +32,7 @@ System::String^ CLClient::GetDateNaissance()
     return Date_Naissance;
 }
 
-void CLClient::SetAge(int age)
+void CLClient::SetDateNaissance(System::String^ Date_Naissance)
 {
-    this->age = age;
+    this->Date_Naissance = Date_Naissance;
 }

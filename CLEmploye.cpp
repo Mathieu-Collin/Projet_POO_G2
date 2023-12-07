@@ -29,12 +29,33 @@ void CLEmploye::SetPrenom(System::String^ prenom)
     this->prenom = prenom;
 }
 
-int CLEmploye::GetAge()
+System::String^ CLEmploye::GetAdresse()
 {
-    return age;
+	return Adresse;
 }
 
-void CLEmploye::SetAge(int age)
+void CLEmploye::SetAdresse(System::String^ Adresse)
 {
-    this->age = age;
+	this->Adresse = Adresse;
 }
+
+System::String^ CLEmploye::GetSuperieur()
+{
+	return Superieur;
+}
+
+void CLEmploye::SetSuperieur(System::String^ Superieur)
+{
+	this->Superieur = Superieur;
+}
+
+System::String^ CLEmploye::GetDateEmbauche()
+{
+	return Date_Embauche;
+}
+
+void CLEmploye::SetDateEmbauche(System::String^ Date_Embauche)
+{
+	this->Date_Embauche = Date_Embauche;
+}
+

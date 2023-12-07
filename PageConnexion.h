@@ -44,7 +44,9 @@ namespace ProjetPOO {
 
 
 	private: System::Windows::Forms::Button^ Connect_Button;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ buttonCreateAcount;
+
+
 
 
 
@@ -69,7 +71,7 @@ namespace ProjetPOO {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->Connect_Button = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->buttonCreateAcount = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -125,22 +127,22 @@ namespace ProjetPOO {
 			this->Connect_Button->UseVisualStyleBackColor = true;
 			this->Connect_Button->Click += gcnew System::EventHandler(this, &PageConnexion::Connect_Button_Click);
 			// 
-			// button1
+			// buttonCreateAcount
 			// 
-			this->button1->Location = System::Drawing::Point(289, 253);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(128, 23);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Créer un Compte";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PageConnexion::button1_Click);
+			this->buttonCreateAcount->Location = System::Drawing::Point(289, 253);
+			this->buttonCreateAcount->Name = L"buttonCreateAcount";
+			this->buttonCreateAcount->Size = System::Drawing::Size(128, 23);
+			this->buttonCreateAcount->TabIndex = 8;
+			this->buttonCreateAcount->Text = L"Créer un Compte";
+			this->buttonCreateAcount->UseVisualStyleBackColor = true;
+			this->buttonCreateAcount->Click += gcnew System::EventHandler(this, &PageConnexion::buttonCreateAcount_Click);
 			// 
 			// PageConnexion
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(500, 322);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->buttonCreateAcount);
 			this->Controls->Add(this->Connect_Button);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label3);
@@ -149,6 +151,7 @@ namespace ProjetPOO {
 			this->Controls->Add(this->label1);
 			this->Name = L"PageConnexion";
 			this->Text = L"PageConnexion";
+			this->Load += gcnew System::EventHandler(this, &PageConnexion::PageConnexion_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -160,7 +163,8 @@ namespace ProjetPOO {
 	}
 	private: System::String^connectionstring = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 
-		void PageConnexion::Connect_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+		void PageConnexion::Connect_Button_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
 		String^ nom = textBox1->Text;
 		String^ prenom = textBox2->Text;
 		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "'";
@@ -189,10 +193,47 @@ namespace ProjetPOO {
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message);
 		}
+		
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
-	};
+	private: System::Void PageConnexion_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void buttonCreateAcount_Click(System::Object^ sender, System::EventArgs^ e) //fonction qui vérifie que le nom et le prénom ne sont pas déjà utilisés et qui crée un compte
+{
+	String^ nom = textBox1->Text;
+	String^ prenom = textBox2->Text;
+	String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "'";
+	SqlConnection^ con = gcnew SqlConnection(connectionstring);
+	SqlCommand^ cmd = gcnew SqlCommand(query, con);
+	SqlDataReader^ reader;
+	try {
+		con->Open();
+		reader = cmd->ExecuteReader();
+		int count = 0;
+		while (reader->Read()) {
+			count++;
+		}
+		if (count == 1) {
+			MessageBox::Show("Nom et Prénom déjà utilisés");
+		}
+		else if (count > 1) {
+			MessageBox::Show("Nom et Prénom déjà utilisés");
+		}
+		else {
+			MessageBox::Show("Nom et Prénom disponibles");
+			String^ query2 = "INSERT INTO Client (Nom, Prenom) VALUES ('" + nom + "', '" + prenom + "')";
+			SqlCommand^ cmd2 = gcnew SqlCommand(query2, con);
+			cmd2->ExecuteNonQuery();
+			MessageBox::Show("Compte créé");
+		}
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show(ex->Message);
+	}
 }
+};
+}
+
