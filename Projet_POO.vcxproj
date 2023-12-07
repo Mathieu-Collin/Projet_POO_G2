@@ -125,6 +125,8 @@
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
     <ClCompile Include="PageConnexion.cpp" />
+    <ClCompile Include="PageConnexionManager.cpp" />
+    <ClCompile Include="PageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreationCompte.h">
@@ -137,6 +139,12 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PageConnexion.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexionManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageManager.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -152,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PageConnexion.resx">
       <DependentUpon>PageConnexion.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexionManager.resx">
+      <DependentUpon>PageConnexionManager.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageManager.resx">
+      <DependentUpon>PageManager.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

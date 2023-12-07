@@ -1,5 +1,6 @@
 #pragma once
 #include "PageConnexion.h"
+#include "PageConnexionManager.h"
 
 namespace ProjetPOO {
 
@@ -39,7 +40,8 @@ namespace ProjetPOO {
 	protected:
 
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ Manager;
+
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Label^ label1;
 
@@ -60,7 +62,7 @@ namespace ProjetPOO {
 		{
 			this->ouvrePageConnexion = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->Manager = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
@@ -85,14 +87,15 @@ namespace ProjetPOO {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button2_Click);
 			// 
-			// button3
+			// Manager
 			// 
-			this->button3->Location = System::Drawing::Point(481, 279);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(86, 30);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Manager";
-			this->button3->UseVisualStyleBackColor = true;
+			this->Manager->Location = System::Drawing::Point(481, 279);
+			this->Manager->Name = L"Manager";
+			this->Manager->Size = System::Drawing::Size(86, 30);
+			this->Manager->TabIndex = 2;
+			this->Manager->Text = L"Manager";
+			this->Manager->UseVisualStyleBackColor = true;
+			this->Manager->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button3_Click);
 			// 
 			// button4
 			// 
@@ -120,7 +123,7 @@ namespace ProjetPOO {
 			this->ClientSize = System::Drawing::Size(933, 523);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->Manager);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->ouvrePageConnexion);
 			this->Name = L"PageChoixUtilisateur";
@@ -139,6 +142,10 @@ namespace ProjetPOO {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
+		pageConnexionManagerForm->ShowDialog();
 	}
 };
 }

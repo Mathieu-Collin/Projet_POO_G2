@@ -11,6 +11,8 @@ namespace ProjetPOO {
 	using namespace System::Drawing;
 	using namespace std;
 	using namespace System::Collections::Generic;
+	using namespace System::Data::SqlClient;
+
 
 	/// <summary>
 	/// Description résumée de PageClient
@@ -24,6 +26,7 @@ namespace ProjetPOO {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+			ChargerArticles();
 		}
 
 	protected:
@@ -44,22 +47,39 @@ namespace ProjetPOO {
 	private: int objetPanier = 0;
 	public: System::Windows::Forms::TextBox^ Recherche;
 
-	private: System::Windows::Forms::ImageList^ imageList1;
 
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
-	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
+	private: System::Windows::Forms::RichTextBox^ textBoxNom;
+
+
+
 	private: System::Windows::Forms::ListView^ listView1;
-	private: System::Windows::Forms::RichTextBox^ richTextBox5;
-	private: System::Windows::Forms::RichTextBox^ richTextBox4;
-	private: System::Windows::Forms::RichTextBox^ richTextBox3;
-	private: System::Windows::Forms::RichTextBox^ richTextBox2;
+	private: System::Windows::Forms::RichTextBox^ textBoxCouleur;
+
+	private: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
+
+	private: System::Windows::Forms::RichTextBox^ textBoxDescription;
+
+
+
 	private: System::Windows::Forms::ListView^ listView2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ AjouterPanier;
+
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nom;
 	private: System::Windows::Forms::DataGridViewImageColumn^ Image;
-	private: System::Windows::Forms::DataGridViewImageColumn^ Prix_TTC;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prix_TTC;
+	private: System::Windows::Forms::DataGridViewButtonColumn^ RetirerArticle;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,36 +124,23 @@ namespace ProjetPOO {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::ListViewItem^ listViewItem1 = (gcnew System::Windows::Forms::ListViewItem(L"non"));
-			System::Windows::Forms::ListViewItem^ listViewItem2 = (gcnew System::Windows::Forms::ListViewItem(L"oui"));
-			System::Windows::Forms::ListViewItem^ listViewItem3 = (gcnew System::Windows::Forms::ListViewItem(L"PC_Bureau"));
-			System::Windows::Forms::ListViewItem^ listViewItem4 = (gcnew System::Windows::Forms::ListViewItem(L"weeesh"));
-			System::Windows::Forms::ListViewItem^ listViewItem5 = (gcnew System::Windows::Forms::ListViewItem(L"non"));
-			System::Windows::Forms::ListViewItem^ listViewItem6 = (gcnew System::Windows::Forms::ListViewItem(L"oui"));
-			System::Windows::Forms::ListViewItem^ listViewItem7 = (gcnew System::Windows::Forms::ListViewItem(L"PC_Bureau"));
-			System::Windows::Forms::ListViewItem^ listViewItem8 = (gcnew System::Windows::Forms::ListViewItem(L"weeesh"));
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PageClient::typeid));
 			this->OngletsClient = (gcnew System::Windows::Forms::TabControl());
 			this->Commande = (gcnew System::Windows::Forms::TabPage());
-			this->AjouterPanier = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
-			this->richTextBox5 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox4 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox3 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
+			this->textBoxCouleur = (gcnew System::Windows::Forms::RichTextBox());
+			this->textBoxPrixTTC = (gcnew System::Windows::Forms::RichTextBox());
+			this->textBoxDescription = (gcnew System::Windows::Forms::RichTextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->textBoxNom = (gcnew System::Windows::Forms::RichTextBox());
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->Compte = (gcnew System::Windows::Forms::TabPage());
 			this->Panier = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->imageList1 = (gcnew System::Windows::Forms::ImageList(this->components));
-			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->Nom = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Image = (gcnew System::Windows::Forms::DataGridViewImageColumn());
-			this->Prix_TTC = (gcnew System::Windows::Forms::DataGridViewImageColumn());
+			this->Prix_TTC = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RetirerArticle = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
 			this->OngletsClient->SuspendLayout();
 			this->Commande->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -155,15 +162,13 @@ namespace ProjetPOO {
 			// Commande
 			// 
 			this->Commande->AutoScroll = true;
-			this->Commande->Controls->Add(this->AjouterPanier);
 			this->Commande->Controls->Add(this->pictureBox1);
 			this->Commande->Controls->Add(this->listView2);
-			this->Commande->Controls->Add(this->richTextBox5);
-			this->Commande->Controls->Add(this->richTextBox4);
-			this->Commande->Controls->Add(this->richTextBox3);
-			this->Commande->Controls->Add(this->richTextBox2);
+			this->Commande->Controls->Add(this->textBoxCouleur);
+			this->Commande->Controls->Add(this->textBoxPrixTTC);
+			this->Commande->Controls->Add(this->textBoxDescription);
 			this->Commande->Controls->Add(this->listView1);
-			this->Commande->Controls->Add(this->richTextBox1);
+			this->Commande->Controls->Add(this->textBoxNom);
 			this->Commande->Controls->Add(this->Recherche);
 			this->Commande->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->Commande->Location = System::Drawing::Point(4, 25);
@@ -173,16 +178,6 @@ namespace ProjetPOO {
 			this->Commande->TabIndex = 0;
 			this->Commande->Text = L"Commande";
 			this->Commande->UseVisualStyleBackColor = true;
-			// 
-			// AjouterPanier
-			// 
-			this->AjouterPanier->Location = System::Drawing::Point(673, 275);
-			this->AjouterPanier->Name = L"AjouterPanier";
-			this->AjouterPanier->Size = System::Drawing::Size(244, 35);
-			this->AjouterPanier->TabIndex = 11;
-			this->AjouterPanier->Text = L"Ajouter au panier";
-			this->AjouterPanier->UseVisualStyleBackColor = true;
-			this->AjouterPanier->Click += gcnew System::EventHandler(this, &PageClient::AjouterPanier_Click);
 			// 
 			// pictureBox1
 			// 
@@ -195,11 +190,6 @@ namespace ProjetPOO {
 			// listView2
 			// 
 			this->listView2->HideSelection = false;
-			listViewItem1->Tag = L"";
-			this->listView2->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(4) {
-				listViewItem1, listViewItem2,
-					listViewItem3, listViewItem4
-			});
 			this->listView2->Location = System::Drawing::Point(130, 170);
 			this->listView2->MultiSelect = false;
 			this->listView2->Name = L"listView2";
@@ -212,55 +202,40 @@ namespace ProjetPOO {
 			this->listView2->Visible = false;
 			this->listView2->SelectedIndexChanged += gcnew System::EventHandler(this, &PageClient::listView2_SelectedIndexChanged);
 			// 
-			// richTextBox5
+			// textBoxCouleur
 			// 
-			this->richTextBox5->Location = System::Drawing::Point(882, 184);
-			this->richTextBox5->Name = L"richTextBox5";
-			this->richTextBox5->ReadOnly = true;
-			this->richTextBox5->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->richTextBox5->Size = System::Drawing::Size(53, 24);
-			this->richTextBox5->TabIndex = 8;
-			this->richTextBox5->Text = L"Couleur";
-			this->richTextBox5->TextChanged += gcnew System::EventHandler(this, &PageClient::richTextBox5_TextChanged);
+			this->textBoxCouleur->Location = System::Drawing::Point(655, 208);
+			this->textBoxCouleur->Name = L"textBoxCouleur";
+			this->textBoxCouleur->ReadOnly = true;
+			this->textBoxCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->textBoxCouleur->Size = System::Drawing::Size(114, 24);
+			this->textBoxCouleur->TabIndex = 8;
+			this->textBoxCouleur->Text = L"Couleur";
+			this->textBoxCouleur->TextChanged += gcnew System::EventHandler(this, &PageClient::richTextBox5_TextChanged);
 			// 
-			// richTextBox4
+			// textBoxPrixTTC
 			// 
-			this->richTextBox4->Location = System::Drawing::Point(655, 90);
-			this->richTextBox4->Name = L"richTextBox4";
-			this->richTextBox4->ReadOnly = true;
-			this->richTextBox4->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->richTextBox4->Size = System::Drawing::Size(65, 27);
-			this->richTextBox4->TabIndex = 7;
-			this->richTextBox4->Text = L"Prix TTC";
+			this->textBoxPrixTTC->Location = System::Drawing::Point(655, 90);
+			this->textBoxPrixTTC->Name = L"textBoxPrixTTC";
+			this->textBoxPrixTTC->ReadOnly = true;
+			this->textBoxPrixTTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->textBoxPrixTTC->Size = System::Drawing::Size(65, 27);
+			this->textBoxPrixTTC->TabIndex = 7;
+			this->textBoxPrixTTC->Text = L"Prix TTC";
 			// 
-			// richTextBox3
+			// textBoxDescription
 			// 
-			this->richTextBox3->Location = System::Drawing::Point(655, 123);
-			this->richTextBox3->Name = L"richTextBox3";
-			this->richTextBox3->ReadOnly = true;
-			this->richTextBox3->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->richTextBox3->Size = System::Drawing::Size(280, 56);
-			this->richTextBox3->TabIndex = 6;
-			this->richTextBox3->Text = L"Description";
-			// 
-			// richTextBox2
-			// 
-			this->richTextBox2->Location = System::Drawing::Point(655, 185);
-			this->richTextBox2->Name = L"richTextBox2";
-			this->richTextBox2->ReadOnly = true;
-			this->richTextBox2->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->richTextBox2->Size = System::Drawing::Size(57, 23);
-			this->richTextBox2->TabIndex = 5;
-			this->richTextBox2->Text = L"Quantité";
+			this->textBoxDescription->Location = System::Drawing::Point(655, 123);
+			this->textBoxDescription->Name = L"textBoxDescription";
+			this->textBoxDescription->ReadOnly = true;
+			this->textBoxDescription->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->textBoxDescription->Size = System::Drawing::Size(280, 79);
+			this->textBoxDescription->TabIndex = 6;
+			this->textBoxDescription->Text = L"Description";
 			// 
 			// listView1
 			// 
 			this->listView1->HideSelection = false;
-			listViewItem5->Tag = L"";
-			this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(4) {
-				listViewItem5, listViewItem6,
-					listViewItem7, listViewItem8
-			});
 			this->listView1->Location = System::Drawing::Point(21, 79);
 			this->listView1->MultiSelect = false;
 			this->listView1->Name = L"listView1";
@@ -272,15 +247,15 @@ namespace ProjetPOO {
 			this->listView1->View = System::Windows::Forms::View::List;
 			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &PageClient::listView1_SelectedIndexChanged);
 			// 
-			// richTextBox1
+			// textBoxNom
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(655, 54);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ReadOnly = true;
-			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->richTextBox1->Size = System::Drawing::Size(75, 30);
-			this->richTextBox1->TabIndex = 3;
-			this->richTextBox1->Text = L"Nom article";
+			this->textBoxNom->Location = System::Drawing::Point(655, 54);
+			this->textBoxNom->Name = L"textBoxNom";
+			this->textBoxNom->ReadOnly = true;
+			this->textBoxNom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->textBoxNom->Size = System::Drawing::Size(131, 30);
+			this->textBoxNom->TabIndex = 3;
+			this->textBoxNom->Text = L"Nom article";
 			// 
 			// Recherche
 			// 
@@ -315,10 +290,11 @@ namespace ProjetPOO {
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Nom, this->Image,
-					this->Prix_TTC
+					this->Prix_TTC, this->RetirerArticle
 			});
 			this->dataGridView1->Location = System::Drawing::Point(6, 6);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -326,18 +302,7 @@ namespace ProjetPOO {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(898, 393);
 			this->dataGridView1->TabIndex = 0;
-			// 
-			// imageList1
-			// 
-			this->imageList1->ImageStream = (cli::safe_cast<System::Windows::Forms::ImageListStreamer^>(resources->GetObject(L"imageList1.ImageStream")));
-			this->imageList1->TransparentColor = System::Drawing::Color::IndianRed;
-			this->imageList1->Images->SetKeyName(0, L"PC_Bureau.jpg");
-			// 
-			// contextMenuStrip1
-			// 
-			this->contextMenuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PageClient::dataGridView1_CellClick);
 			// 
 			// Nom
 			// 
@@ -358,7 +323,20 @@ namespace ProjetPOO {
 			this->Prix_TTC->HeaderText = L"Prix TTC";
 			this->Prix_TTC->MinimumWidth = 6;
 			this->Prix_TTC->Name = L"Prix_TTC";
+			this->Prix_TTC->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->Prix_TTC->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			this->Prix_TTC->Width = 125;
+			// 
+			// RetirerArticle
+			// 
+			this->RetirerArticle->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCellsExceptHeader;
+			this->RetirerArticle->HeaderText = L"";
+			this->RetirerArticle->MinimumWidth = 6;
+			this->RetirerArticle->Name = L"RetirerArticle";
+			this->RetirerArticle->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->RetirerArticle->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
+			this->RetirerArticle->Text = L"";
+			this->RetirerArticle->Width = 6;
 			// 
 			// PageClient
 			// 
@@ -406,6 +384,27 @@ private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, Sys
 			String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par défaut si l'image n'est pas trouvée
 			pictureBox1->Image = Image::FromFile(imagePath);
 		}
+
+		try {
+			// Charger les informations de l'article
+			SqlConnection^ conn = gcnew SqlConnection(connectionString);
+			SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
+			cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
+
+			conn->Open();
+			SqlDataReader^ reader = cmd->ExecuteReader();
+
+			if (reader->Read()) {
+				textBoxNom->Text = reader["nom"]->ToString();
+				textBoxDescription->Text = reader["description"]->ToString();
+				textBoxPrixTTC->Text = reader["prix_TTC"]->ToString();
+				textBoxCouleur->Text = reader["couleur"]->ToString();
+			}
+			reader->Close();
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
 	}
 	else {
 		pictureBox1->Image = nullptr; // Aucun élément sélectionné ou réinitialiser l'image
@@ -429,8 +428,7 @@ private: System::Void listView1_SelectedIndexChanged_1(System::Object^ sender, S
 }
 private: System::Void richTextBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
+
 private: System::Void listView2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void AjouterPanier_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -442,13 +440,87 @@ private: System::Void AjouterPanier_Click(System::Object^ sender, System::EventA
 	}
 
     // Création d'une TextBox
-    DataGridViewTextBoxCell^ textBoxCell = gcnew DataGridViewTextBoxCell();
-    textBoxCell->Value = listView1->SelectedItems[0]->Text; // Texte à mettre dans la cellule
+    DataGridViewTextBoxCell^ textBoxNom = gcnew DataGridViewTextBoxCell();
+    textBoxNom->Value = listView1->SelectedItems[0]->Text; // Texte à mettre dans la cellule
 
     // La TextBox est mise dans une cellule spécifique
-    dataGridView1->Rows[objetPanier-1]->Cells[0] = textBoxCell;
+    dataGridView1->Rows[objetPanier-1]->Cells[0] = textBoxNom;
+
+	// La même chose pour la deuxième cellule avec une image
+	DataGridViewImageCell^ imageCell = gcnew DataGridViewImageCell();
+	imageCell->Value = pictureBox1->Image;
+	dataGridView1->Rows[objetPanier-1]->Cells[1] = imageCell;
+
+	// La même chose pour la troisième  cellule avec le prix
+	DataGridViewTextBoxCell^ textBoxCellPrixTTC = gcnew DataGridViewTextBoxCell();
+	textBoxCellPrixTTC->Value = textBoxPrixTTC->Text; // Cellule = Prix TTC de la page commande
+	dataGridView1->Rows[objetPanier-1]->Cells[2] = textBoxCellPrixTTC;
+
+	// La même chose pour la quatrième cellule avec le bouton
+	DataGridViewButtonCell^ buttonCell = gcnew DataGridViewButtonCell();
+	buttonCell->Value = "Retirer " + listView1->SelectedItems[0]->Text + " du panier";
+	dataGridView1->Rows[objetPanier-1]->Cells[3] = buttonCell;
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	// Vérifie si le clic est sur une cellule de bouton
+	if (e->ColumnIndex == 3 && e->RowIndex >= 0 && !dataGridView1->Rows[e->RowIndex]->IsNewRow){
+		// Arrêter l'édition de la ligne
+		dataGridView1->EndEdit();
+		// Suppression de la ligne
+		dataGridView1->Rows->RemoveAt(e->RowIndex);
+		// Mise à jour du nombre d'objets dans le panier
+		objetPanier--;
+	}
+}
+private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	void ChargerArticles()
+	{
+		SqlConnection^ conn = gcnew SqlConnection(connectionString);
+		SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente", conn);
+
+		try {
+			conn->Open();
+			SqlDataReader^ reader = cmd->ExecuteReader();
+
+			while (reader->Read()) {
+				ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
+				item->SubItems->Add(reader["nom"]->ToString());
+				
+				// Ajout d'autres items ICI
+
+				listView1->Items->Add(item);
+				ClonerListViewItems(listView1, listView2);
+
+			}
+			reader->Close();
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+		finally {
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+	}
+
+	void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
+		destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
+
+		for each (ListViewItem ^ item in sourceListView->Items) {
+			// Créer un nouvel ListViewItem
+			ListViewItem^ newItem = gcnew ListViewItem(item->Text);
+
+			// Cloner les sous-éléments
+			for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
+				newItem->SubItems->Add(subItem->Text);
+			}
+
+			// Ajouter le nouvel élément cloné à la destination ListView
+			destinationListView->Items->Add(newItem);
+		}
+	}
+
 };
 }
