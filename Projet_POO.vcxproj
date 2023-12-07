@@ -121,12 +121,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CLClient.cpp" />
+    <ClCompile Include="CLEmploye.cpp" />
+    <ClCompile Include="CLManager.cpp" />
+    <ClCompile Include="CLPersonne.cpp" />
+    <ClCompile Include="CLResponsable.cpp" />
     <ClCompile Include="CreationCompte.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
     <ClCompile Include="PageConnexion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLClient.h" />
+    <ClInclude Include="CLEmploye.h" />
+    <ClInclude Include="CLManager.h" />
+    <ClInclude Include="CLPersonne.h" />
+    <ClInclude Include="CLResponsable.h" />
     <ClInclude Include="CreationCompte.h">
       <FileType>CppForm</FileType>
     </ClInclude>
