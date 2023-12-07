@@ -8,6 +8,6 @@ public:
     virtual System::String^ GetPrenom() abstract;
     virtual void SetPrenom(System::String^ prenom) abstract;
 
-    virtual int GetAge() abstract;
+    virtual System::String^ GetDateNaissance() abstract;
     virtual void SetAge(int age) abstract;
 };

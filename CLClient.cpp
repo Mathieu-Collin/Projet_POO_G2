@@ -1,10 +1,10 @@
 #include "CLClient.h"
 
-CLClient::CLClient(System::String^ nom, System::String^ prenom, int age)
+CLClient::CLClient(System::String^ nom, System::String^ prenom, System::String^Date_Naissance)
 {
     this->nom = nom;
     this->prenom = prenom;
-    this->age = age;
+    this->Date_Naissance = Date_Naissance;
 }
 
 System::String^ CLClient::GetNom()
@@ -27,9 +27,9 @@ void CLClient::SetPrenom(System::String^ prenom)
     this->prenom = prenom;
 }
 
-int CLClient::GetAge()
+System::String^ CLClient::GetDateNaissance()
 {
-    return age;
+    return Date_Naissance;
 }
 
 void CLClient::SetAge(int age)

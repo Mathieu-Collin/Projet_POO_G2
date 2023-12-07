@@ -1,10 +1,12 @@
 #include "CLEmploye.h"
 
-CLEmploye::CLEmploye(System::String^ nom, System::String^ prenom, int age)
+CLEmploye::CLEmploye(System::String^ nom, System::String^ prenom, System::String^Adresse, System::String^ Superieur, System::String^ Date_Embauche)
 {
     this->nom = nom;
     this->prenom = prenom;
-    this->age = age;
+    this->Adresse = Adresse;
+    this->Superieur = Superieur;
+    this->Date_Embauche = Date_Embauche;
 }
 
 System::String^ CLEmploye::GetNom()
