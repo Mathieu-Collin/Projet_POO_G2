@@ -64,7 +64,10 @@ namespace ProjetPOO {
 
 
 	private: System::Windows::Forms::ListView^ listView2;
-	private: System::Windows::Forms::RichTextBox^ couleur;
+	private: System::Windows::Forms::RichTextBox^ titreCouleur;
+
+
+
 
 	private: System::Windows::Forms::RichTextBox^ prix_TTC;
 	private: System::Windows::Forms::RichTextBox^ description;
@@ -93,13 +96,32 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::Button^ CreerArticle;
 	private: System::Windows::Forms::Button^ ModifArticle;
 	private: System::Windows::Forms::RichTextBox^ Id;
+	private: System::Windows::Forms::RichTextBox^ titreReference;
+	private: System::Windows::Forms::RichTextBox^ titrePrix_achat;
+	private: System::Windows::Forms::RichTextBox^ titrePrix_HT;
+	private: System::Windows::Forms::RichTextBox^ titreRemise;
+	private: System::Windows::Forms::RichTextBox^ titreTaux_TVA;
+	private: System::Windows::Forms::RichTextBox^ titreQuantite;
+
+
+
+
+
+
+	private: System::Windows::Forms::RichTextBox^ titreReaprovisionnement;
 	private: System::Windows::Forms::RichTextBox^ reference;
-	private: System::Windows::Forms::RichTextBox^ prix_achat;
+
+
+	private: System::Windows::Forms::RichTextBox^ couleur;
 	private: System::Windows::Forms::RichTextBox^ prix_HT;
+
+	private: System::Windows::Forms::RichTextBox^ prix_achat;
 	private: System::Windows::Forms::RichTextBox^ remise;
 	private: System::Windows::Forms::RichTextBox^ taux_TVA;
-	private: System::Windows::Forms::RichTextBox^ quantite;
 	private: System::Windows::Forms::RichTextBox^ reaprovisionnement;
+	private: System::Windows::Forms::RichTextBox^ quantite;
+
+
 
 
 
@@ -188,25 +210,33 @@ namespace ProjetPOO {
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
-			this->prix_achat = (gcnew System::Windows::Forms::RichTextBox());
-			this->prix_HT = (gcnew System::Windows::Forms::RichTextBox());
-			this->remise = (gcnew System::Windows::Forms::RichTextBox());
-			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
-			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
-			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
-			this->reference = (gcnew System::Windows::Forms::RichTextBox());
+			this->titrePrix_achat = (gcnew System::Windows::Forms::RichTextBox());
+			this->titrePrix_HT = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreRemise = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreTaux_TVA = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreQuantite = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreReaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreReference = (gcnew System::Windows::Forms::RichTextBox());
 			this->Id = (gcnew System::Windows::Forms::RichTextBox());
 			this->CreerArticle = (gcnew System::Windows::Forms::Button());
 			this->ModifArticle = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
-			this->couleur = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreCouleur = (gcnew System::Windows::Forms::RichTextBox());
 			this->prix_TTC = (gcnew System::Windows::Forms::RichTextBox());
 			this->description = (gcnew System::Windows::Forms::RichTextBox());
 			this->nom = (gcnew System::Windows::Forms::RichTextBox());
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
+			this->couleur = (gcnew System::Windows::Forms::RichTextBox());
+			this->reference = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_achat = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_HT = (gcnew System::Windows::Forms::RichTextBox());
+			this->remise = (gcnew System::Windows::Forms::RichTextBox());
+			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
+			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
+			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -226,19 +256,27 @@ namespace ProjetPOO {
 			// OngletGestionStocks
 			// 
 			this->OngletGestionStocks->AutoScroll = true;
-			this->OngletGestionStocks->Controls->Add(this->prix_achat);
-			this->OngletGestionStocks->Controls->Add(this->prix_HT);
-			this->OngletGestionStocks->Controls->Add(this->remise);
-			this->OngletGestionStocks->Controls->Add(this->taux_TVA);
-			this->OngletGestionStocks->Controls->Add(this->quantite);
 			this->OngletGestionStocks->Controls->Add(this->reaprovisionnement);
+			this->OngletGestionStocks->Controls->Add(this->quantite);
+			this->OngletGestionStocks->Controls->Add(this->taux_TVA);
+			this->OngletGestionStocks->Controls->Add(this->remise);
+			this->OngletGestionStocks->Controls->Add(this->prix_HT);
+			this->OngletGestionStocks->Controls->Add(this->prix_achat);
 			this->OngletGestionStocks->Controls->Add(this->reference);
+			this->OngletGestionStocks->Controls->Add(this->couleur);
+			this->OngletGestionStocks->Controls->Add(this->titrePrix_achat);
+			this->OngletGestionStocks->Controls->Add(this->titrePrix_HT);
+			this->OngletGestionStocks->Controls->Add(this->titreRemise);
+			this->OngletGestionStocks->Controls->Add(this->titreTaux_TVA);
+			this->OngletGestionStocks->Controls->Add(this->titreQuantite);
+			this->OngletGestionStocks->Controls->Add(this->titreReaprovisionnement);
+			this->OngletGestionStocks->Controls->Add(this->titreReference);
 			this->OngletGestionStocks->Controls->Add(this->Id);
 			this->OngletGestionStocks->Controls->Add(this->CreerArticle);
 			this->OngletGestionStocks->Controls->Add(this->ModifArticle);
 			this->OngletGestionStocks->Controls->Add(this->pictureBox1);
 			this->OngletGestionStocks->Controls->Add(this->listView2);
-			this->OngletGestionStocks->Controls->Add(this->couleur);
+			this->OngletGestionStocks->Controls->Add(this->titreCouleur);
 			this->OngletGestionStocks->Controls->Add(this->prix_TTC);
 			this->OngletGestionStocks->Controls->Add(this->description);
 			this->OngletGestionStocks->Controls->Add(this->nom);
@@ -254,61 +292,75 @@ namespace ProjetPOO {
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
 			// 
-			// prix_achat
+			// titrePrix_achat
 			// 
-			this->prix_achat->Location = System::Drawing::Point(634, 224);
-			this->prix_achat->Name = L"prix_achat";
-			this->prix_achat->Size = System::Drawing::Size(280, 21);
-			this->prix_achat->TabIndex = 20;
-			this->prix_achat->Text = L"Prix d\'achat au fournisseur";
+			this->titrePrix_achat->Location = System::Drawing::Point(634, 224);
+			this->titrePrix_achat->Name = L"titrePrix_achat";
+			this->titrePrix_achat->ReadOnly = true;
+			this->titrePrix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titrePrix_achat->Size = System::Drawing::Size(167, 21);
+			this->titrePrix_achat->TabIndex = 20;
+			this->titrePrix_achat->Text = L"Prix d\'achat au fournisseur";
 			// 
-			// prix_HT
+			// titrePrix_HT
 			// 
-			this->prix_HT->Location = System::Drawing::Point(634, 251);
-			this->prix_HT->Name = L"prix_HT";
-			this->prix_HT->Size = System::Drawing::Size(280, 26);
-			this->prix_HT->TabIndex = 19;
-			this->prix_HT->Text = L"Prix HT";
+			this->titrePrix_HT->Location = System::Drawing::Point(634, 251);
+			this->titrePrix_HT->Name = L"titrePrix_HT";
+			this->titrePrix_HT->ReadOnly = true;
+			this->titrePrix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titrePrix_HT->Size = System::Drawing::Size(57, 26);
+			this->titrePrix_HT->TabIndex = 19;
+			this->titrePrix_HT->Text = L"Prix HT";
 			// 
-			// remise
+			// titreRemise
 			// 
-			this->remise->Location = System::Drawing::Point(634, 283);
-			this->remise->Name = L"remise";
-			this->remise->Size = System::Drawing::Size(280, 23);
-			this->remise->TabIndex = 18;
-			this->remise->Text = L"Remise";
+			this->titreRemise->Location = System::Drawing::Point(634, 283);
+			this->titreRemise->Name = L"titreRemise";
+			this->titreRemise->ReadOnly = true;
+			this->titreRemise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreRemise->Size = System::Drawing::Size(57, 23);
+			this->titreRemise->TabIndex = 18;
+			this->titreRemise->Text = L"Remise";
 			// 
-			// taux_TVA
+			// titreTaux_TVA
 			// 
-			this->taux_TVA->Location = System::Drawing::Point(634, 312);
-			this->taux_TVA->Name = L"taux_TVA";
-			this->taux_TVA->Size = System::Drawing::Size(280, 23);
-			this->taux_TVA->TabIndex = 17;
-			this->taux_TVA->Text = L"Taux TVA";
+			this->titreTaux_TVA->Location = System::Drawing::Point(634, 312);
+			this->titreTaux_TVA->Name = L"titreTaux_TVA";
+			this->titreTaux_TVA->ReadOnly = true;
+			this->titreTaux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreTaux_TVA->Size = System::Drawing::Size(71, 23);
+			this->titreTaux_TVA->TabIndex = 17;
+			this->titreTaux_TVA->Text = L"Taux TVA";
 			// 
-			// quantite
+			// titreQuantite
 			// 
-			this->quantite->Location = System::Drawing::Point(634, 341);
-			this->quantite->Name = L"quantite";
-			this->quantite->Size = System::Drawing::Size(280, 27);
-			this->quantite->TabIndex = 16;
-			this->quantite->Text = L"Quantité";
+			this->titreQuantite->Location = System::Drawing::Point(634, 341);
+			this->titreQuantite->Name = L"titreQuantite";
+			this->titreQuantite->ReadOnly = true;
+			this->titreQuantite->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreQuantite->Size = System::Drawing::Size(57, 27);
+			this->titreQuantite->TabIndex = 16;
+			this->titreQuantite->Text = L"Quantité";
 			// 
-			// reaprovisionnement
+			// titreReaprovisionnement
 			// 
-			this->reaprovisionnement->Location = System::Drawing::Point(634, 374);
-			this->reaprovisionnement->Name = L"reaprovisionnement";
-			this->reaprovisionnement->Size = System::Drawing::Size(280, 23);
-			this->reaprovisionnement->TabIndex = 15;
-			this->reaprovisionnement->Text = L"Réaprovisionnement";
+			this->titreReaprovisionnement->Location = System::Drawing::Point(634, 374);
+			this->titreReaprovisionnement->Name = L"titreReaprovisionnement";
+			this->titreReaprovisionnement->ReadOnly = true;
+			this->titreReaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreReaprovisionnement->Size = System::Drawing::Size(133, 23);
+			this->titreReaprovisionnement->TabIndex = 15;
+			this->titreReaprovisionnement->Text = L"Réaprovisionnement";
 			// 
-			// reference
+			// titreReference
 			// 
-			this->reference->Location = System::Drawing::Point(634, 191);
-			this->reference->Name = L"reference";
-			this->reference->Size = System::Drawing::Size(280, 27);
-			this->reference->TabIndex = 14;
-			this->reference->Text = L"Référence";
+			this->titreReference->Location = System::Drawing::Point(634, 191);
+			this->titreReference->Name = L"titreReference";
+			this->titreReference->ReadOnly = true;
+			this->titreReference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreReference->Size = System::Drawing::Size(71, 27);
+			this->titreReference->TabIndex = 14;
+			this->titreReference->Text = L"Référence";
 			// 
 			// Id
 			// 
@@ -362,15 +414,16 @@ namespace ProjetPOO {
 			this->listView2->Visible = false;
 			this->listView2->SelectedIndexChanged += gcnew System::EventHandler(this, &PageManager::listView2_SelectedIndexChanged);
 			// 
-			// couleur
+			// titreCouleur
 			// 
-			this->couleur->Location = System::Drawing::Point(634, 161);
-			this->couleur->Name = L"couleur";
-			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->couleur->Size = System::Drawing::Size(280, 24);
-			this->couleur->TabIndex = 8;
-			this->couleur->Text = L"Couleur";
-			this->couleur->TextChanged += gcnew System::EventHandler(this, &PageManager::richTextBox5_TextChanged);
+			this->titreCouleur->Location = System::Drawing::Point(634, 161);
+			this->titreCouleur->Name = L"titreCouleur";
+			this->titreCouleur->ReadOnly = true;
+			this->titreCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreCouleur->Size = System::Drawing::Size(57, 24);
+			this->titreCouleur->TabIndex = 8;
+			this->titreCouleur->Text = L"Couleur";
+			this->titreCouleur->TextChanged += gcnew System::EventHandler(this, &PageManager::richTextBox5_TextChanged);
 			// 
 			// prix_TTC
 			// 
@@ -433,6 +486,78 @@ namespace ProjetPOO {
 			this->OngletsManager->Size = System::Drawing::Size(970, 501);
 			this->OngletsManager->TabIndex = 3;
 			// 
+			// couleur
+			// 
+			this->couleur->Location = System::Drawing::Point(697, 161);
+			this->couleur->Name = L"couleur";
+			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->couleur->Size = System::Drawing::Size(217, 24);
+			this->couleur->TabIndex = 21;
+			this->couleur->Text = L"";
+			// 
+			// reference
+			// 
+			this->reference->Location = System::Drawing::Point(711, 191);
+			this->reference->Name = L"reference";
+			this->reference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->reference->Size = System::Drawing::Size(203, 27);
+			this->reference->TabIndex = 22;
+			this->reference->Text = L"";
+			// 
+			// prix_achat
+			// 
+			this->prix_achat->Location = System::Drawing::Point(807, 224);
+			this->prix_achat->Name = L"prix_achat";
+			this->prix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->prix_achat->Size = System::Drawing::Size(107, 21);
+			this->prix_achat->TabIndex = 23;
+			this->prix_achat->Text = L"";
+			this->prix_achat->TextChanged += gcnew System::EventHandler(this, &PageManager::prix_achat_TextChanged);
+			// 
+			// prix_HT
+			// 
+			this->prix_HT->Location = System::Drawing::Point(697, 251);
+			this->prix_HT->Name = L"prix_HT";
+			this->prix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->prix_HT->Size = System::Drawing::Size(217, 26);
+			this->prix_HT->TabIndex = 24;
+			this->prix_HT->Text = L"";
+			// 
+			// remise
+			// 
+			this->remise->Location = System::Drawing::Point(697, 283);
+			this->remise->Name = L"remise";
+			this->remise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->remise->Size = System::Drawing::Size(217, 23);
+			this->remise->TabIndex = 25;
+			this->remise->Text = L"";
+			// 
+			// taux_TVA
+			// 
+			this->taux_TVA->Location = System::Drawing::Point(711, 312);
+			this->taux_TVA->Name = L"taux_TVA";
+			this->taux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->taux_TVA->Size = System::Drawing::Size(203, 23);
+			this->taux_TVA->TabIndex = 26;
+			this->taux_TVA->Text = L"";
+			// 
+			// quantite
+			// 
+			this->quantite->Location = System::Drawing::Point(697, 341);
+			this->quantite->Name = L"quantite";
+			this->quantite->Size = System::Drawing::Size(217, 27);
+			this->quantite->TabIndex = 27;
+			this->quantite->Text = L"";
+			// 
+			// reaprovisionnement
+			// 
+			this->reaprovisionnement->Location = System::Drawing::Point(773, 374);
+			this->reaprovisionnement->Name = L"reaprovisionnement";
+			this->reaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->reaprovisionnement->Size = System::Drawing::Size(141, 23);
+			this->reaprovisionnement->TabIndex = 28;
+			this->reaprovisionnement->Text = L"";
+			// 
 			// PageManager
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -491,13 +616,13 @@ namespace ProjetPOO {
 					prix_TTC->Text = reader["prix_TTC"]->ToString();
 					couleur->Text = reader["couleur"]->ToString();
 					Id->Text = reader["id_Article"]->ToString();
-					reference->Text = "Référence : " + reader["reference"]->ToString();
-					prix_achat->Text = "Prix d'achat au fournisseur : " + reader["prix_achat"]->ToString();
-					prix_HT->Text = "Prix HT : " + reader["prix_HT"]->ToString();
-					remise->Text = "Remise : " + reader["remise"]->ToString();
-					taux_TVA->Text = "Taux TVA : " + reader["taux_TVA"]->ToString();
-					quantite->Text = "Quantité : " + reader["quantite"]->ToString();
-					reaprovisionnement->Text = "Réaprovisionnement : " + reader["reaprovisionnement"]->ToString();
+					reference->Text = reader["reference"]->ToString();
+					prix_achat->Text = reader["prix_achat"]->ToString();
+					prix_HT->Text = reader["prix_HT"]->ToString();
+					remise->Text = reader["remise"]->ToString();
+					taux_TVA->Text = reader["taux_TVA"]->ToString();
+					quantite->Text = reader["quantite"]->ToString();
+					reaprovisionnement->Text = reader["reaprovisionnement"]->ToString();
 				}
 				reader->Close();
 			}
@@ -647,6 +772,8 @@ namespace ProjetPOO {
 	private: System::Void nom_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void CreerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void prix_achat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
