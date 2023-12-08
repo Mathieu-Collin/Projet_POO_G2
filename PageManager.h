@@ -62,6 +62,7 @@ namespace ProjetPOO {
 
 
 
+
 	private: System::Windows::Forms::ListView^ listView2;
 	public: System::Windows::Forms::RichTextBox^ textBoxCouleur;
 	private:
@@ -357,21 +358,19 @@ namespace ProjetPOO {
 
 			ListViewItem^ selectedItem = listView1->SelectedItems[0];
 
-			// Déterminez l'image à afficher en fonction de selectedItem
-			// Par exemple, si vos images sont nommées selon les noms des éléments
 			String^ imagePath = "Images/Preview_Articles/" + selectedItem->Text + ".jpg";
 
 			try {
 				pictureBox1->Image = Image::FromFile(imagePath);
 			}
 			catch (System::IO::FileNotFoundException^) {
-				String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par défaut si l'image n'est pas trouvée
+				String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // Image par défaut si l'image n'est pas trouvée
 				pictureBox1->Image = Image::FromFile(imagePath);
 			}
 
 			try {
 				// Charger les informations de l'article
-				SqlConnection^ conn = gcnew SqlConnection(connectionString);
+				SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
 				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
 				cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
 
@@ -417,10 +416,10 @@ namespace ProjetPOO {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	private: System::String^ connexionBDD = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
 		   void ChargerArticles()
 		   {
-			   SqlConnection^ conn = gcnew SqlConnection(connectionString);
+			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
 			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente", conn);
 
 			   try {
@@ -465,49 +464,59 @@ namespace ProjetPOO {
 			   }
 		   }
 
+		   void ModifierTextBox(String^ valeurCondition, TextBox^ textBoxModif, String^ nomTable) {
+			   // Récupèrer la nouvelle chaîne de caractères dans la textBox
+			   String^ nomColonne = textBoxModif->Name;
+			   String^ nouvelleValeur = textBoxModif->Text;
+
+			   String^ query = "UPDATE @nomTable SET @nomColonne = @nouvelleValeur WHERE condition = @condition";
+
+			   // Créer la connexion et la commande
+			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
+			   SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+
+			   // Ajouter les paramètres à la commande
+			   cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
+			   cmd->Parameters->AddWithValue("@condition", valeurCondition); // Remplacez 'valeurCondition' par votre condition de sélection
+
+			   try {
+				   // Ouvrir la connexion et exécuter la commande
+				   conn->Open();
+				   int rowsAffected = cmd->ExecuteNonQuery();
+
+				   // Vérifier si la mise à jour a réussi
+				   if (rowsAffected > 0) {
+					   MessageBox::Show("Mise à jour réussie.");
+				   }
+				   else {
+					   MessageBox::Show("Aucune donnée mise à jour.");
+				   }
+			   }
+			   catch (Exception^ e) {
+				   MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
+			   }
+			   finally {
+				   // Fermer la connexion
+				   if (conn->State == ConnectionState::Open)
+					   conn->Close();
+			   }
+		   }
+
 	private: System::Void GestionDuPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void ModifArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (listView1->SelectedItems->Count > 0) {
+			ListViewItem^ selectedItem = listView1->SelectedItems[0];
+			String^ nomArticle = selectedItem->Text;
 
-		void ModifierTextBox(String ^ valeurCondition, TextBox ^ textBoxModif) {
-			// Récupère la nouvelle chapine de caractères dans la textBox
-			String^ nouvelleValeur = textBoxModif->Text;
-
-			// Construire la requête SQL (Assurez-vous d'utiliser des paramètres pour éviter les injections SQL)
-			String^ connectionString = "votre_chaine_de_connexion";
-			String^ query = "UPDATE votre_table SET votre_colonne = @nouvelleValeur WHERE condition = @condition";
-
-			// Créer la connexion et la commande
-			SqlConnection^ conn = gcnew SqlConnection(connectionString);
-			SqlCommand^ cmd = gcnew SqlCommand(query, conn);
-
-			// Ajouter les paramètres à la commande
-			cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
-			cmd->Parameters->AddWithValue("@condition", valeurCondition); // Remplacez 'valeurCondition' par votre condition de sélection
-
-			try {
-				// Ouvrir la connexion et exécuter la commande
-				conn->Open();
-				int rowsAffected = cmd->ExecuteNonQuery();
-
-				// Vérifier si la mise à jour a réussi
-				if (rowsAffected > 0) {
-					MessageBox::Show("Mise à jour réussie.");
-				}
-				else {
-					MessageBox::Show("Aucune donnée mise à jour.");
-				}
-			}
-			catch (Exception^ e) {
-				MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
-			}
-			finally {
-				// Fermer la connexion
-				if (conn->State == ConnectionState::Open)
-					conn->Close();
-			}
-
+			ModifierTextBox(nomArticle, textBoxNom, "Presente");
+			ModifierTextBox(nomArticle, textBoxDescription, "Presente");
+			ModifierTextBox(nomArticle, textBoxPrixTTC, "Presente");
+			ModifierTextBox(nomArticle, textBoxCouleur, "Presente");
+		}
+		else {
+			MessageBox::Show("Veuillez modifer un article.");
 		}
 	}
-};
+	};
 }
