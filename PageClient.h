@@ -366,162 +366,162 @@ namespace ProjetPOO {
 	}
 	private: System::Void Compte_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void treeView1_AfterSelect(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e) {
-}
-private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (listView1->SelectedItems->Count > 0) {
+	private: System::Void treeView1_AfterSelect(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e) {
+	}
+	private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (listView1->SelectedItems->Count > 0) {
 
-		ListViewItem^ selectedItem = listView1->SelectedItems[0];
+			ListViewItem^ selectedItem = listView1->SelectedItems[0];
 
-		// Déterminez l'image à afficher en fonction de selectedItem
-		// Par exemple, si vos images sont nommées selon les noms des éléments
-		String^ imagePath = "Images/Preview_Articles/" + selectedItem->Text + ".jpg";
+			// Déterminez l'image à afficher en fonction de selectedItem
+			// Par exemple, si vos images sont nommées selon les noms des éléments
+			String^ imagePath = "Images/Preview_Articles/" + selectedItem->Text + ".jpg";
 
-		try {
-			pictureBox1->Image = Image::FromFile(imagePath);
-		}
-		catch (System::IO::FileNotFoundException^) {
-			String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par défaut si l'image n'est pas trouvée
-			pictureBox1->Image = Image::FromFile(imagePath);
-		}
-
-		try {
-			// Charger les informations de l'article
-			SqlConnection^ conn = gcnew SqlConnection(connectionString);
-			SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
-			cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
-
-			conn->Open();
-			SqlDataReader^ reader = cmd->ExecuteReader();
-
-			if (reader->Read()) {
-				textBoxNom->Text = reader["nom"]->ToString();
-				textBoxDescription->Text = reader["description"]->ToString();
-				textBoxPrixTTC->Text = reader["prix_TTC"]->ToString();
-				textBoxCouleur->Text = reader["couleur"]->ToString();
+			try {
+				pictureBox1->Image = Image::FromFile(imagePath);
 			}
-			reader->Close();
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-		}
-	}
-	else {
-		pictureBox1->Image = nullptr; // Aucun élément sélectionné ou réinitialiser l'image
-	}
-}
-
-private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void Recherche_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	String^ recherche = Recherche->Text->ToLower();
-	listView1->Items->Clear();
-
-	for each (ListViewItem^ itemOrigine in listView2->Items) {
-		if (itemOrigine->SubItems[0]->Text->ToLower()->Contains(recherche)) {
-			ListViewItem^ itemClone = dynamic_cast<ListViewItem^>(itemOrigine->Clone());
-			listView1->Items->Add(itemClone);
-		}
-	}
-}
-private: System::Void listView1_SelectedIndexChanged_1(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void richTextBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-
-private: System::Void listView2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void AjouterPanier_Click(System::Object^ sender, System::EventArgs^ e) {
-	//Nombre d'objets dans le panier mis à jour
-	objetPanier++;
-    // Création cellule si nécessaire
-	if (dataGridView1->Rows->Count < objetPanier) {
-		dataGridView1->Rows->Add();
-	}
-
-    // Création d'une TextBox
-    DataGridViewTextBoxCell^ textBoxNom = gcnew DataGridViewTextBoxCell();
-    textBoxNom->Value = listView1->SelectedItems[0]->Text; // Texte à mettre dans la cellule
-
-    // La TextBox est mise dans une cellule spécifique
-    dataGridView1->Rows[objetPanier-1]->Cells[0] = textBoxNom;
-
-	// La même chose pour la deuxième cellule avec une image
-	DataGridViewImageCell^ imageCell = gcnew DataGridViewImageCell();
-	imageCell->Value = pictureBox1->Image;
-	dataGridView1->Rows[objetPanier-1]->Cells[1] = imageCell;
-
-	// La même chose pour la troisième  cellule avec le prix
-	DataGridViewTextBoxCell^ textBoxCellPrixTTC = gcnew DataGridViewTextBoxCell();
-	textBoxCellPrixTTC->Value = textBoxPrixTTC->Text; // Cellule = Prix TTC de la page commande
-	dataGridView1->Rows[objetPanier-1]->Cells[2] = textBoxCellPrixTTC;
-
-	// La même chose pour la quatrième cellule avec le bouton
-	DataGridViewButtonCell^ buttonCell = gcnew DataGridViewButtonCell();
-	buttonCell->Value = "Retirer " + listView1->SelectedItems[0]->Text + " du panier";
-	dataGridView1->Rows[objetPanier-1]->Cells[3] = buttonCell;
-}
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	// Vérifie si le clic est sur une cellule de bouton
-	if (e->ColumnIndex == 3 && e->RowIndex >= 0 && !dataGridView1->Rows[e->RowIndex]->IsNewRow){
-		// Arrêter l'édition de la ligne
-		dataGridView1->EndEdit();
-		// Suppression de la ligne
-		dataGridView1->Rows->RemoveAt(e->RowIndex);
-		// Mise à jour du nombre d'objets dans le panier
-		objetPanier--;
-	}
-}
-//private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
-private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
-	void ChargerArticles()
-	{
-		SqlConnection^ conn = gcnew SqlConnection(connectionString);
-		SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente", conn);
-
-		try {
-			conn->Open();
-			SqlDataReader^ reader = cmd->ExecuteReader();
-
-			while (reader->Read()) {
-				ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
-				item->SubItems->Add(reader["nom"]->ToString());
-				
-				// Ajout d'autres items ICI
-
-				listView1->Items->Add(item);
-				ClonerListViewItems(listView1, listView2);
-
-			}
-			reader->Close();
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-		}
-		finally {
-			if (conn->State == ConnectionState::Open)
-				conn->Close();
-		}
-	}
-
-	void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
-		destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
-
-		for each (ListViewItem ^ item in sourceListView->Items) {
-			// Créer un nouvel ListViewItem
-			ListViewItem^ newItem = gcnew ListViewItem(item->Text);
-
-			// Cloner les sous-éléments
-			for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
-				newItem->SubItems->Add(subItem->Text);
+			catch (System::IO::FileNotFoundException^) {
+				String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par défaut si l'image n'est pas trouvée
+				pictureBox1->Image = Image::FromFile(imagePath);
 			}
 
-			// Ajouter le nouvel élément cloné à la destination ListView
-			destinationListView->Items->Add(newItem);
+			try {
+				// Charger les informations de l'article
+				SqlConnection^ conn = gcnew SqlConnection(connectionString);
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article WHERE nom = @nom", conn);
+				cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
+
+				conn->Open();
+				SqlDataReader^ reader = cmd->ExecuteReader();
+
+				if (reader->Read()) {
+					textBoxNom->Text = reader["nom"]->ToString();
+					textBoxDescription->Text = reader["description"]->ToString();
+					textBoxPrixTTC->Text = reader["prix_TTC"]->ToString();
+					textBoxCouleur->Text = reader["couleur"]->ToString();
+				}
+				reader->Close();
+			}
+			catch (Exception^ e) {
+				MessageBox::Show(e->Message);
+			}
+		}
+		else {
+			pictureBox1->Image = nullptr; // Aucun élément sélectionné ou réinitialiser l'image
 		}
 	}
 
-};
+	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void Recherche_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		String^ recherche = Recherche->Text->ToLower();
+		listView1->Items->Clear();
+
+		for each (ListViewItem ^ itemOrigine in listView2->Items) {
+			if (itemOrigine->SubItems[0]->Text->ToLower()->Contains(recherche)) {
+				ListViewItem^ itemClone = dynamic_cast<ListViewItem^>(itemOrigine->Clone());
+				listView1->Items->Add(itemClone);
+			}
+		}
+	}
+	private: System::Void listView1_SelectedIndexChanged_1(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void richTextBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+	private: System::Void listView2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void AjouterPanier_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Nombre d'objets dans le panier mis à jour
+		objetPanier++;
+		// Création cellule si nécessaire
+		if (dataGridView1->Rows->Count < objetPanier) {
+			dataGridView1->Rows->Add();
+		}
+
+		// Création d'une TextBox
+		DataGridViewTextBoxCell^ textBoxNom = gcnew DataGridViewTextBoxCell();
+		textBoxNom->Value = listView1->SelectedItems[0]->Text; // Texte à mettre dans la cellule
+
+		// La TextBox est mise dans une cellule spécifique
+		dataGridView1->Rows[objetPanier - 1]->Cells[0] = textBoxNom;
+
+		// La même chose pour la deuxième cellule avec une image
+		DataGridViewImageCell^ imageCell = gcnew DataGridViewImageCell();
+		imageCell->Value = pictureBox1->Image;
+		dataGridView1->Rows[objetPanier - 1]->Cells[1] = imageCell;
+
+		// La même chose pour la troisième  cellule avec le prix
+		DataGridViewTextBoxCell^ textBoxCellPrixTTC = gcnew DataGridViewTextBoxCell();
+		textBoxCellPrixTTC->Value = textBoxPrixTTC->Text; // Cellule = Prix TTC de la page commande
+		dataGridView1->Rows[objetPanier - 1]->Cells[2] = textBoxCellPrixTTC;
+
+		// La même chose pour la quatrième cellule avec le bouton
+		DataGridViewButtonCell^ buttonCell = gcnew DataGridViewButtonCell();
+		buttonCell->Value = "Retirer " + listView1->SelectedItems[0]->Text + " du panier";
+		dataGridView1->Rows[objetPanier - 1]->Cells[3] = buttonCell;
+	}
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		// Vérifie si le clic est sur une cellule de bouton
+		if (e->ColumnIndex == 3 && e->RowIndex >= 0 && !dataGridView1->Rows[e->RowIndex]->IsNewRow) {
+			// Arrêter l'édition de la ligne
+			dataGridView1->EndEdit();
+			// Suppression de la ligne
+			dataGridView1->Rows->RemoveAt(e->RowIndex);
+			// Mise à jour du nombre d'objets dans le panier
+			objetPanier--;
+		}
+	}
+		   //private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+		   void ChargerArticles()
+		   {
+			   SqlConnection^ conn = gcnew SqlConnection(connectionString);
+			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
+
+			   try {
+				   conn->Open();
+				   SqlDataReader^ reader = cmd->ExecuteReader();
+
+				   while (reader->Read()) {
+					   ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
+					   item->SubItems->Add(reader["nom"]->ToString());
+
+					   // Ajout d'autres items ICI
+
+					   listView1->Items->Add(item);
+					   ClonerListViewItems(listView1, listView2);
+
+				   }
+				   reader->Close();
+			   }
+			   catch (Exception^ e) {
+				   MessageBox::Show(e->Message);
+			   }
+			   finally {
+				   if (conn->State == ConnectionState::Open)
+					   conn->Close();
+			   }
+		   }
+
+		   void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
+			   destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
+
+			   for each (ListViewItem ^ item in sourceListView->Items) {
+				   // Créer un nouvel ListViewItem
+				   ListViewItem^ newItem = gcnew ListViewItem(item->Text);
+
+				   // Cloner les sous-éléments
+				   for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
+					   newItem->SubItems->Add(subItem->Text);
+				   }
+
+				   // Ajouter le nouvel élément cloné à la destination ListView
+				   destinationListView->Items->Add(newItem);
+			   }
+		   }
+
+	};
 }
