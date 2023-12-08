@@ -388,7 +388,7 @@ namespace ProjetPOO {
 			try {
 				// Charger les informations de l'article
 				SqlConnection^ conn = gcnew SqlConnection(connectionString);
-				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article WHERE nom = @nom", conn);
 				cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
 
 				conn->Open();
@@ -479,7 +479,7 @@ namespace ProjetPOO {
 		   void ChargerArticles()
 		   {
 			   SqlConnection^ conn = gcnew SqlConnection(connectionString);
-			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente", conn);
+			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
 
 			   try {
 				   conn->Open();
