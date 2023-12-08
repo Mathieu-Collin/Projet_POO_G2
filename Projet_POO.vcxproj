@@ -126,7 +126,6 @@
     <ClCompile Include="CreationCompte.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
-    <ClCompile Include="PageConnexion.cpp" />
     <ClCompile Include="PageConnexionManager.cpp" />
     <ClCompile Include="PageManager.cpp" />
   </ItemGroup>

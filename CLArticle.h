@@ -1,33 +1,60 @@
 #pragma once
 
+using namespace System;
+
 ref class CLArticle
 {
 private:
-    int id_article;
+    int idArticle;
     int quantite;
     double prixHT;
-    bool reaprovisionnement;
+    bool reapprovisionnement;
     double prixAchat;
+    String^ nom;
+    String^ couleur;
+    String^ reference;
+    double tauxTVA;
+    double prixTTC;
+    double remise;
+    String^ description;
 
 public:
-    CLArticle(int id,int quantite, double prixHT, bool reaprovisionnement, double prixAchat);
+    CLArticle();
+CLArticle(int idArticle, int quantite, double prixHT, bool reapprovisionnement, double prixAchat, String^ nom, String^ couleur, String^ reference, double tauxTVA, double prixTTC, double remise, String^ description);
 
-// Getter et Setter pour l'ID
-    int GetId();
-    void SetId(int id);
-    // Getter et Setter pour la quantité
+    int GetIdArticle();
+    void SetIdArticle(int value);
+
     int GetQuantite();
-    void SetQuantite(int quantite);
+    void SetQuantite(int value);
 
-    // Getter et Setter pour le prix HT
     double GetPrixHT();
-    void SetPrixHT(double prixHT);
+    void SetPrixHT(double value);
 
-    // Getter et Setter pour le réapprovisionnement
-    bool GetReaprovisionnement();
-    void SetReaprovisionnement(bool reaprovisionnement);
+    bool GetReapprovisionnement();
+    void SetReapprovisionnement(bool value);
 
-    // Getter et Setter pour le prix d'achat
     double GetPrixAchat();
-    void SetPrixAchat(double prixAchat);
+    void SetPrixAchat(double value);
+
+    String^ GetNom();
+    void SetNom(String^ value);
+
+    String^ GetCouleur();
+    void SetCouleur(String^ value);
+
+    String^ GetReference();
+    void SetReference(String^ value);
+
+    double GetTauxTVA();
+    void SetTauxTVA(double value);
+
+    double GetPrixTTC();
+    void SetPrixTTC(double value);
+
+    double GetRemise();
+    void SetRemise(double value);
+
+    String^ GetDescription();
+    void SetDescription(String^ value);
 };
