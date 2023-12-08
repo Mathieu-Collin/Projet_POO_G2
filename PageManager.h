@@ -158,6 +158,8 @@ namespace ProjetPOO {
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
+			this->CreerArticle = (gcnew System::Windows::Forms::Button());
+			this->ModifArticle = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->textBoxCouleur = (gcnew System::Windows::Forms::RichTextBox());
@@ -167,8 +169,6 @@ namespace ProjetPOO {
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
-			this->ModifArticle = (gcnew System::Windows::Forms::Button());
-			this->CreerArticle = (gcnew System::Windows::Forms::Button());
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -207,6 +207,25 @@ namespace ProjetPOO {
 			this->OngletGestionStocks->Text = L"Gestion des stocks";
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
+			// 
+			// CreerArticle
+			// 
+			this->CreerArticle->Location = System::Drawing::Point(634, 307);
+			this->CreerArticle->Name = L"CreerArticle";
+			this->CreerArticle->Size = System::Drawing::Size(178, 34);
+			this->CreerArticle->TabIndex = 12;
+			this->CreerArticle->Text = L"Créer l\'article";
+			this->CreerArticle->UseVisualStyleBackColor = true;
+			// 
+			// ModifArticle
+			// 
+			this->ModifArticle->Location = System::Drawing::Point(634, 260);
+			this->ModifArticle->Name = L"ModifArticle";
+			this->ModifArticle->Size = System::Drawing::Size(178, 29);
+			this->ModifArticle->TabIndex = 11;
+			this->ModifArticle->Text = L"Valider les modifications";
+			this->ModifArticle->UseVisualStyleBackColor = true;
+			this->ModifArticle->Click += gcnew System::EventHandler(this, &PageManager::ModifArticle_Click);
 			// 
 			// pictureBox1
 			// 
@@ -304,24 +323,6 @@ namespace ProjetPOO {
 			this->OngletsManager->SelectedIndex = 0;
 			this->OngletsManager->Size = System::Drawing::Size(970, 501);
 			this->OngletsManager->TabIndex = 3;
-			// 
-			// ModifArticle
-			// 
-			this->ModifArticle->Location = System::Drawing::Point(634, 260);
-			this->ModifArticle->Name = L"ModifArticle";
-			this->ModifArticle->Size = System::Drawing::Size(178, 29);
-			this->ModifArticle->TabIndex = 11;
-			this->ModifArticle->Text = L"Valider les modifications";
-			this->ModifArticle->UseVisualStyleBackColor = true;
-			// 
-			// CreerArticle
-			// 
-			this->CreerArticle->Location = System::Drawing::Point(634, 307);
-			this->CreerArticle->Name = L"CreerArticle";
-			this->CreerArticle->Size = System::Drawing::Size(178, 34);
-			this->CreerArticle->TabIndex = 12;
-			this->CreerArticle->Text = L"Créer l\'article";
-			this->CreerArticle->UseVisualStyleBackColor = true;
 			// 
 			// PageManager
 			// 
@@ -466,5 +467,48 @@ namespace ProjetPOO {
 
 	private: System::Void GestionDuPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void ModifArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	void ModifierTextBox(String ^ valeurCondition, TextBox ^ maTextBox) {
+		// Récupère la nouvelle chapine de caractères dans la textBox
+		String^ nouvelleValeur = maTextBox->Text;
+
+		// Construire la requête SQL (Assurez-vous d'utiliser des paramètres pour éviter les injections SQL)
+		String^ connectionString = "votre_chaine_de_connexion";
+		String^ query = "UPDATE votre_table SET votre_colonne = @nouvelleValeur WHERE condition = @condition";
+
+		// Créer la connexion et la commande
+		SqlConnection^ conn = gcnew SqlConnection(connectionString);
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+
+		// Ajouter les paramètres à la commande
+		cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
+		cmd->Parameters->AddWithValue("@condition", valeurCondition); // Remplacez 'valeurCondition' par votre condition de sélection
+
+		try {
+			// Ouvrir la connexion et exécuter la commande
+			conn->Open();
+			int rowsAffected = cmd->ExecuteNonQuery();
+
+			// Vérifier si la mise à jour a réussi
+			if (rowsAffected > 0) {
+				MessageBox::Show("Mise à jour réussie.");
+			}
+			else {
+				MessageBox::Show("Aucune donnée mise à jour.");
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
+		}
+		finally {
+			// Fermer la connexion
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+	}
+}
+
+}
 };
 }
