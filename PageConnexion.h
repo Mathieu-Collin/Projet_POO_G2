@@ -198,5 +198,7 @@ namespace ProjetPOO {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void PageConnexion_Load_1(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
