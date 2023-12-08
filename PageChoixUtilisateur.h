@@ -135,7 +135,8 @@ namespace ProjetPOO {
 	#pragma endregion
 	private: System::Void ouvrePageConnexionClick(System::Object^ sender, System::EventArgs^ e) {
 		PageConnexion^ pageConnexionForm = gcnew PageConnexion();
-		pageConnexionForm->ShowDialog();
+		PageChoixUtilisateur::Close();
+		pageConnexionForm^ connectform = gcnew PageConnexion();
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}

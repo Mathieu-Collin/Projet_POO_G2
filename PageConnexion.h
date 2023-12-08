@@ -174,6 +174,7 @@ namespace ProjetPOO {
 			this->Controls->Add(this->label1);
 			this->Name = L"PageConnexion";
 			this->Text = L"PageConnexion";
+			this->Load += gcnew System::EventHandler(this, &PageConnexion::PageConnexion_Load_1);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -254,5 +255,7 @@ namespace ProjetPOO {
 		con->Close();
 	}
 
+private: System::Void PageConnexion_Load_1(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
