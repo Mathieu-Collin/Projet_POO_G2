@@ -1,5 +1,6 @@
 #pragma once
 #include "PageConnexion.h"
+#include "PageConnexionManager.h"
 
 namespace ProjetPOO {
 
@@ -11,7 +12,7 @@ namespace ProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de PageChoixUtilisateur
+	/// Description rÃ©sumÃ©e de PageChoixUtilisateur
 	/// </summary>
 	public ref class PageChoixUtilisateur : public System::Windows::Forms::Form
 	{
@@ -26,7 +27,7 @@ namespace ProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~PageChoixUtilisateur()
 		{
@@ -39,7 +40,8 @@ namespace ProjetPOO {
 	protected:
 
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ Manager;
+
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Label^ label1;
 
@@ -47,20 +49,20 @@ namespace ProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->ouvrePageConnexion = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->Manager = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
@@ -83,19 +85,21 @@ namespace ProjetPOO {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(74, 24);
 			this->button2->TabIndex = 1;
-			this->button2->Text = L"Employé";
+			this->button2->Text = L"EmployÃ©";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button2_Click);
 			// 
-			// button3
+			// Manager
 			// 
-			this->button3->Location = System::Drawing::Point(361, 227);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(64, 24);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Manager";
-			this->button3->UseVisualStyleBackColor = true;
+
+			this->Manager->Location = System::Drawing::Point(481, 279);
+			this->Manager->Name = L"Manager";
+			this->Manager->Size = System::Drawing::Size(86, 30);
+			this->Manager->TabIndex = 2;
+			this->Manager->Text = L"Manager";
+			this->Manager->UseVisualStyleBackColor = true;
+			this->Manager->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button3_Click);
+
 			// 
 			// button4
 			// 
@@ -116,7 +120,7 @@ namespace ProjetPOO {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(54, 13);
 			this->label1->TabIndex = 5;
-			this->label1->Text = L"Vous êtes";
+			this->label1->Text = L"Vous Ãªtes";
 			// 
 			// PageChoixUtilisateur
 			// 
@@ -125,7 +129,7 @@ namespace ProjetPOO {
 			this->ClientSize = System::Drawing::Size(700, 425);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->Manager);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->ouvrePageConnexion);
 			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
@@ -148,7 +152,11 @@ namespace ProjetPOO {
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void PageChoixUtilisateur_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
+		pageConnexionManagerForm->ShowDialog();
+	}
+
 };
 }

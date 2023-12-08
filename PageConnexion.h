@@ -12,7 +12,7 @@ namespace ProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de PageConnexion
+	/// Description rÃ©sumÃ©e de PageConnexion
 	/// </summary>
 	public ref class PageConnexion : public System::Windows::Forms::Form
 	{
@@ -27,7 +27,7 @@ namespace ProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~PageConnexion()
 		{
@@ -54,14 +54,14 @@ namespace ProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -77,9 +77,11 @@ namespace ProjetPOO {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(158, 86);
+
+			this->label1->Location = System::Drawing::Point(209, 74);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->Size = System::Drawing::Size(42, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nom: ";
 			this->label1->Click += gcnew System::EventHandler(this, &PageConnexion::label1_Click);
@@ -87,41 +89,73 @@ namespace ProjetPOO {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(13, 13);
+			this->label2->Location = System::Drawing::Point(17, 16);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(100, 13);
+			this->label2->Size = System::Drawing::Size(125, 16);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Page de Connexion";
 			this->label2->Click += gcnew System::EventHandler(this, &PageConnexion::label2_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(213, 83);
+
+			this->textBox1->Location = System::Drawing::Point(283, 70);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->Size = System::Drawing::Size(132, 22);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &PageConnexion::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(213, 138);
+
+			this->textBox2->Location = System::Drawing::Point(283, 138);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
+			this->textBox2->Size = System::Drawing::Size(132, 22);
 			this->textBox2->TabIndex = 4;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(158, 141);
+
+			this->label3->Location = System::Drawing::Point(209, 142);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(49, 13);
+			this->label3->Size = System::Drawing::Size(60, 16);
 			this->label3->TabIndex = 3;
-			this->label3->Text = L"Prénom: ";
+			this->label3->Text = L"PrÃ©nom: ";
 			// 
+
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(283, 209);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(132, 22);
+			this->textBox3->TabIndex = 6;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(171, 218);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(96, 16);
+			this->label4->TabIndex = 5;
+			this->label4->Text = L"Mot de Passe: ";
+			// 
+
 			// Connect_Button
 			// 
-			this->Connect_Button->Location = System::Drawing::Point(107, 253);
+			this->Connect_Button->Location = System::Drawing::Point(143, 311);
+			this->Connect_Button->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Connect_Button->Name = L"Connect_Button";
-			this->Connect_Button->Size = System::Drawing::Size(128, 23);
+			this->Connect_Button->Size = System::Drawing::Size(171, 28);
 			this->Connect_Button->TabIndex = 7;
 			this->Connect_Button->Text = L"Se Connecter";
 			this->Connect_Button->UseVisualStyleBackColor = true;
@@ -129,26 +163,32 @@ namespace ProjetPOO {
 			// 
 			// buttonCreateAcount
 			// 
-			this->buttonCreateAcount->Location = System::Drawing::Point(289, 253);
-			this->buttonCreateAcount->Name = L"buttonCreateAcount";
-			this->buttonCreateAcount->Size = System::Drawing::Size(128, 23);
-			this->buttonCreateAcount->TabIndex = 8;
-			this->buttonCreateAcount->Text = L"Créer un Compte";
-			this->buttonCreateAcount->UseVisualStyleBackColor = true;
-			this->buttonCreateAcount->Click += gcnew System::EventHandler(this, &PageConnexion::buttonCreateAcount_Click);
+
+			this->button1->Location = System::Drawing::Point(385, 311);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(171, 28);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"CrÃ©er un Compte";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &PageConnexion::button1_Click);
+
 			// 
 			// PageConnexion
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+
 			this->ClientSize = System::Drawing::Size(500, 322);
 			this->Controls->Add(this->buttonCreateAcount);
+
 			this->Controls->Add(this->Connect_Button);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"PageConnexion";
 			this->Text = L"PageConnexion";
 			this->Load += gcnew System::EventHandler(this, &PageConnexion::PageConnexion_Load);
@@ -179,15 +219,15 @@ namespace ProjetPOO {
 				count++;
 			}
 			if (count == 1) {
-				MessageBox::Show("Connexion réussie");
+				MessageBox::Show("Connexion rÃ©ussie");
 				PageClient^ pageClientForm = gcnew PageClient();
 				pageClientForm->ShowDialog();
 			}
 			else if (count > 1) {
-				MessageBox::Show("Nom et Prénom déjà utilisés");
+				MessageBox::Show("Nom et PrÃ©nom dÃ©jÃ  utilisÃ©s");
 			}
 			else {
-				MessageBox::Show("Nom et Prénom incorrects");
+				MessageBox::Show("Nom et PrÃ©nom incorrects");
 			}
 		}
 		catch (Exception^ ex) {
@@ -199,9 +239,10 @@ namespace ProjetPOO {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
+
 	private: System::Void PageConnexion_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void buttonCreateAcount_Click(System::Object^ sender, System::EventArgs^ e) //fonction qui vérifie que le nom et le prénom ne sont pas déjà utilisés et qui crée un compte
+private: System::Void buttonCreateAcount_Click(System::Object^ sender, System::EventArgs^ e) //fonction qui vÃ©rifie que le nom et le prÃ©nom ne sont pas dÃ©jÃ  utilisÃ©s et qui crÃ©e un compte
 {
 	String^ nom = textBox1->Text;
 	String^ prenom = textBox2->Text;
@@ -217,17 +258,17 @@ private: System::Void buttonCreateAcount_Click(System::Object^ sender, System::E
 			count++;
 		}
 		if (count == 1) {
-			MessageBox::Show("Nom et Prénom déjà utilisés");
+			MessageBox::Show("Nom et PrÃ©nom dÃ©jÃ  utilisÃ©s");
 		}
 		else if (count > 1) {
-			MessageBox::Show("Nom et Prénom déjà utilisés");
+			MessageBox::Show("Nom et PrÃ©nom dÃ©jÃ  utilisÃ©s");
 		}
 		else {
-			MessageBox::Show("Nom et Prénom disponibles");
+			MessageBox::Show("Nom et PrÃ©nom disponibles");
 			String^ query2 = "INSERT INTO Client (Nom, Prenom) VALUES ('" + nom + "', '" + prenom + "')";
 			SqlCommand^ cmd2 = gcnew SqlCommand(query2, con);
 			cmd2->ExecuteNonQuery();
-			MessageBox::Show("Compte créé");
+			MessageBox::Show("Compte crÃ©Ã©");
 		}
 	}
 	catch (Exception^ ex) {
@@ -236,4 +277,5 @@ private: System::Void buttonCreateAcount_Click(System::Object^ sender, System::E
 }
 };
 }
+
 

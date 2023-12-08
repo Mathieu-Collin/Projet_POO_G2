@@ -15,7 +15,7 @@ namespace ProjetPOO {
 
 
 	/// <summary>
-	/// Description résumée de PageManager
+	/// Description rÃ©sumÃ©e de PageManager
 	/// </summary>
 	public ref class PageManager : public System::Windows::Forms::Form
 	{
@@ -31,7 +31,7 @@ namespace ProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~PageManager()
 		{
@@ -133,15 +133,15 @@ namespace ProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 
 
 #pragma region Windows Form Designer generated code
 
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -323,15 +323,15 @@ namespace ProjetPOO {
 
 			ListViewItem^ selectedItem = listView1->SelectedItems[0];
 
-			// Déterminez l'image à afficher en fonction de selectedItem
-			// Par exemple, si vos images sont nommées selon les noms des éléments
+			// DÃ©terminez l'image Ã  afficher en fonction de selectedItem
+			// Par exemple, si vos images sont nommÃ©es selon les noms des Ã©lÃ©ments
 			String^ imagePath = "Images/Preview_Articles/" + selectedItem->Text + ".jpg";
 
 			try {
 				pictureBox1->Image = Image::FromFile(imagePath);
 			}
 			catch (System::IO::FileNotFoundException^) {
-				String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par défaut si l'image n'est pas trouvée
+				String^ imagePath = "Images/Preview_Articles/Erreur.jpg"; // ou une image par dÃ©faut si l'image n'est pas trouvÃ©e
 				pictureBox1->Image = Image::FromFile(imagePath);
 			}
 
@@ -357,7 +357,7 @@ namespace ProjetPOO {
 			}
 		}
 		else {
-			pictureBox1->Image = nullptr; // Aucun élément sélectionné ou réinitialiser l'image
+			pictureBox1->Image = nullptr; // Aucun Ã©lÃ©ment sÃ©lectionnÃ© ou rÃ©initialiser l'image
 		}
 	}
 
@@ -415,23 +415,25 @@ namespace ProjetPOO {
 		   }
 
 		   void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
-			   destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
+			   destinationListView->Items->Clear(); // Effacer les Ã©lÃ©ments existants dans la destination
 
 			   for each (ListViewItem ^ item in sourceListView->Items) {
-				   // Créer un nouvel ListViewItem
+				   // CrÃ©er un nouvel ListViewItem
 				   ListViewItem^ newItem = gcnew ListViewItem(item->Text);
 
-				   // Cloner les sous-éléments
+				   // Cloner les sous-Ã©lÃ©ments
 				   for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
 					   newItem->SubItems->Add(subItem->Text);
 				   }
 
-				   // Ajouter le nouvel élément cloné à la destination ListView
+				   // Ajouter le nouvel Ã©lÃ©ment clonÃ© Ã  la destination ListView
 				   destinationListView->Items->Add(newItem);
 			   }
 		   }
 
 	private: System::Void GestionDuPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+
+};
+
 }
