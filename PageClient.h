@@ -69,6 +69,7 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::DataGridViewImageColumn^ Image;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prix_TTC;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ RetirerArticle;
+	private: System::Windows::Forms::Button^ AjouterPanier;
 
 
 
@@ -141,6 +142,7 @@ namespace ProjetPOO {
 			this->Image = (gcnew System::Windows::Forms::DataGridViewImageColumn());
 			this->Prix_TTC = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RetirerArticle = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->AjouterPanier = (gcnew System::Windows::Forms::Button());
 			this->OngletsClient->SuspendLayout();
 			this->Commande->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -162,6 +164,7 @@ namespace ProjetPOO {
 			// Commande
 			// 
 			this->Commande->AutoScroll = true;
+			this->Commande->Controls->Add(this->AjouterPanier);
 			this->Commande->Controls->Add(this->pictureBox1);
 			this->Commande->Controls->Add(this->listView2);
 			this->Commande->Controls->Add(this->textBoxCouleur);
@@ -337,6 +340,16 @@ namespace ProjetPOO {
 			this->RetirerArticle->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
 			this->RetirerArticle->Text = L"";
 			this->RetirerArticle->Width = 6;
+			// 
+			// AjouterPanier
+			// 
+			this->AjouterPanier->Location = System::Drawing::Point(673, 277);
+			this->AjouterPanier->Name = L"AjouterPanier";
+			this->AjouterPanier->Size = System::Drawing::Size(231, 36);
+			this->AjouterPanier->TabIndex = 11;
+			this->AjouterPanier->Text = L"Ajouter au Panier";
+			this->AjouterPanier->UseVisualStyleBackColor = true;
+			this->AjouterPanier->Click += gcnew System::EventHandler(this, &PageClient::AjouterPanier_Click);
 			// 
 			// PageClient
 			// 

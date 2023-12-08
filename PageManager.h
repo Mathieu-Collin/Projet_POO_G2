@@ -47,6 +47,8 @@ namespace ProjetPOO {
 	private: int objetPanier = 0;
 	private: System::Windows::Forms::TabPage^ GestionDuPersonnel;
 	private: System::Windows::Forms::TabPage^ OngletGestionStocks;
+	public: System::Windows::Forms::PictureBox^ pictureBox1;
+	private:
 
 
 
@@ -59,16 +61,25 @@ namespace ProjetPOO {
 
 
 
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 	private: System::Windows::Forms::ListView^ listView2;
-	private: System::Windows::Forms::RichTextBox^ textBoxCouleur;
-	private: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
-	private: System::Windows::Forms::RichTextBox^ textBoxDescription;
-	private: System::Windows::Forms::RichTextBox^ textBoxNom;
+	public: System::Windows::Forms::RichTextBox^ textBoxCouleur;
+	private:
+	public: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
+	public: System::Windows::Forms::RichTextBox^ textBoxDescription;
+	public: System::Windows::Forms::RichTextBox^ textBoxNom;
+
+
+
+
 	public: System::Windows::Forms::TextBox^ Recherche;
 	private:
 	private: System::Windows::Forms::ListView^ listView1;
 	private: System::Windows::Forms::TabControl^ OngletsManager;
+	private: System::Windows::Forms::Button^ CreerArticle;
+	private: System::Windows::Forms::Button^ ModifArticle;
+
+
 
 
 	public:
@@ -156,6 +167,8 @@ namespace ProjetPOO {
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
+			this->ModifArticle = (gcnew System::Windows::Forms::Button());
+			this->CreerArticle = (gcnew System::Windows::Forms::Button());
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -175,6 +188,8 @@ namespace ProjetPOO {
 			// OngletGestionStocks
 			// 
 			this->OngletGestionStocks->AutoScroll = true;
+			this->OngletGestionStocks->Controls->Add(this->CreerArticle);
+			this->OngletGestionStocks->Controls->Add(this->ModifArticle);
 			this->OngletGestionStocks->Controls->Add(this->pictureBox1);
 			this->OngletGestionStocks->Controls->Add(this->listView2);
 			this->OngletGestionStocks->Controls->Add(this->textBoxCouleur);
@@ -195,7 +210,7 @@ namespace ProjetPOO {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(276, 90);
+			this->pictureBox1->Location = System::Drawing::Point(263, 79);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(349, 295);
 			this->pictureBox1->TabIndex = 10;
@@ -218,7 +233,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxCouleur
 			// 
-			this->textBoxCouleur->Location = System::Drawing::Point(655, 208);
+			this->textBoxCouleur->Location = System::Drawing::Point(634, 208);
 			this->textBoxCouleur->Name = L"textBoxCouleur";
 			this->textBoxCouleur->ReadOnly = true;
 			this->textBoxCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -229,7 +244,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxPrixTTC
 			// 
-			this->textBoxPrixTTC->Location = System::Drawing::Point(655, 90);
+			this->textBoxPrixTTC->Location = System::Drawing::Point(634, 90);
 			this->textBoxPrixTTC->Name = L"textBoxPrixTTC";
 			this->textBoxPrixTTC->ReadOnly = true;
 			this->textBoxPrixTTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -239,7 +254,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxDescription
 			// 
-			this->textBoxDescription->Location = System::Drawing::Point(655, 123);
+			this->textBoxDescription->Location = System::Drawing::Point(634, 123);
 			this->textBoxDescription->Name = L"textBoxDescription";
 			this->textBoxDescription->ReadOnly = true;
 			this->textBoxDescription->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -249,7 +264,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxNom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(655, 54);
+			this->textBoxNom->Location = System::Drawing::Point(634, 54);
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->ReadOnly = true;
 			this->textBoxNom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -289,6 +304,24 @@ namespace ProjetPOO {
 			this->OngletsManager->SelectedIndex = 0;
 			this->OngletsManager->Size = System::Drawing::Size(970, 501);
 			this->OngletsManager->TabIndex = 3;
+			// 
+			// ModifArticle
+			// 
+			this->ModifArticle->Location = System::Drawing::Point(634, 260);
+			this->ModifArticle->Name = L"ModifArticle";
+			this->ModifArticle->Size = System::Drawing::Size(178, 29);
+			this->ModifArticle->TabIndex = 11;
+			this->ModifArticle->Text = L"Valider les modifications";
+			this->ModifArticle->UseVisualStyleBackColor = true;
+			// 
+			// CreerArticle
+			// 
+			this->CreerArticle->Location = System::Drawing::Point(634, 307);
+			this->CreerArticle->Name = L"CreerArticle";
+			this->CreerArticle->Size = System::Drawing::Size(178, 34);
+			this->CreerArticle->TabIndex = 12;
+			this->CreerArticle->Text = L"Créer l\'article";
+			this->CreerArticle->UseVisualStyleBackColor = true;
 			// 
 			// PageManager
 			// 
