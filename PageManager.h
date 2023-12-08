@@ -658,7 +658,7 @@ namespace ProjetPOO {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	//private: System::String^ connexionBDD = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
-	private: System::String^ connexionBDD = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+	private: System::String^ connexionBDD = "Server=PC-MATHIEU; Database=Projet; User ID=Test; Password=123";
 		   void ChargerArticles()
 		   {
 			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
