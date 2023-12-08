@@ -20,12 +20,20 @@ namespace ProjetPOO {
 	public ref class PageClient : public System::Windows::Forms::Form
 	{
 	public:
+
 		PageClient(void)
 		{
+
 			InitializeComponent();
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+			ChargerArticles();
+		}
+
+		PageClient(System::String^ nom, System::String^ prenom, System::String^ mdp)
+		{
+			InitializeComponent();
 			ChargerArticles();
 		}
 
@@ -70,6 +78,17 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prix_TTC;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ RetirerArticle;
 	private: System::Windows::Forms::Button^ AjouterPanier;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ labelTitre;
+	private: System::Windows::Forms::TextBox^ textBoxChangePrenom;
+	private: System::Windows::Forms::TextBox^ textBoxChnageDate;
+
+
+	private: System::Windows::Forms::TextBox^ textBoxChangeNom;
+	private: System::Windows::Forms::Button^ buttonValider;
+
 
 
 
@@ -144,9 +163,18 @@ namespace ProjetPOO {
 			this->Image = (gcnew System::Windows::Forms::DataGridViewImageColumn());
 			this->Prix_TTC = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RetirerArticle = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->labelTitre = (gcnew System::Windows::Forms::Label());
+			this->textBoxChangeNom = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxChnageDate = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxChangePrenom = (gcnew System::Windows::Forms::TextBox());
+			this->buttonValider = (gcnew System::Windows::Forms::Button());
 			this->OngletsClient->SuspendLayout();
 			this->Commande->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->Compte->SuspendLayout();
 			this->Panier->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -157,9 +185,10 @@ namespace ProjetPOO {
 			this->OngletsClient->Controls->Add(this->Compte);
 			this->OngletsClient->Controls->Add(this->Panier);
 			this->OngletsClient->Location = System::Drawing::Point(2, 2);
+			this->OngletsClient->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->OngletsClient->Name = L"OngletsClient";
 			this->OngletsClient->SelectedIndex = 0;
-			this->OngletsClient->Size = System::Drawing::Size(970, 501);
+			this->OngletsClient->Size = System::Drawing::Size(728, 407);
 			this->OngletsClient->TabIndex = 3;
 			// 
 			// Commande
@@ -175,19 +204,21 @@ namespace ProjetPOO {
 			this->Commande->Controls->Add(this->textBoxNom);
 			this->Commande->Controls->Add(this->Recherche);
 			this->Commande->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->Commande->Location = System::Drawing::Point(4, 25);
+			this->Commande->Location = System::Drawing::Point(4, 22);
+			this->Commande->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Commande->Name = L"Commande";
-			this->Commande->Padding = System::Windows::Forms::Padding(3);
-			this->Commande->Size = System::Drawing::Size(962, 472);
+			this->Commande->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Commande->Size = System::Drawing::Size(720, 381);
 			this->Commande->TabIndex = 0;
 			this->Commande->Text = L"Commande";
 			this->Commande->UseVisualStyleBackColor = true;
 			// 
 			// AjouterPanier
 			// 
-			this->AjouterPanier->Location = System::Drawing::Point(682, 270);
+			this->AjouterPanier->Location = System::Drawing::Point(512, 219);
+			this->AjouterPanier->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->AjouterPanier->Name = L"AjouterPanier";
-			this->AjouterPanier->Size = System::Drawing::Size(224, 45);
+			this->AjouterPanier->Size = System::Drawing::Size(168, 37);
 			this->AjouterPanier->TabIndex = 11;
 			this->AjouterPanier->Text = L"Ajouter au panier";
 			this->AjouterPanier->UseVisualStyleBackColor = true;
@@ -195,19 +226,21 @@ namespace ProjetPOO {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(276, 90);
+			this->pictureBox1->Location = System::Drawing::Point(207, 73);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(349, 295);
+			this->pictureBox1->Size = System::Drawing::Size(262, 240);
 			this->pictureBox1->TabIndex = 10;
 			this->pictureBox1->TabStop = false;
 			// 
 			// listView2
 			// 
 			this->listView2->HideSelection = false;
-			this->listView2->Location = System::Drawing::Point(130, 170);
+			this->listView2->Location = System::Drawing::Point(98, 138);
+			this->listView2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listView2->MultiSelect = false;
 			this->listView2->Name = L"listView2";
-			this->listView2->Size = System::Drawing::Size(53, 103);
+			this->listView2->Size = System::Drawing::Size(41, 84);
 			this->listView2->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listView2->TabIndex = 9;
 			this->listView2->Tag = L"listeArticles";
@@ -218,42 +251,46 @@ namespace ProjetPOO {
 			// 
 			// textBoxCouleur
 			// 
-			this->textBoxCouleur->Location = System::Drawing::Point(655, 208);
+			this->textBoxCouleur->Location = System::Drawing::Point(491, 169);
+			this->textBoxCouleur->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBoxCouleur->Name = L"textBoxCouleur";
 			this->textBoxCouleur->ReadOnly = true;
 			this->textBoxCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxCouleur->Size = System::Drawing::Size(114, 24);
+			this->textBoxCouleur->Size = System::Drawing::Size(86, 20);
 			this->textBoxCouleur->TabIndex = 8;
 			this->textBoxCouleur->Text = L"Couleur";
 			this->textBoxCouleur->TextChanged += gcnew System::EventHandler(this, &PageClient::richTextBox5_TextChanged);
 			// 
 			// textBoxPrixTTC
 			// 
-			this->textBoxPrixTTC->Location = System::Drawing::Point(655, 90);
+			this->textBoxPrixTTC->Location = System::Drawing::Point(491, 73);
+			this->textBoxPrixTTC->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBoxPrixTTC->Name = L"textBoxPrixTTC";
 			this->textBoxPrixTTC->ReadOnly = true;
 			this->textBoxPrixTTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxPrixTTC->Size = System::Drawing::Size(65, 27);
+			this->textBoxPrixTTC->Size = System::Drawing::Size(50, 23);
 			this->textBoxPrixTTC->TabIndex = 7;
 			this->textBoxPrixTTC->Text = L"Prix TTC";
 			// 
 			// textBoxDescription
 			// 
-			this->textBoxDescription->Location = System::Drawing::Point(655, 123);
+			this->textBoxDescription->Location = System::Drawing::Point(491, 100);
+			this->textBoxDescription->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBoxDescription->Name = L"textBoxDescription";
 			this->textBoxDescription->ReadOnly = true;
 			this->textBoxDescription->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxDescription->Size = System::Drawing::Size(280, 79);
+			this->textBoxDescription->Size = System::Drawing::Size(211, 65);
 			this->textBoxDescription->TabIndex = 6;
 			this->textBoxDescription->Text = L"Description";
 			// 
 			// listView1
 			// 
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(21, 79);
+			this->listView1->Location = System::Drawing::Point(16, 64);
+			this->listView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listView1->MultiSelect = false;
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(236, 326);
+			this->listView1->Size = System::Drawing::Size(178, 266);
 			this->listView1->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listView1->TabIndex = 4;
 			this->listView1->Tag = L"listeArticles";
@@ -263,29 +300,40 @@ namespace ProjetPOO {
 			// 
 			// textBoxNom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(655, 54);
+			this->textBoxNom->Location = System::Drawing::Point(491, 44);
+			this->textBoxNom->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->ReadOnly = true;
 			this->textBoxNom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxNom->Size = System::Drawing::Size(131, 30);
+			this->textBoxNom->Size = System::Drawing::Size(99, 25);
 			this->textBoxNom->TabIndex = 3;
 			this->textBoxNom->Text = L"Nom article";
 			// 
 			// Recherche
 			// 
-			this->Recherche->Location = System::Drawing::Point(21, 51);
+			this->Recherche->Location = System::Drawing::Point(16, 41);
+			this->Recherche->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Recherche->Name = L"Recherche";
-			this->Recherche->Size = System::Drawing::Size(236, 22);
+			this->Recherche->Size = System::Drawing::Size(178, 20);
 			this->Recherche->TabIndex = 0;
 			this->Recherche->Text = L"Rechercher";
 			this->Recherche->TextChanged += gcnew System::EventHandler(this, &PageClient::Recherche_TextChanged);
 			// 
 			// Compte
 			// 
-			this->Compte->Location = System::Drawing::Point(4, 25);
+			this->Compte->Controls->Add(this->buttonValider);
+			this->Compte->Controls->Add(this->textBoxChangePrenom);
+			this->Compte->Controls->Add(this->textBoxChnageDate);
+			this->Compte->Controls->Add(this->textBoxChangeNom);
+			this->Compte->Controls->Add(this->labelTitre);
+			this->Compte->Controls->Add(this->label3);
+			this->Compte->Controls->Add(this->label2);
+			this->Compte->Controls->Add(this->label1);
+			this->Compte->Location = System::Drawing::Point(4, 22);
+			this->Compte->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Compte->Name = L"Compte";
-			this->Compte->Padding = System::Windows::Forms::Padding(3);
-			this->Compte->Size = System::Drawing::Size(962, 472);
+			this->Compte->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Compte->Size = System::Drawing::Size(720, 381);
 			this->Compte->TabIndex = 1;
 			this->Compte->Text = L"Compte";
 			this->Compte->UseVisualStyleBackColor = true;
@@ -294,10 +342,11 @@ namespace ProjetPOO {
 			// Panier
 			// 
 			this->Panier->Controls->Add(this->dataGridView1);
-			this->Panier->Location = System::Drawing::Point(4, 25);
+			this->Panier->Location = System::Drawing::Point(4, 22);
+			this->Panier->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Panier->Name = L"Panier";
-			this->Panier->Padding = System::Windows::Forms::Padding(3);
-			this->Panier->Size = System::Drawing::Size(962, 472);
+			this->Panier->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Panier->Size = System::Drawing::Size(720, 381);
 			this->Panier->TabIndex = 2;
 			this->Panier->Text = L"Panier";
 			this->Panier->UseVisualStyleBackColor = true;
@@ -310,11 +359,12 @@ namespace ProjetPOO {
 				this->Nom, this->Image,
 					this->Prix_TTC, this->RetirerArticle
 			});
-			this->dataGridView1->Location = System::Drawing::Point(6, 6);
+			this->dataGridView1->Location = System::Drawing::Point(4, 5);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(898, 393);
+			this->dataGridView1->Size = System::Drawing::Size(674, 319);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PageClient::dataGridView1_CellClick);
 			// 
@@ -352,12 +402,83 @@ namespace ProjetPOO {
 			this->RetirerArticle->Text = L"";
 			this->RetirerArticle->Width = 6;
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(139, 69);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Nom:";
+			this->label1->Click += gcnew System::EventHandler(this, &PageClient::label1_Click_1);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(139, 143);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(46, 13);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"Prénom:";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(139, 214);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(99, 13);
+			this->label3->TabIndex = 2;
+			this->label3->Text = L"Date de naissance:";
+			this->label3->Click += gcnew System::EventHandler(this, &PageClient::label3_Click);
+			// 
+			// labelTitre
+			// 
+			this->labelTitre->AutoSize = true;
+			this->labelTitre->Location = System::Drawing::Point(29, 23);
+			this->labelTitre->Name = L"labelTitre";
+			this->labelTitre->Size = System::Drawing::Size(209, 13);
+			this->labelTitre->TabIndex = 3;
+			this->labelTitre->Text = L"Changement des Informations personnelles";
+			// 
+			// textBoxChangeNom
+			// 
+			this->textBoxChangeNom->Location = System::Drawing::Point(307, 69);
+			this->textBoxChangeNom->Name = L"textBoxChangeNom";
+			this->textBoxChangeNom->Size = System::Drawing::Size(100, 20);
+			this->textBoxChangeNom->TabIndex = 4;
+			this->textBoxChangeNom->TextChanged += gcnew System::EventHandler(this, &PageClient::textBox1_TextChanged);
+			// 
+			// textBoxChnageDate
+			// 
+			this->textBoxChnageDate->Location = System::Drawing::Point(307, 211);
+			this->textBoxChnageDate->Name = L"textBoxChnageDate";
+			this->textBoxChnageDate->Size = System::Drawing::Size(100, 20);
+			this->textBoxChnageDate->TabIndex = 5;
+			// 
+			// textBoxChangePrenom
+			// 
+			this->textBoxChangePrenom->Location = System::Drawing::Point(307, 143);
+			this->textBoxChangePrenom->Name = L"textBoxChangePrenom";
+			this->textBoxChangePrenom->Size = System::Drawing::Size(100, 20);
+			this->textBoxChangePrenom->TabIndex = 6;
+			// 
+			// buttonValider
+			// 
+			this->buttonValider->Location = System::Drawing::Point(319, 294);
+			this->buttonValider->Name = L"buttonValider";
+			this->buttonValider->Size = System::Drawing::Size(75, 23);
+			this->buttonValider->TabIndex = 7;
+			this->buttonValider->Text = L"Valider";
+			this->buttonValider->UseVisualStyleBackColor = true;
+			this->buttonValider->Click += gcnew System::EventHandler(this, &PageClient::buttonValider_Click);
+			// 
 			// PageClient
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(970, 499);
+			this->ClientSize = System::Drawing::Size(728, 405);
 			this->Controls->Add(this->OngletsClient);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"PageClient";
 			this->Text = L"PageClient";
 			this->Load += gcnew System::EventHandler(this, &PageClient::PageClient_Load);
@@ -365,6 +486,8 @@ namespace ProjetPOO {
 			this->Commande->ResumeLayout(false);
 			this->Commande->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->Compte->ResumeLayout(false);
+			this->Compte->PerformLayout();
 			this->Panier->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -536,5 +659,33 @@ namespace ProjetPOO {
 				   destinationListView->Items->Add(newItem);
 			   }
 		   }
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e) //Met a jour les informations dans la base de donnée en fonction des données renseignées et du nom prenom et mdp
+{
+	SqlConnection^ conn = gcnew SqlConnection(connectionString);
+	SqlCommand^ cmd = gcnew SqlCommand("UPDATE Client SET nom = @nom, prenom = @prenom, date_naissance = @date_naissance WHERE nom = @nom AND prenom = @prenom AND mdp = @mdp", conn);
+	cmd->Parameters->AddWithValue("@nom", textBoxChangeNom->Text);
+	cmd->Parameters->AddWithValue("@prenom", textBoxChangePrenom->Text);
+	cmd->Parameters->AddWithValue("@date_naissance", textBoxChnageDate->Text);
+
+	try {
+		conn->Open();
+		cmd->ExecuteNonQuery();
+		MessageBox::Show("Informations modifiées");
+	}
+	catch (Exception^ e) {
+		MessageBox::Show(e->Message);
+	}
+	finally {
+		if (conn->State == ConnectionState::Open)
+			conn->Close();
+	}
+}
+
 };
 }

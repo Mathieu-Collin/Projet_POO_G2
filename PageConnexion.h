@@ -214,7 +214,7 @@ namespace ProjetPOO {
 		}
 		if (count == 1) {
 			MessageBox::Show("Connexion réussie");
-			PageClient^ pageClient = gcnew PageClient();
+			PageClient^ pageClient = gcnew PageClient(nom, prenom, mdp);
 			pageClient->Show();
 			this->Hide();
 		}
@@ -286,6 +286,8 @@ namespace ProjetPOO {
 		}
 		con->Close();
 	}
+	private: System::Void PageConnexion_Load_1(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-
+};
 }
