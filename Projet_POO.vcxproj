@@ -121,7 +121,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CLClient.cpp" />
+    <ClCompile Include="CLEmploye.cpp" />
+    <ClCompile Include="CLPersonne.cpp" />
     <ClCompile Include="CreationCompte.cpp" />
+    <ClCompile Include="PageManager.cpp" />
+    <ClCompile Include="PageConnexionManager.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
     <ClCompile Include="PageConnexion.cpp" />
@@ -129,7 +134,16 @@
     <ClCompile Include="PageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLClient.h" />
+    <ClInclude Include="CLEmploye.h" />
+    <ClInclude Include="CLPersonne.h" />
     <ClInclude Include="CreationCompte.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexionManager.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PageChoixUtilisateur.h">

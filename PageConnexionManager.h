@@ -11,7 +11,7 @@ namespace ProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de PageConnexionManager
+	/// Description rÃ©sumÃ©e de PageConnexionManager
 	/// </summary>
 	public ref class PageConnexionManager : public System::Windows::Forms::Form
 	{
@@ -26,7 +26,7 @@ namespace ProjetPOO {
 
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~PageConnexionManager()
 		{
@@ -40,14 +40,15 @@ namespace ProjetPOO {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
