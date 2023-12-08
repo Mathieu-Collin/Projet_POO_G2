@@ -487,7 +487,8 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		objetPanier--;
 	}
 }
-private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+//private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 	void ChargerArticles()
 	{
 		SqlConnection^ conn = gcnew SqlConnection(connectionString);

@@ -121,6 +121,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CLArticle.cpp" />
     <ClCompile Include="CreationCompte.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="PageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLArticle.h" />
     <ClInclude Include="CreationCompte.h">
       <FileType>CppForm</FileType>
     </ClInclude>
