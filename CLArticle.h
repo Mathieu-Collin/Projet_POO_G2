@@ -12,6 +12,9 @@ private:
 public:
     CLArticle(int id,int quantite, double prixHT, bool reaprovisionnement, double prixAchat);
 
+// Getter et Setter pour l'ID
+    int GetId();
+    void SetId(int id);
     // Getter et Setter pour la quantité
     int GetQuantite();
     void SetQuantite(int quantite);

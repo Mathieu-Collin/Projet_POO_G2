@@ -9,6 +9,18 @@ CLArticle::CLArticle(int id,int quantite, double prixHT, bool reaprovisionnement
     this->prixAchat = prixAchat;
 }
 
+
+
+void CLArticle::SetId(int id)
+{
+    this->id_article = id;
+}
+
+int CLArticle::GetId()
+{
+	return id_article;
+}
+
 // Implémentation des getters et setters
 int CLArticle::GetQuantite()
 {
