@@ -98,7 +98,7 @@ namespace ProjetPOO {
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(283, 70);
-			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(132, 22);
 			this->textBox1->TabIndex = 2;
@@ -107,10 +107,11 @@ namespace ProjetPOO {
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(283, 138);
-			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(132, 22);
 			this->textBox2->TabIndex = 4;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &PageConnexion::textBox2_TextChanged);
 			// 
 			// label3
 			// 
@@ -125,7 +126,7 @@ namespace ProjetPOO {
 			// textBox3
 			// 
 			this->textBox3->Location = System::Drawing::Point(283, 209);
-			this->textBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(132, 22);
 			this->textBox3->TabIndex = 6;
@@ -143,7 +144,7 @@ namespace ProjetPOO {
 			// Connect_Button
 			// 
 			this->Connect_Button->Location = System::Drawing::Point(143, 311);
-			this->Connect_Button->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Connect_Button->Margin = System::Windows::Forms::Padding(4);
 			this->Connect_Button->Name = L"Connect_Button";
 			this->Connect_Button->Size = System::Drawing::Size(171, 28);
 			this->Connect_Button->TabIndex = 7;
@@ -154,7 +155,7 @@ namespace ProjetPOO {
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(385, 311);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(171, 28);
 			this->button1->TabIndex = 8;
@@ -176,7 +177,7 @@ namespace ProjetPOO {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"PageConnexion";
 			this->Text = L"PageConnexion";
 			this->ResumeLayout(false);
@@ -198,5 +199,7 @@ namespace ProjetPOO {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

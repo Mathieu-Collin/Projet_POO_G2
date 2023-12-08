@@ -64,11 +64,24 @@ namespace ProjetPOO {
 
 
 	private: System::Windows::Forms::ListView^ listView2;
-	public: System::Windows::Forms::RichTextBox^ textBoxCouleur;
+	private: System::Windows::Forms::RichTextBox^ couleur;
+
+	private: System::Windows::Forms::RichTextBox^ prix_TTC;
+	private: System::Windows::Forms::RichTextBox^ description;
+
+
+
+
+	private: System::Windows::Forms::RichTextBox^ nom;
+
+
+
+
+
 	private:
-	public: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
-	public: System::Windows::Forms::RichTextBox^ textBoxDescription;
-	public: System::Windows::Forms::RichTextBox^ textBoxNom;
+
+
+
 
 
 
@@ -79,6 +92,22 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::TabControl^ OngletsManager;
 	private: System::Windows::Forms::Button^ CreerArticle;
 	private: System::Windows::Forms::Button^ ModifArticle;
+	private: System::Windows::Forms::RichTextBox^ Id;
+	private: System::Windows::Forms::RichTextBox^ reference;
+	private: System::Windows::Forms::RichTextBox^ prix_achat;
+	private: System::Windows::Forms::RichTextBox^ prix_HT;
+	private: System::Windows::Forms::RichTextBox^ remise;
+	private: System::Windows::Forms::RichTextBox^ taux_TVA;
+	private: System::Windows::Forms::RichTextBox^ quantite;
+	private: System::Windows::Forms::RichTextBox^ reaprovisionnement;
+
+
+
+
+
+
+
+
 
 
 
@@ -159,14 +188,22 @@ namespace ProjetPOO {
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
+			this->prix_achat = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_HT = (gcnew System::Windows::Forms::RichTextBox());
+			this->remise = (gcnew System::Windows::Forms::RichTextBox());
+			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
+			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
+			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
+			this->reference = (gcnew System::Windows::Forms::RichTextBox());
+			this->Id = (gcnew System::Windows::Forms::RichTextBox());
 			this->CreerArticle = (gcnew System::Windows::Forms::Button());
 			this->ModifArticle = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
-			this->textBoxCouleur = (gcnew System::Windows::Forms::RichTextBox());
-			this->textBoxPrixTTC = (gcnew System::Windows::Forms::RichTextBox());
-			this->textBoxDescription = (gcnew System::Windows::Forms::RichTextBox());
-			this->textBoxNom = (gcnew System::Windows::Forms::RichTextBox());
+			this->couleur = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_TTC = (gcnew System::Windows::Forms::RichTextBox());
+			this->description = (gcnew System::Windows::Forms::RichTextBox());
+			this->nom = (gcnew System::Windows::Forms::RichTextBox());
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
@@ -189,14 +226,22 @@ namespace ProjetPOO {
 			// OngletGestionStocks
 			// 
 			this->OngletGestionStocks->AutoScroll = true;
+			this->OngletGestionStocks->Controls->Add(this->prix_achat);
+			this->OngletGestionStocks->Controls->Add(this->prix_HT);
+			this->OngletGestionStocks->Controls->Add(this->remise);
+			this->OngletGestionStocks->Controls->Add(this->taux_TVA);
+			this->OngletGestionStocks->Controls->Add(this->quantite);
+			this->OngletGestionStocks->Controls->Add(this->reaprovisionnement);
+			this->OngletGestionStocks->Controls->Add(this->reference);
+			this->OngletGestionStocks->Controls->Add(this->Id);
 			this->OngletGestionStocks->Controls->Add(this->CreerArticle);
 			this->OngletGestionStocks->Controls->Add(this->ModifArticle);
 			this->OngletGestionStocks->Controls->Add(this->pictureBox1);
 			this->OngletGestionStocks->Controls->Add(this->listView2);
-			this->OngletGestionStocks->Controls->Add(this->textBoxCouleur);
-			this->OngletGestionStocks->Controls->Add(this->textBoxPrixTTC);
-			this->OngletGestionStocks->Controls->Add(this->textBoxDescription);
-			this->OngletGestionStocks->Controls->Add(this->textBoxNom);
+			this->OngletGestionStocks->Controls->Add(this->couleur);
+			this->OngletGestionStocks->Controls->Add(this->prix_TTC);
+			this->OngletGestionStocks->Controls->Add(this->description);
+			this->OngletGestionStocks->Controls->Add(this->nom);
 			this->OngletGestionStocks->Controls->Add(this->Recherche);
 			this->OngletGestionStocks->Controls->Add(this->listView1);
 			this->OngletGestionStocks->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
@@ -209,20 +254,86 @@ namespace ProjetPOO {
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
 			// 
+			// prix_achat
+			// 
+			this->prix_achat->Location = System::Drawing::Point(634, 224);
+			this->prix_achat->Name = L"prix_achat";
+			this->prix_achat->Size = System::Drawing::Size(280, 21);
+			this->prix_achat->TabIndex = 20;
+			this->prix_achat->Text = L"Prix d\'achat au fournisseur";
+			// 
+			// prix_HT
+			// 
+			this->prix_HT->Location = System::Drawing::Point(634, 251);
+			this->prix_HT->Name = L"prix_HT";
+			this->prix_HT->Size = System::Drawing::Size(280, 26);
+			this->prix_HT->TabIndex = 19;
+			this->prix_HT->Text = L"Prix HT";
+			// 
+			// remise
+			// 
+			this->remise->Location = System::Drawing::Point(634, 283);
+			this->remise->Name = L"remise";
+			this->remise->Size = System::Drawing::Size(280, 23);
+			this->remise->TabIndex = 18;
+			this->remise->Text = L"Remise";
+			// 
+			// taux_TVA
+			// 
+			this->taux_TVA->Location = System::Drawing::Point(634, 312);
+			this->taux_TVA->Name = L"taux_TVA";
+			this->taux_TVA->Size = System::Drawing::Size(280, 23);
+			this->taux_TVA->TabIndex = 17;
+			this->taux_TVA->Text = L"Taux TVA";
+			// 
+			// quantite
+			// 
+			this->quantite->Location = System::Drawing::Point(634, 341);
+			this->quantite->Name = L"quantite";
+			this->quantite->Size = System::Drawing::Size(280, 27);
+			this->quantite->TabIndex = 16;
+			this->quantite->Text = L"Quantité";
+			// 
+			// reaprovisionnement
+			// 
+			this->reaprovisionnement->Location = System::Drawing::Point(634, 374);
+			this->reaprovisionnement->Name = L"reaprovisionnement";
+			this->reaprovisionnement->Size = System::Drawing::Size(280, 23);
+			this->reaprovisionnement->TabIndex = 15;
+			this->reaprovisionnement->Text = L"Réaprovisionnement";
+			// 
+			// reference
+			// 
+			this->reference->Location = System::Drawing::Point(634, 191);
+			this->reference->Name = L"reference";
+			this->reference->Size = System::Drawing::Size(280, 27);
+			this->reference->TabIndex = 14;
+			this->reference->Text = L"Référence";
+			// 
+			// Id
+			// 
+			this->Id->Location = System::Drawing::Point(879, 65);
+			this->Id->Name = L"Id";
+			this->Id->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->Id->Size = System::Drawing::Size(35, 24);
+			this->Id->TabIndex = 13;
+			this->Id->Text = L"Id";
+			// 
 			// CreerArticle
 			// 
-			this->CreerArticle->Location = System::Drawing::Point(634, 307);
+			this->CreerArticle->Location = System::Drawing::Point(311, 39);
 			this->CreerArticle->Name = L"CreerArticle";
-			this->CreerArticle->Size = System::Drawing::Size(178, 34);
+			this->CreerArticle->Size = System::Drawing::Size(269, 34);
 			this->CreerArticle->TabIndex = 12;
-			this->CreerArticle->Text = L"Créer l\'article";
+			this->CreerArticle->Text = L"Créer un article";
 			this->CreerArticle->UseVisualStyleBackColor = true;
+			this->CreerArticle->Click += gcnew System::EventHandler(this, &PageManager::CreerArticle_Click);
 			// 
 			// ModifArticle
 			// 
-			this->ModifArticle->Location = System::Drawing::Point(634, 260);
+			this->ModifArticle->Location = System::Drawing::Point(662, 412);
 			this->ModifArticle->Name = L"ModifArticle";
-			this->ModifArticle->Size = System::Drawing::Size(178, 29);
+			this->ModifArticle->Size = System::Drawing::Size(223, 27);
 			this->ModifArticle->TabIndex = 11;
 			this->ModifArticle->Text = L"Valider les modifications";
 			this->ModifArticle->UseVisualStyleBackColor = true;
@@ -230,9 +341,9 @@ namespace ProjetPOO {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(263, 79);
+			this->pictureBox1->Location = System::Drawing::Point(263, 90);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(349, 295);
+			this->pictureBox1->Size = System::Drawing::Size(349, 315);
 			this->pictureBox1->TabIndex = 10;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -251,46 +362,43 @@ namespace ProjetPOO {
 			this->listView2->Visible = false;
 			this->listView2->SelectedIndexChanged += gcnew System::EventHandler(this, &PageManager::listView2_SelectedIndexChanged);
 			// 
-			// textBoxCouleur
+			// couleur
 			// 
-			this->textBoxCouleur->Location = System::Drawing::Point(634, 208);
-			this->textBoxCouleur->Name = L"textBoxCouleur";
-			this->textBoxCouleur->ReadOnly = true;
-			this->textBoxCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxCouleur->Size = System::Drawing::Size(114, 24);
-			this->textBoxCouleur->TabIndex = 8;
-			this->textBoxCouleur->Text = L"Couleur";
-			this->textBoxCouleur->TextChanged += gcnew System::EventHandler(this, &PageManager::richTextBox5_TextChanged);
+			this->couleur->Location = System::Drawing::Point(634, 161);
+			this->couleur->Name = L"couleur";
+			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->couleur->Size = System::Drawing::Size(280, 24);
+			this->couleur->TabIndex = 8;
+			this->couleur->Text = L"Couleur";
+			this->couleur->TextChanged += gcnew System::EventHandler(this, &PageManager::richTextBox5_TextChanged);
 			// 
-			// textBoxPrixTTC
+			// prix_TTC
 			// 
-			this->textBoxPrixTTC->Location = System::Drawing::Point(634, 90);
-			this->textBoxPrixTTC->Name = L"textBoxPrixTTC";
-			this->textBoxPrixTTC->ReadOnly = true;
-			this->textBoxPrixTTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxPrixTTC->Size = System::Drawing::Size(97, 27);
-			this->textBoxPrixTTC->TabIndex = 7;
-			this->textBoxPrixTTC->Text = L"Prix TTC";
+			this->prix_TTC->Location = System::Drawing::Point(634, 62);
+			this->prix_TTC->Name = L"prix_TTC";
+			this->prix_TTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->prix_TTC->Size = System::Drawing::Size(97, 27);
+			this->prix_TTC->TabIndex = 7;
+			this->prix_TTC->Text = L"Prix TTC";
 			// 
-			// textBoxDescription
+			// description
 			// 
-			this->textBoxDescription->Location = System::Drawing::Point(634, 123);
-			this->textBoxDescription->Name = L"textBoxDescription";
-			this->textBoxDescription->ReadOnly = true;
-			this->textBoxDescription->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxDescription->Size = System::Drawing::Size(280, 79);
-			this->textBoxDescription->TabIndex = 6;
-			this->textBoxDescription->Text = L"Description";
+			this->description->Location = System::Drawing::Point(634, 95);
+			this->description->Name = L"description";
+			this->description->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->description->Size = System::Drawing::Size(280, 60);
+			this->description->TabIndex = 6;
+			this->description->Text = L"Description";
 			// 
-			// textBoxNom
+			// nom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(634, 54);
-			this->textBoxNom->Name = L"textBoxNom";
-			this->textBoxNom->ReadOnly = true;
-			this->textBoxNom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->textBoxNom->Size = System::Drawing::Size(280, 30);
-			this->textBoxNom->TabIndex = 3;
-			this->textBoxNom->Text = L"Nom article";
+			this->nom->Location = System::Drawing::Point(634, 26);
+			this->nom->Name = L"nom";
+			this->nom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->nom->Size = System::Drawing::Size(280, 30);
+			this->nom->TabIndex = 3;
+			this->nom->Text = L"Nom article";
+			this->nom->TextChanged += gcnew System::EventHandler(this, &PageManager::nom_TextChanged);
 			// 
 			// Recherche
 			// 
@@ -371,17 +479,25 @@ namespace ProjetPOO {
 			try {
 				// Charger les informations de l'article
 				SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
-				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article WHERE nom = @nom", conn);
 				cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
 
 				conn->Open();
 				SqlDataReader^ reader = cmd->ExecuteReader();
 
 				if (reader->Read()) {
-					textBoxNom->Text = reader["nom"]->ToString();
-					textBoxDescription->Text = reader["description"]->ToString();
-					textBoxPrixTTC->Text = reader["prix_TTC"]->ToString();
-					textBoxCouleur->Text = reader["couleur"]->ToString();
+					nom->Text = reader["nom"]->ToString();
+					description->Text = reader["description"]->ToString();
+					prix_TTC->Text = reader["prix_TTC"]->ToString();
+					couleur->Text = reader["couleur"]->ToString();
+					Id->Text = reader["id_Article"]->ToString();
+					reference->Text = "Référence : " + reader["reference"]->ToString();
+					prix_achat->Text = "Prix d'achat au fournisseur : " + reader["prix_achat"]->ToString();
+					prix_HT->Text = "Prix HT : " + reader["prix_HT"]->ToString();
+					remise->Text = "Remise : " + reader["remise"]->ToString();
+					taux_TVA->Text = "Taux TVA : " + reader["taux_TVA"]->ToString();
+					quantite->Text = "Quantité : " + reader["quantite"]->ToString();
+					reaprovisionnement->Text = "Réaprovisionnement : " + reader["reaprovisionnement"]->ToString();
 				}
 				reader->Close();
 			}
@@ -420,7 +536,7 @@ namespace ProjetPOO {
 		   void ChargerArticles()
 		   {
 			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
-			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente", conn);
+			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
 
 			   try {
 				   conn->Open();
@@ -464,12 +580,14 @@ namespace ProjetPOO {
 			   }
 		   }
 
-		   void ModifierTextBox(String^ valeurCondition, TextBox^ textBoxModif, String^ nomTable) {
+		   void ModifierTextBox(String^ valeurCondition, RichTextBox^ textBoxModif, String^ nomTable) {
 			   // Récupèrer la nouvelle chaîne de caractères dans la textBox
 			   String^ nomColonne = textBoxModif->Name;
+			   MessageBox::Show(nomColonne);
 			   String^ nouvelleValeur = textBoxModif->Text;
+			   String^ idArticle = Id->Text;
 
-			   String^ query = "UPDATE @nomTable SET @nomColonne = @nouvelleValeur WHERE condition = @condition";
+			   String^ query = "UPDATE " + nomTable + " SET " + nomColonne + " = @nouvelleValeur WHERE id_Article = @idArticle";
 
 			   // Créer la connexion et la commande
 			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
@@ -477,7 +595,7 @@ namespace ProjetPOO {
 
 			   // Ajouter les paramètres à la commande
 			   cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
-			   cmd->Parameters->AddWithValue("@condition", valeurCondition); // Remplacez 'valeurCondition' par votre condition de sélection
+			   cmd->Parameters->AddWithValue("@idArticle", idArticle);
 
 			   try {
 				   // Ouvrir la connexion et exécuter la commande
@@ -508,15 +626,27 @@ namespace ProjetPOO {
 		if (listView1->SelectedItems->Count > 0) {
 			ListViewItem^ selectedItem = listView1->SelectedItems[0];
 			String^ nomArticle = selectedItem->Text;
+			String^ nomTable = "Article";
 
-			ModifierTextBox(nomArticle, textBoxNom, "Presente");
-			ModifierTextBox(nomArticle, textBoxDescription, "Presente");
-			ModifierTextBox(nomArticle, textBoxPrixTTC, "Presente");
-			ModifierTextBox(nomArticle, textBoxCouleur, "Presente");
+			ModifierTextBox(nomArticle, nom, nomTable);
+			ModifierTextBox(nomArticle, description, nomTable);
+			ModifierTextBox(nomArticle, prix_TTC, nomTable);
+			ModifierTextBox(nomArticle, couleur, nomTable);
+			ModifierTextBox(nomArticle, reference, nomTable);
+			ModifierTextBox(nomArticle, prix_achat, nomTable);
+			ModifierTextBox(nomArticle, prix_HT, nomTable);
+			ModifierTextBox(nomArticle, remise, nomTable);
+			ModifierTextBox(nomArticle, taux_TVA, nomTable);
+			ModifierTextBox(nomArticle, quantite, nomTable);
+			ModifierTextBox(nomArticle, reaprovisionnement, nomTable);
 		}
 		else {
 			MessageBox::Show("Veuillez modifer un article.");
 		}
 	}
-	};
+	private: System::Void nom_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void CreerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }
