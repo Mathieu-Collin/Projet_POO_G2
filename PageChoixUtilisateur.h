@@ -153,7 +153,8 @@ private: System::Void buttonEmploye_Click(System::Object^ sender, System::EventA
 }
 private: System::Void buttonManager_Click(System::Object^ sender, System::EventArgs^ e) {
 	PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
-	pageConnexionManagerForm->ShowDialog();
+	pageConnexionManagerForm->Show();
+	PageChoixUtilisateur::Hide();
 }
 private: System::Void buttonResponsable_Click(System::Object^ sender, System::EventArgs^ e) {
 }
