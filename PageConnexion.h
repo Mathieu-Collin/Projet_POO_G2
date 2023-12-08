@@ -187,9 +187,22 @@ namespace ProjetPOO {
 	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 	private: System::Void Connect_Button_Click(System::Object^ sender, System::EventArgs^ e)// Regarde si l'utilisateur existe et si il existe alors le connecter mais si il n'existe pas, ouvrir une pop up d'erreur
 	{
-	String^ nom = textBoxNom->Text;
+		String^ nom = textBoxNom->Text;
+		if (nom == "") {
+			MessageBox::Show("Veuillez entrer un nom");
+			return;
+		}
 		String^ prenom = textBoxPrenom->Text;
+		if (prenom == "") {
+			MessageBox::Show("Veuillez entrer un prénom");
+			return;
+		}
 		String^ mdp = textBoxMdp->Text;
+		if (mdp == "") {
+			MessageBox::Show("Veuillez entrer un mot de passe");
+			return;
+		}
+
 		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
@@ -219,43 +232,60 @@ namespace ProjetPOO {
 	}
 	private: System::Void PageConnexion_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button_Create_Click(System::Object^ sender, System::EventArgs^ e) // Fonction qui crée un compte si il n'existe pas déjà puis ferme la page de connection
+	private: System::Void button_Create_Click(System::Object^ sender, System::EventArgs^ e) // Fonction qui crée un compte si il n'existe et si les champs ne sont pas vides pas déjà puis ferme la page de connection
 	{
 		String^ nom = textBoxNom->Text;
+		if (String::IsNullOrWhiteSpace(nom)) {
+			MessageBox::Show("Veuillez entrer un nom");
+			return;
+		}
 		String^ prenom = textBoxPrenom->Text;
+		if (String::IsNullOrWhiteSpace(prenom)) {
+			MessageBox::Show("Veuillez entrer un prénom");
+			return;
+		}
 		String^ mdp = textBoxMdp->Text;
-		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
+		if (String::IsNullOrWhiteSpace(mdp)) {
+			MessageBox::Show("Veuillez entrer un mot de passe");
+			return;
+		}
 
+		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
-
 		con->Open();
 		SqlDataReader^ dr = cmd->ExecuteReader();
-
 		int count = 0;
 		while (dr->Read()) {
 			count += 1;
 		}
-
-		dr->Close();  
-
 		if (count == 1) {
 			MessageBox::Show("Ce compte existe déjà");
 		}
+		if (String::IsNullOrWhiteSpace(nom)) {
+			MessageBox::Show("Veuillez entrer un nom");
+			return;
+		}
+		if (String::IsNullOrWhiteSpace(prenom)) {
+			MessageBox::Show("Veuillez entrer un prénom");
+			return;
+		}
+		if (String::IsNullOrWhiteSpace(mdp)) {
+			MessageBox::Show("Veuillez entrer un mot de passe");
+			return;
+		}
+
 		else {
-			MessageBox::Show("Compte créé");
 			String^ query2 = "INSERT INTO Client (Nom, Prenom, MotDePasse) VALUES ('" + nom + "', '" + prenom + "', '" + mdp + "')";
 			SqlCommand^ cmd2 = gcnew SqlCommand(query2, con);
 			cmd2->ExecuteNonQuery();
-			PageConnexion::Close();
+			MessageBox::Show("Compte créé");
 			PageClient^ pageClient = gcnew PageClient();
 			pageClient->Show();
+			this->Hide();
 		}
-
 		con->Close();
 	}
 
-private: System::Void PageConnexion_Load_1(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+
 }
