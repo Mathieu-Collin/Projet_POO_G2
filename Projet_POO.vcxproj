@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CLArticle.cpp" />
+    <ClCompile Include="CLFacture.cpp" />
     <ClCompile Include="CreationCompte.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLArticle.h" />
+    <ClInclude Include="CLFacture.h" />
     <ClInclude Include="CreationCompte.h">
       <FileType>CppForm</FileType>
     </ClInclude>
