@@ -42,4 +42,5 @@ public:
 
     // Getter et Setter pour la remise
     int GetRemise();
-    void SetRemise(int
+    void SetRemise(int remise);
+};

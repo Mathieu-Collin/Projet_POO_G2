@@ -47,6 +47,8 @@ namespace ProjetPOO {
 	private: int objetPanier = 0;
 	private: System::Windows::Forms::TabPage^ GestionDuPersonnel;
 	private: System::Windows::Forms::TabPage^ OngletGestionStocks;
+	public: System::Windows::Forms::PictureBox^ pictureBox1;
+	private:
 
 
 
@@ -59,16 +61,25 @@ namespace ProjetPOO {
 
 
 
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 	private: System::Windows::Forms::ListView^ listView2;
-	private: System::Windows::Forms::RichTextBox^ textBoxCouleur;
-	private: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
-	private: System::Windows::Forms::RichTextBox^ textBoxDescription;
-	private: System::Windows::Forms::RichTextBox^ textBoxNom;
+	public: System::Windows::Forms::RichTextBox^ textBoxCouleur;
+	private:
+	public: System::Windows::Forms::RichTextBox^ textBoxPrixTTC;
+	public: System::Windows::Forms::RichTextBox^ textBoxDescription;
+	public: System::Windows::Forms::RichTextBox^ textBoxNom;
+
+
+
+
 	public: System::Windows::Forms::TextBox^ Recherche;
 	private:
 	private: System::Windows::Forms::ListView^ listView1;
 	private: System::Windows::Forms::TabControl^ OngletsManager;
+	private: System::Windows::Forms::Button^ CreerArticle;
+	private: System::Windows::Forms::Button^ ModifArticle;
+
+
 
 
 	public:
@@ -147,6 +158,8 @@ namespace ProjetPOO {
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
+			this->CreerArticle = (gcnew System::Windows::Forms::Button());
+			this->ModifArticle = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->textBoxCouleur = (gcnew System::Windows::Forms::RichTextBox());
@@ -175,6 +188,8 @@ namespace ProjetPOO {
 			// OngletGestionStocks
 			// 
 			this->OngletGestionStocks->AutoScroll = true;
+			this->OngletGestionStocks->Controls->Add(this->CreerArticle);
+			this->OngletGestionStocks->Controls->Add(this->ModifArticle);
 			this->OngletGestionStocks->Controls->Add(this->pictureBox1);
 			this->OngletGestionStocks->Controls->Add(this->listView2);
 			this->OngletGestionStocks->Controls->Add(this->textBoxCouleur);
@@ -193,9 +208,28 @@ namespace ProjetPOO {
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
 			// 
+			// CreerArticle
+			// 
+			this->CreerArticle->Location = System::Drawing::Point(634, 307);
+			this->CreerArticle->Name = L"CreerArticle";
+			this->CreerArticle->Size = System::Drawing::Size(178, 34);
+			this->CreerArticle->TabIndex = 12;
+			this->CreerArticle->Text = L"Créer l\'article";
+			this->CreerArticle->UseVisualStyleBackColor = true;
+			// 
+			// ModifArticle
+			// 
+			this->ModifArticle->Location = System::Drawing::Point(634, 260);
+			this->ModifArticle->Name = L"ModifArticle";
+			this->ModifArticle->Size = System::Drawing::Size(178, 29);
+			this->ModifArticle->TabIndex = 11;
+			this->ModifArticle->Text = L"Valider les modifications";
+			this->ModifArticle->UseVisualStyleBackColor = true;
+			this->ModifArticle->Click += gcnew System::EventHandler(this, &PageManager::ModifArticle_Click);
+			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(276, 90);
+			this->pictureBox1->Location = System::Drawing::Point(263, 79);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(349, 295);
 			this->pictureBox1->TabIndex = 10;
@@ -218,7 +252,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxCouleur
 			// 
-			this->textBoxCouleur->Location = System::Drawing::Point(655, 208);
+			this->textBoxCouleur->Location = System::Drawing::Point(634, 208);
 			this->textBoxCouleur->Name = L"textBoxCouleur";
 			this->textBoxCouleur->ReadOnly = true;
 			this->textBoxCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -229,7 +263,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxPrixTTC
 			// 
-			this->textBoxPrixTTC->Location = System::Drawing::Point(655, 90);
+			this->textBoxPrixTTC->Location = System::Drawing::Point(634, 90);
 			this->textBoxPrixTTC->Name = L"textBoxPrixTTC";
 			this->textBoxPrixTTC->ReadOnly = true;
 			this->textBoxPrixTTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -239,7 +273,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxDescription
 			// 
-			this->textBoxDescription->Location = System::Drawing::Point(655, 123);
+			this->textBoxDescription->Location = System::Drawing::Point(634, 123);
 			this->textBoxDescription->Name = L"textBoxDescription";
 			this->textBoxDescription->ReadOnly = true;
 			this->textBoxDescription->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -249,7 +283,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxNom
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(655, 54);
+			this->textBoxNom->Location = System::Drawing::Point(634, 54);
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->ReadOnly = true;
 			this->textBoxNom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -432,6 +466,48 @@ namespace ProjetPOO {
 		   }
 
 	private: System::Void GestionDuPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void ModifArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		void ModifierTextBox(String ^ valeurCondition, TextBox ^ textBoxModif) {
+			// Récupère la nouvelle chapine de caractères dans la textBox
+			String^ nouvelleValeur = textBoxModif->Text;
+
+			// Construire la requête SQL (Assurez-vous d'utiliser des paramètres pour éviter les injections SQL)
+			String^ connectionString = "votre_chaine_de_connexion";
+			String^ query = "UPDATE votre_table SET votre_colonne = @nouvelleValeur WHERE condition = @condition";
+
+			// Créer la connexion et la commande
+			SqlConnection^ conn = gcnew SqlConnection(connectionString);
+			SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+
+			// Ajouter les paramètres à la commande
+			cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
+			cmd->Parameters->AddWithValue("@condition", valeurCondition); // Remplacez 'valeurCondition' par votre condition de sélection
+
+			try {
+				// Ouvrir la connexion et exécuter la commande
+				conn->Open();
+				int rowsAffected = cmd->ExecuteNonQuery();
+
+				// Vérifier si la mise à jour a réussi
+				if (rowsAffected > 0) {
+					MessageBox::Show("Mise à jour réussie.");
+				}
+				else {
+					MessageBox::Show("Aucune donnée mise à jour.");
+				}
+			}
+			catch (Exception^ e) {
+				MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
+			}
+			finally {
+				// Fermer la connexion
+				if (conn->State == ConnectionState::Open)
+					conn->Close();
+			}
+
+		}
 	}
 };
 }

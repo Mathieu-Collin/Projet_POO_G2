@@ -12,6 +12,7 @@ CLFacture::CLFacture(String^ nomFacture, int numeroServiceClient, String^ logo, 
 }
 
 // Implémentation des getters et setters
+
 String^ CLFacture::GetNomFacture()
 {
     return nomFacture;
