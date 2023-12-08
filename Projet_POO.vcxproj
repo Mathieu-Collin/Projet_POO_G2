@@ -81,6 +81,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <EntryPointSymbol>main</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -111,6 +113,64 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CLArticle.cpp" />
+    <ClCompile Include="CLFacture.cpp" />
+    <ClCompile Include="CreationCompte.cpp" />
+    <ClCompile Include="PageChoixUtilisateur.cpp" />
+    <ClCompile Include="PageClient.cpp" />
+    <ClCompile Include="PageConnexion.cpp" />
+    <ClCompile Include="PageConnexionManager.cpp" />
+    <ClCompile Include="PageManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CLArticle.h" />
+    <ClInclude Include="CLFacture.h" />
+    <ClInclude Include="CreationCompte.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageChoixUtilisateur.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageClient.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexion.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexionManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CreationCompte.resx">
+      <DependentUpon>CreationCompte.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageChoixUtilisateur.resx">
+      <DependentUpon>PageChoixUtilisateur.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageClient.resx">
+      <DependentUpon>PageClient.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexion.resx">
+      <DependentUpon>PageConnexion.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexionManager.resx">
+      <DependentUpon>PageConnexionManager.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageManager.resx">
+      <DependentUpon>PageManager.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
