@@ -1,7 +1,8 @@
 #include "CLArticle.h"
 
-CLArticle::CLArticle(int quantite, double prixHT, bool reaprovisionnement, double prixAchat)
+CLArticle::CLArticle(int id,int quantite, double prixHT, bool reaprovisionnement, double prixAchat) //classe qui initialise un objet article avec un id différent à chaque appel su concepteur
 {
+    this->id_article = id;
     this->quantite = quantite;
     this->prixHT = prixHT;
     this->reaprovisionnement = reaprovisionnement;

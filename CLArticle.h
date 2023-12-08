@@ -3,13 +3,14 @@
 ref class CLArticle
 {
 private:
+    int id_article;
     int quantite;
     double prixHT;
     bool reaprovisionnement;
     double prixAchat;
 
 public:
-    CLArticle(int quantite, double prixHT, bool reaprovisionnement, double prixAchat);
+    CLArticle(int id,int quantite, double prixHT, bool reaprovisionnement, double prixAchat);
 
     // Getter et Setter pour la quantité
     int GetQuantite();
