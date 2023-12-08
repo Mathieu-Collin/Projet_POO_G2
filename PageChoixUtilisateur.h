@@ -134,6 +134,7 @@ namespace ProjetPOO {
 			this->Load += gcnew System::EventHandler(this, &PageChoixUtilisateur::PageChoixUtilisateur_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			//Partie du code qui 
 
 		}
 	#pragma endregion
