@@ -464,7 +464,7 @@ namespace ProjetPOO {
 			   }
 		   }
 
-		   void ModifierTextBox(String^ valeurCondition, TextBox^ textBoxModif, String^ nomTable) {
+		   void ModifierTextBox(String^ valeurCondition, RichTextBox^ textBoxModif, String^ nomTable) {
 			   // Récupèrer la nouvelle chaîne de caractères dans la textBox
 			   String^ nomColonne = textBoxModif->Name;
 			   String^ nouvelleValeur = textBoxModif->Text;
