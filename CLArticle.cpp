@@ -31,7 +31,7 @@ CLArticle::CLArticle(int idArticle, int quantite, double prixHT, bool reapprovis
 	this->prixTTC = prixTTC;
 	this->remise = remise;
 	this->description = description;
-})
+}
 
 int CLArticle::GetIdArticle()
 {
