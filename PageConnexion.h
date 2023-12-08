@@ -189,7 +189,7 @@ namespace ProjetPOO {
 	String^ nom = textBoxNom->Text;
 		String^ prenom = textBoxPrenom->Text;
 		String^ mdp = textBoxMdp->Text;
-		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND Mdp = '" + mdp + "'";
+		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
 		con->Open();
@@ -218,30 +218,41 @@ namespace ProjetPOO {
 	}
 	private: System::Void PageConnexion_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button_Create_Click(System::Object^ sender, System::EventArgs^ e) // Regarde si le client n'existe pas déja puis crée un objet client avec en paramètre les infos de la page et insert le nouveau client dans la BDD
+	private: System::Void button_Create_Click(System::Object^ sender, System::EventArgs^ e) // Fonction qui crée un compte si il n'existe pas déjà puis ferme la page de connection
 	{
 		String^ nom = textBoxNom->Text;
 		String^ prenom = textBoxPrenom->Text;
 		String^ mdp = textBoxMdp->Text;
-		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND Mdp = '" + mdp + "'";
+		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
+
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
+
 		con->Open();
 		SqlDataReader^ dr = cmd->ExecuteReader();
+
 		int count = 0;
 		while (dr->Read()) {
 			count += 1;
 		}
+
+		dr->Close();  
+
 		if (count == 1) {
 			MessageBox::Show("Ce compte existe déjà");
 		}
 		else {
 			MessageBox::Show("Compte créé");
-			String^ query2 = "INSERT INTO Client (Nom, Prenom, Mdp) VALUES ('" + nom + "', '" + prenom + "', '" + mdp + "')";
+			String^ query2 = "INSERT INTO Client (Nom, Prenom, MotDePasse) VALUES ('" + nom + "', '" + prenom + "', '" + mdp + "')";
 			SqlCommand^ cmd2 = gcnew SqlCommand(query2, con);
 			cmd2->ExecuteNonQuery();
+			PageConnexion::Close();
+			PageClient^ pageClient = gcnew PageClient();
+			pageClient->Show();
 		}
+
 		con->Close();
 	}
+
 };
 }
