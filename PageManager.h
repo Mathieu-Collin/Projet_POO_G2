@@ -120,6 +120,7 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::RichTextBox^ taux_TVA;
 	private: System::Windows::Forms::RichTextBox^ reaprovisionnement;
 	private: System::Windows::Forms::RichTextBox^ quantite;
+private: System::Windows::Forms::Button^ SupprimerArticle;
 
 
 
@@ -210,6 +211,14 @@ namespace ProjetPOO {
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
+			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
+			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
+			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
+			this->remise = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_HT = (gcnew System::Windows::Forms::RichTextBox());
+			this->prix_achat = (gcnew System::Windows::Forms::RichTextBox());
+			this->reference = (gcnew System::Windows::Forms::RichTextBox());
+			this->couleur = (gcnew System::Windows::Forms::RichTextBox());
 			this->titrePrix_achat = (gcnew System::Windows::Forms::RichTextBox());
 			this->titrePrix_HT = (gcnew System::Windows::Forms::RichTextBox());
 			this->titreRemise = (gcnew System::Windows::Forms::RichTextBox());
@@ -229,14 +238,7 @@ namespace ProjetPOO {
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
-			this->couleur = (gcnew System::Windows::Forms::RichTextBox());
-			this->reference = (gcnew System::Windows::Forms::RichTextBox());
-			this->prix_achat = (gcnew System::Windows::Forms::RichTextBox());
-			this->prix_HT = (gcnew System::Windows::Forms::RichTextBox());
-			this->remise = (gcnew System::Windows::Forms::RichTextBox());
-			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
-			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
-			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
+			this->SupprimerArticle = (gcnew System::Windows::Forms::Button());
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -256,6 +258,7 @@ namespace ProjetPOO {
 			// OngletGestionStocks
 			// 
 			this->OngletGestionStocks->AutoScroll = true;
+			this->OngletGestionStocks->Controls->Add(this->SupprimerArticle);
 			this->OngletGestionStocks->Controls->Add(this->reaprovisionnement);
 			this->OngletGestionStocks->Controls->Add(this->quantite);
 			this->OngletGestionStocks->Controls->Add(this->taux_TVA);
@@ -292,13 +295,85 @@ namespace ProjetPOO {
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
 			// 
+			// reaprovisionnement
+			// 
+			this->reaprovisionnement->Location = System::Drawing::Point(773, 374);
+			this->reaprovisionnement->Name = L"reaprovisionnement";
+			this->reaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->reaprovisionnement->Size = System::Drawing::Size(141, 23);
+			this->reaprovisionnement->TabIndex = 28;
+			this->reaprovisionnement->Text = L"";
+			// 
+			// quantite
+			// 
+			this->quantite->Location = System::Drawing::Point(711, 341);
+			this->quantite->Name = L"quantite";
+			this->quantite->Size = System::Drawing::Size(203, 27);
+			this->quantite->TabIndex = 27;
+			this->quantite->Text = L"";
+			// 
+			// taux_TVA
+			// 
+			this->taux_TVA->Location = System::Drawing::Point(711, 312);
+			this->taux_TVA->Name = L"taux_TVA";
+			this->taux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->taux_TVA->Size = System::Drawing::Size(203, 23);
+			this->taux_TVA->TabIndex = 26;
+			this->taux_TVA->Text = L"";
+			// 
+			// remise
+			// 
+			this->remise->Location = System::Drawing::Point(711, 283);
+			this->remise->Name = L"remise";
+			this->remise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->remise->Size = System::Drawing::Size(203, 23);
+			this->remise->TabIndex = 25;
+			this->remise->Text = L"";
+			// 
+			// prix_HT
+			// 
+			this->prix_HT->Location = System::Drawing::Point(697, 251);
+			this->prix_HT->Name = L"prix_HT";
+			this->prix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->prix_HT->Size = System::Drawing::Size(217, 26);
+			this->prix_HT->TabIndex = 24;
+			this->prix_HT->Text = L"";
+			// 
+			// prix_achat
+			// 
+			this->prix_achat->Location = System::Drawing::Point(818, 224);
+			this->prix_achat->Name = L"prix_achat";
+			this->prix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->prix_achat->Size = System::Drawing::Size(96, 21);
+			this->prix_achat->TabIndex = 23;
+			this->prix_achat->Text = L"";
+			this->prix_achat->TextChanged += gcnew System::EventHandler(this, &PageManager::prix_achat_TextChanged);
+			// 
+			// reference
+			// 
+			this->reference->Location = System::Drawing::Point(723, 191);
+			this->reference->Name = L"reference";
+			this->reference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->reference->Size = System::Drawing::Size(191, 27);
+			this->reference->TabIndex = 22;
+			this->reference->Text = L"";
+			// 
+			// couleur
+			// 
+			this->couleur->Location = System::Drawing::Point(697, 161);
+			this->couleur->Name = L"couleur";
+			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->couleur->Size = System::Drawing::Size(217, 24);
+			this->couleur->TabIndex = 21;
+			this->couleur->Text = L"";
+			// 
 			// titrePrix_achat
 			// 
 			this->titrePrix_achat->Location = System::Drawing::Point(634, 224);
 			this->titrePrix_achat->Name = L"titrePrix_achat";
 			this->titrePrix_achat->ReadOnly = true;
 			this->titrePrix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titrePrix_achat->Size = System::Drawing::Size(167, 21);
+			this->titrePrix_achat->Size = System::Drawing::Size(178, 21);
 			this->titrePrix_achat->TabIndex = 20;
 			this->titrePrix_achat->Text = L"Prix d\'achat au fournisseur";
 			// 
@@ -318,7 +393,7 @@ namespace ProjetPOO {
 			this->titreRemise->Name = L"titreRemise";
 			this->titreRemise->ReadOnly = true;
 			this->titreRemise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreRemise->Size = System::Drawing::Size(57, 23);
+			this->titreRemise->Size = System::Drawing::Size(71, 23);
 			this->titreRemise->TabIndex = 18;
 			this->titreRemise->Text = L"Remise";
 			// 
@@ -338,7 +413,7 @@ namespace ProjetPOO {
 			this->titreQuantite->Name = L"titreQuantite";
 			this->titreQuantite->ReadOnly = true;
 			this->titreQuantite->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreQuantite->Size = System::Drawing::Size(57, 27);
+			this->titreQuantite->Size = System::Drawing::Size(71, 27);
 			this->titreQuantite->TabIndex = 16;
 			this->titreQuantite->Text = L"Quantité";
 			// 
@@ -358,7 +433,7 @@ namespace ProjetPOO {
 			this->titreReference->Name = L"titreReference";
 			this->titreReference->ReadOnly = true;
 			this->titreReference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreReference->Size = System::Drawing::Size(71, 27);
+			this->titreReference->Size = System::Drawing::Size(83, 27);
 			this->titreReference->TabIndex = 14;
 			this->titreReference->Text = L"Référence";
 			// 
@@ -486,77 +561,15 @@ namespace ProjetPOO {
 			this->OngletsManager->Size = System::Drawing::Size(970, 501);
 			this->OngletsManager->TabIndex = 3;
 			// 
-			// couleur
+			// SupprimerArticle
 			// 
-			this->couleur->Location = System::Drawing::Point(697, 161);
-			this->couleur->Name = L"couleur";
-			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->couleur->Size = System::Drawing::Size(217, 24);
-			this->couleur->TabIndex = 21;
-			this->couleur->Text = L"";
-			// 
-			// reference
-			// 
-			this->reference->Location = System::Drawing::Point(711, 191);
-			this->reference->Name = L"reference";
-			this->reference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->reference->Size = System::Drawing::Size(203, 27);
-			this->reference->TabIndex = 22;
-			this->reference->Text = L"";
-			// 
-			// prix_achat
-			// 
-			this->prix_achat->Location = System::Drawing::Point(807, 224);
-			this->prix_achat->Name = L"prix_achat";
-			this->prix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prix_achat->Size = System::Drawing::Size(107, 21);
-			this->prix_achat->TabIndex = 23;
-			this->prix_achat->Text = L"";
-			this->prix_achat->TextChanged += gcnew System::EventHandler(this, &PageManager::prix_achat_TextChanged);
-			// 
-			// prix_HT
-			// 
-			this->prix_HT->Location = System::Drawing::Point(697, 251);
-			this->prix_HT->Name = L"prix_HT";
-			this->prix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prix_HT->Size = System::Drawing::Size(217, 26);
-			this->prix_HT->TabIndex = 24;
-			this->prix_HT->Text = L"";
-			// 
-			// remise
-			// 
-			this->remise->Location = System::Drawing::Point(697, 283);
-			this->remise->Name = L"remise";
-			this->remise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->remise->Size = System::Drawing::Size(217, 23);
-			this->remise->TabIndex = 25;
-			this->remise->Text = L"";
-			// 
-			// taux_TVA
-			// 
-			this->taux_TVA->Location = System::Drawing::Point(711, 312);
-			this->taux_TVA->Name = L"taux_TVA";
-			this->taux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->taux_TVA->Size = System::Drawing::Size(203, 23);
-			this->taux_TVA->TabIndex = 26;
-			this->taux_TVA->Text = L"";
-			// 
-			// quantite
-			// 
-			this->quantite->Location = System::Drawing::Point(697, 341);
-			this->quantite->Name = L"quantite";
-			this->quantite->Size = System::Drawing::Size(217, 27);
-			this->quantite->TabIndex = 27;
-			this->quantite->Text = L"";
-			// 
-			// reaprovisionnement
-			// 
-			this->reaprovisionnement->Location = System::Drawing::Point(773, 374);
-			this->reaprovisionnement->Name = L"reaprovisionnement";
-			this->reaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->reaprovisionnement->Size = System::Drawing::Size(141, 23);
-			this->reaprovisionnement->TabIndex = 28;
-			this->reaprovisionnement->Text = L"";
+			this->SupprimerArticle->Location = System::Drawing::Point(263, 412);
+			this->SupprimerArticle->Name = L"SupprimerArticle";
+			this->SupprimerArticle->Size = System::Drawing::Size(349, 48);
+			this->SupprimerArticle->TabIndex = 29;
+			this->SupprimerArticle->Text = L"SUPPRIMER L\'ARTICLE";
+			this->SupprimerArticle->UseVisualStyleBackColor = true;
+			this->SupprimerArticle->Click += gcnew System::EventHandler(this, &PageManager::SupprimerArticle_Click);
 			// 
 			// PageManager
 			// 
@@ -775,6 +788,8 @@ namespace ProjetPOO {
 private: System::Void CreerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void prix_achat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void SupprimerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

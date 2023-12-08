@@ -69,6 +69,8 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::DataGridViewImageColumn^ Image;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Prix_TTC;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ RetirerArticle;
+	private: System::Windows::Forms::Button^ AjouterPanier;
+
 
 
 
@@ -126,6 +128,7 @@ namespace ProjetPOO {
 		{
 			this->OngletsClient = (gcnew System::Windows::Forms::TabControl());
 			this->Commande = (gcnew System::Windows::Forms::TabPage());
+			this->AjouterPanier = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->textBoxCouleur = (gcnew System::Windows::Forms::RichTextBox());
@@ -162,6 +165,7 @@ namespace ProjetPOO {
 			// Commande
 			// 
 			this->Commande->AutoScroll = true;
+			this->Commande->Controls->Add(this->AjouterPanier);
 			this->Commande->Controls->Add(this->pictureBox1);
 			this->Commande->Controls->Add(this->listView2);
 			this->Commande->Controls->Add(this->textBoxCouleur);
@@ -178,6 +182,16 @@ namespace ProjetPOO {
 			this->Commande->TabIndex = 0;
 			this->Commande->Text = L"Commande";
 			this->Commande->UseVisualStyleBackColor = true;
+			// 
+			// AjouterPanier
+			// 
+			this->AjouterPanier->Location = System::Drawing::Point(682, 270);
+			this->AjouterPanier->Name = L"AjouterPanier";
+			this->AjouterPanier->Size = System::Drawing::Size(224, 45);
+			this->AjouterPanier->TabIndex = 11;
+			this->AjouterPanier->Text = L"Ajouter au panier";
+			this->AjouterPanier->UseVisualStyleBackColor = true;
+			this->AjouterPanier->Click += gcnew System::EventHandler(this, &PageClient::AjouterPanier_Click);
 			// 
 			// pictureBox1
 			// 
@@ -522,6 +536,5 @@ namespace ProjetPOO {
 				   destinationListView->Items->Add(newItem);
 			   }
 		   }
-
-	};
+};
 }
