@@ -69,9 +69,10 @@ namespace ProjetPOO {
 			// 
 			// ouvrePageConnexion
 			// 
-			this->ouvrePageConnexion->Location = System::Drawing::Point(145, 279);
+			this->ouvrePageConnexion->Location = System::Drawing::Point(109, 227);
+			this->ouvrePageConnexion->Margin = System::Windows::Forms::Padding(2);
 			this->ouvrePageConnexion->Name = L"ouvrePageConnexion";
-			this->ouvrePageConnexion->Size = System::Drawing::Size(102, 30);
+			this->ouvrePageConnexion->Size = System::Drawing::Size(76, 24);
 			this->ouvrePageConnexion->TabIndex = 0;
 			this->ouvrePageConnexion->Text = L"Client";
 			this->ouvrePageConnexion->UseVisualStyleBackColor = true;
@@ -79,53 +80,58 @@ namespace ProjetPOO {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(310, 279);
+			this->button2->Location = System::Drawing::Point(232, 227);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(99, 30);
+			this->button2->Size = System::Drawing::Size(74, 24);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Employé";
 			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button2_Click);
+			this->button2->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::buttonEmploye_Click);
 			// 
 			// Manager
 			// 
-			this->Manager->Location = System::Drawing::Point(481, 279);
+			this->Manager->Location = System::Drawing::Point(361, 227);
+			this->Manager->Margin = System::Windows::Forms::Padding(2);
 			this->Manager->Name = L"Manager";
-			this->Manager->Size = System::Drawing::Size(86, 30);
+			this->Manager->Size = System::Drawing::Size(64, 24);
 			this->Manager->TabIndex = 2;
 			this->Manager->Text = L"Manager";
 			this->Manager->UseVisualStyleBackColor = true;
-			this->Manager->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button3_Click);
+			this->Manager->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::buttonManager_Click);
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(616, 279);
+			this->button4->Location = System::Drawing::Point(462, 227);
+			this->button4->Margin = System::Windows::Forms::Padding(2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(204, 33);
+			this->button4->Size = System::Drawing::Size(153, 27);
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"Responsable des ventes";
 			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::button4_Click);
+			this->button4->Click += gcnew System::EventHandler(this, &PageChoixUtilisateur::buttonResponsable_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(415, 171);
+			this->label1->Location = System::Drawing::Point(311, 139);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(67, 16);
+			this->label1->Size = System::Drawing::Size(54, 13);
 			this->label1->TabIndex = 5;
 			this->label1->Text = L"Vous êtes";
 			// 
 			// PageChoixUtilisateur
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(933, 523);
+			this->ClientSize = System::Drawing::Size(700, 425);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->Manager);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->ouvrePageConnexion);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"PageChoixUtilisateur";
 			this->Text = L"PageChoixUtilisateur";
 			this->ResumeLayout(false);
@@ -142,13 +148,14 @@ namespace ProjetPOO {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
-		pageConnexionManagerForm->ShowDialog();
-	}
+		
+private: System::Void buttonEmploye_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void buttonManager_Click(System::Object^ sender, System::EventArgs^ e) {
+	PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
+	pageConnexionManagerForm->ShowDialog();
+}
+private: System::Void buttonResponsable_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
