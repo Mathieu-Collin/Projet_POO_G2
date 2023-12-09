@@ -1,6 +1,7 @@
 #pragma once
 #include "PageConnexion.h"
 #include "PageConnexionManager.h"
+#include "PageEmploye.h"
 
 namespace ProjetPOO {
 
@@ -150,6 +151,9 @@ namespace ProjetPOO {
 	}
 		
 private: System::Void buttonEmploye_Click(System::Object^ sender, System::EventArgs^ e) {
+	PageEmploye^ pageEmployeForm = gcnew PageEmploye();
+	pageEmployeForm->Show();
+	PageChoixUtilisateur::Hide();
 }
 private: System::Void buttonManager_Click(System::Object^ sender, System::EventArgs^ e) {
 	PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
