@@ -49,6 +49,18 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::Button^ buttonAfficher;
 	private: System::Windows::Forms::TextBox^ textBoxQuantite;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TextBox^ textBoxPrenom;
+	private: System::Windows::Forms::TextBox^ textBoxMdp;
+
+
+	private: System::Windows::Forms::TextBox^ textBoxNom;
+	private: System::Windows::Forms::Button^ buttonCreerCompte;
+
+
 
 
 
@@ -81,9 +93,18 @@ namespace ProjetPOO {
 			this->textBoxRecherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxMdp = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->buttonCreerCompte = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->tabPage2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tabControl1
@@ -194,6 +215,14 @@ namespace ProjetPOO {
 			// 
 			// tabPage2
 			// 
+			this->tabPage2->Controls->Add(this->buttonCreerCompte);
+			this->tabPage2->Controls->Add(this->label4);
+			this->tabPage2->Controls->Add(this->label3);
+			this->tabPage2->Controls->Add(this->label2);
+			this->tabPage2->Controls->Add(this->label1);
+			this->tabPage2->Controls->Add(this->textBoxPrenom);
+			this->tabPage2->Controls->Add(this->textBoxMdp);
+			this->tabPage2->Controls->Add(this->textBoxNom);
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
@@ -201,6 +230,74 @@ namespace ProjetPOO {
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Création Compte client";
 			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// textBoxNom
+			// 
+			this->textBoxNom->Location = System::Drawing::Point(324, 106);
+			this->textBoxNom->Name = L"textBoxNom";
+			this->textBoxNom->Size = System::Drawing::Size(100, 20);
+			this->textBoxNom->TabIndex = 0;
+			// 
+			// textBoxMdp
+			// 
+			this->textBoxMdp->Location = System::Drawing::Point(324, 233);
+			this->textBoxMdp->Name = L"textBoxMdp";
+			this->textBoxMdp->Size = System::Drawing::Size(100, 20);
+			this->textBoxMdp->TabIndex = 1;
+			// 
+			// textBoxPrenom
+			// 
+			this->textBoxPrenom->Location = System::Drawing::Point(324, 170);
+			this->textBoxPrenom->Name = L"textBoxPrenom";
+			this->textBoxPrenom->Size = System::Drawing::Size(100, 20);
+			this->textBoxPrenom->TabIndex = 2;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(230, 113);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->TabIndex = 3;
+			this->label1->Text = L"Nom:";
+			this->label1->Click += gcnew System::EventHandler(this, &PageEmploye::label1_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(216, 177);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(46, 13);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Prénom:";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(191, 240);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(71, 13);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"Mot de passe";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(17, 14);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(135, 13);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"Création d\'un compte client";
+			// 
+			// buttonCreerCompte
+			// 
+			this->buttonCreerCompte->Location = System::Drawing::Point(236, 370);
+			this->buttonCreerCompte->Name = L"buttonCreerCompte";
+			this->buttonCreerCompte->Size = System::Drawing::Size(177, 23);
+			this->buttonCreerCompte->TabIndex = 7;
+			this->buttonCreerCompte->Text = L"Créer le compte";
+			this->buttonCreerCompte->UseVisualStyleBackColor = true;
+			this->buttonCreerCompte->Click += gcnew System::EventHandler(this, &PageEmploye::buttonCreerCompte_Click);
 			// 
 			// PageEmploye
 			// 
@@ -215,6 +312,8 @@ namespace ProjetPOO {
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -279,5 +378,40 @@ namespace ProjetPOO {
 
 
 	}
-	};
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void buttonCreerCompte_Click(System::Object^ sender, System::EventArgs^ e) {
+	try {
+		SqlConnection^ conn = gcnew SqlConnection(connectionString);
+		//vérification si le compte existe déjà et retunr un message d'erreur si c'est le cas
+		SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Client WHERE nom = @nom AND prenom = @prenom AND mdp = @mdp", conn);
+		cmd->Parameters->AddWithValue("@nom", textBoxNom->Text);
+		cmd->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
+		cmd->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
+		if (cmd->ExecuteReader()->HasRows) {
+			MessageBox::Show("Ce compte existe déjà");
+			return;
+		}
+
+		if (textBoxNom->Text == "" || textBoxPrenom->Text == "" || textBoxMdp->Text == "") {
+			MessageBox::Show("Veuillez remplir tous les champs");
+			return;
+		}
+		
+		SqlCommand^ cmd = gcnew SqlCommand("INSERT INTO Client (nom, prenom, mdp) VALUES (@nom, @prenom, @mdp)", conn);
+		cmd->Parameters->AddWithValue("@nom", textBoxNom->Text);
+		cmd->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
+		cmd->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
+
+		conn->Open();
+		cmd->ExecuteNonQuery();
+		conn->Close();
+
+		MessageBox::Show("Compte créé avec succès");
+	}
+	catch (Exception^ e) {
+		MessageBox::Show(e->Message);
+	}
+}
+};
 }
