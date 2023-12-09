@@ -499,6 +499,21 @@ namespace ProjetPOO {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void PageClient_Load(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			// Assurez-vous que la connexion à la base de données fonctionne correctement
+			SqlConnection^ conn = gcnew SqlConnection(connectionString);
+			conn->Open();
+			conn->Close();
+
+			// Chargez les articles depuis la base de données
+			ChargerArticles();
+		}
+		catch (Exception^ ex) {
+			// Affichez les messages d'erreur dans une boîte de dialogue
+			MessageBox::Show(ex->Message, "Erreur lors du chargement de la page", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			// Fermez la page en cas d'échec
+			this->Close();
+		}
 	}
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	}
