@@ -6,6 +6,6 @@ using namespace System::Windows::Forms;
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	ProjetPOO::PageChoixUtilisateur form;
-	Application::Run(% form);
+	ProjetPOO::PageChoixUtilisateur Form;
+	Application::Run(% Form);
 }
