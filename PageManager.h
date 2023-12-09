@@ -120,7 +120,7 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::RichTextBox^ taux_TVA;
 	private: System::Windows::Forms::RichTextBox^ reaprovisionnement;
 	private: System::Windows::Forms::RichTextBox^ quantite;
-private: System::Windows::Forms::Button^ SupprimerArticle;
+	private: System::Windows::Forms::Button^ SupprimerArticle;
 
 
 
@@ -211,6 +211,7 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 		{
 			this->GestionDuPersonnel = (gcnew System::Windows::Forms::TabPage());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
+			this->SupprimerArticle = (gcnew System::Windows::Forms::Button());
 			this->reaprovisionnement = (gcnew System::Windows::Forms::RichTextBox());
 			this->quantite = (gcnew System::Windows::Forms::RichTextBox());
 			this->taux_TVA = (gcnew System::Windows::Forms::RichTextBox());
@@ -238,7 +239,6 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 			this->Recherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
-			this->SupprimerArticle = (gcnew System::Windows::Forms::Button());
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -294,6 +294,16 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 			this->OngletGestionStocks->Text = L"Gestion des stocks";
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
 			this->OngletGestionStocks->Click += gcnew System::EventHandler(this, &PageManager::GestionDuPersonnel_Click);
+			// 
+			// SupprimerArticle
+			// 
+			this->SupprimerArticle->Location = System::Drawing::Point(263, 412);
+			this->SupprimerArticle->Name = L"SupprimerArticle";
+			this->SupprimerArticle->Size = System::Drawing::Size(349, 48);
+			this->SupprimerArticle->TabIndex = 29;
+			this->SupprimerArticle->Text = L"SUPPRIMER L\'ARTICLE";
+			this->SupprimerArticle->UseVisualStyleBackColor = true;
+			this->SupprimerArticle->Click += gcnew System::EventHandler(this, &PageManager::SupprimerArticle_Click);
 			// 
 			// reaprovisionnement
 			// 
@@ -441,18 +451,20 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 			// 
 			this->Id->Location = System::Drawing::Point(879, 65);
 			this->Id->Name = L"Id";
+			this->Id->ReadOnly = true;
 			this->Id->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
 			this->Id->Size = System::Drawing::Size(35, 24);
 			this->Id->TabIndex = 13;
 			this->Id->Text = L"Id";
+			this->Id->Visible = false;
 			// 
 			// CreerArticle
 			// 
-			this->CreerArticle->Location = System::Drawing::Point(311, 39);
+			this->CreerArticle->Location = System::Drawing::Point(263, 45);
 			this->CreerArticle->Name = L"CreerArticle";
-			this->CreerArticle->Size = System::Drawing::Size(269, 34);
+			this->CreerArticle->Size = System::Drawing::Size(349, 34);
 			this->CreerArticle->TabIndex = 12;
-			this->CreerArticle->Text = L"Créer un article";
+			this->CreerArticle->Text = L"CRÉER L\'ARTICLE";
 			this->CreerArticle->UseVisualStyleBackColor = true;
 			this->CreerArticle->Click += gcnew System::EventHandler(this, &PageManager::CreerArticle_Click);
 			// 
@@ -561,16 +573,6 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 			this->OngletsManager->Size = System::Drawing::Size(970, 501);
 			this->OngletsManager->TabIndex = 3;
 			// 
-			// SupprimerArticle
-			// 
-			this->SupprimerArticle->Location = System::Drawing::Point(263, 412);
-			this->SupprimerArticle->Name = L"SupprimerArticle";
-			this->SupprimerArticle->Size = System::Drawing::Size(349, 48);
-			this->SupprimerArticle->TabIndex = 29;
-			this->SupprimerArticle->Text = L"SUPPRIMER L\'ARTICLE";
-			this->SupprimerArticle->UseVisualStyleBackColor = true;
-			this->SupprimerArticle->Click += gcnew System::EventHandler(this, &PageManager::SupprimerArticle_Click);
-			// 
 			// PageManager
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -670,97 +672,140 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	//private: System::String^ connexionBDD = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
-	private: System::String^ connexionBDD = "Server=PC-MATHIEU; Database=Projet; User ID=Test; Password=123";
-		   void ChargerArticles()
-		   {
-			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
-			   SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
+	private: System::String^ connexionBDD = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	//private: System::String^ connexionBDD = "Server=PC-MATHIEU; Database=Projet; User ID=Test; Password=123";
 
-			   try {
-				   conn->Open();
-				   SqlDataReader^ reader = cmd->ExecuteReader();
+	void ChargerArticles()
+	{
+		SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
+		SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
 
-				   while (reader->Read()) {
-					   ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
-					   item->SubItems->Add(reader["nom"]->ToString());
+		try {
+			conn->Open();
+			SqlDataReader^ reader = cmd->ExecuteReader();
 
-					   // Ajout d'autres items ICI
+			while (reader->Read()) {
+				ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
+				item->SubItems->Add(reader["nom"]->ToString());
 
-					   listView1->Items->Add(item);
-					   ClonerListViewItems(listView1, listView2);
+				// Ajout d'autres items ICI
 
-				   }
-				   reader->Close();
-			   }
-			   catch (Exception^ e) {
-				   MessageBox::Show(e->Message);
-			   }
-			   finally {
-				   if (conn->State == ConnectionState::Open)
-					   conn->Close();
-			   }
-		   }
+				listView1->Items->Add(item);
+				ClonerListViewItems(listView1, listView2);
 
-		   void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
-			   destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
+			}
+			reader->Close();
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+		finally {
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+	}
 
-			   for each (ListViewItem ^ item in sourceListView->Items) {
-				   // Créer un nouvel ListViewItem
-				   ListViewItem^ newItem = gcnew ListViewItem(item->Text);
+	void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
+		destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
 
-				   // Cloner les sous-éléments
-				   for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
-					   newItem->SubItems->Add(subItem->Text);
-				   }
+		for each (ListViewItem ^ item in sourceListView->Items) {
+			// Créer un nouvel ListViewItem
+			ListViewItem^ newItem = gcnew ListViewItem(item->Text);
 
-				   // Ajouter le nouvel élément cloné à la destination ListView
-				   destinationListView->Items->Add(newItem);
-			   }
-		   }
+			// Cloner les sous-éléments
+			for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
+				newItem->SubItems->Add(subItem->Text);
+			}
 
-		   void ModifierTextBox(String^ valeurCondition, RichTextBox^ textBoxModif, String^ nomTable) {
-			   // Récupèrer la nouvelle chaîne de caractères dans la textBox
-			   String^ nomColonne = textBoxModif->Name;
-			   MessageBox::Show(nomColonne);
-			   String^ nouvelleValeur = textBoxModif->Text;
-			   String^ idArticle = Id->Text;
+			// Ajouter le nouvel élément cloné à la destination ListView
+			destinationListView->Items->Add(newItem);
+		}
+	}
 
-			   String^ query = "UPDATE " + nomTable + " SET " + nomColonne + " = @nouvelleValeur WHERE id_Article = @idArticle";
+	void ModifierTextBox(String^ valeurCondition, RichTextBox^ textBoxModif, String^ nomTable) {
+		// Récupèrer la nouvelle chaîne de caractères dans la textBox
+		String^ nomColonne = textBoxModif->Name;
+		//MessageBox::Show(nomColonne); // Afficher le nom de la colonne qui vient d'être modifiée
+		String^ nouvelleValeur = textBoxModif->Text;
+		String^ idArticle = Id->Text;
 
-			   // Créer la connexion et la commande
-			   SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
-			   SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+		String^ query = "UPDATE " + nomTable + " SET " + nomColonne + " = @nouvelleValeur WHERE id_Article = @idArticle";
 
-			   // Ajouter les paramètres à la commande
-			   cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
-			   cmd->Parameters->AddWithValue("@idArticle", idArticle);
+		// Créer la connexion et la commande
+		SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
 
-			   try {
-				   // Ouvrir la connexion et exécuter la commande
-				   conn->Open();
-				   int rowsAffected = cmd->ExecuteNonQuery();
+		// Ajouter les paramètres à la commande
+		cmd->Parameters->AddWithValue("@nouvelleValeur", nouvelleValeur);
+		cmd->Parameters->AddWithValue("@idArticle", idArticle);
 
-				   // Vérifier si la mise à jour a réussi
-				   if (rowsAffected > 0) {
-					   MessageBox::Show("Mise à jour réussie.");
-				   }
-				   else {
-					   MessageBox::Show("Aucune donnée mise à jour.");
-				   }
-			   }
-			   catch (Exception^ e) {
-				   MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
-			   }
-			   finally {
-				   // Fermer la connexion
-				   if (conn->State == ConnectionState::Open)
-					   conn->Close();
-			   }
-		   }
+		try {
+			// Ouvrir la connexion et exécuter la commande
+			conn->Open();
+			int rowsAffected = cmd->ExecuteNonQuery();
+
+			// Vérifier si la mise à jour a réussi
+			if (rowsAffected > 0) {
+				MessageBox::Show("Mise à jour réussie.");
+			}
+			else {
+				MessageBox::Show("Aucune donnée mise à jour.");
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la mise à jour : " + e->Message);
+		}
+		finally {
+			// Fermer la connexion
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+		majGridView();
+	}
+
+	void SupprimerArticleSelectionne(String^ nomArticle, String^ nomTable) {
+		String^ query = "DELETE FROM " + nomTable + " WHERE nom = @nomArticle";
+
+		// Créer la connexion et la commande
+		SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+
+		// Ajouter les paramètres à la commande
+		cmd->Parameters->AddWithValue("@nomArticle", nomArticle);
+
+		try {
+			// Ouvrir la connexion et exécuter la commande
+			conn->Open();
+			int rowsAffected = cmd->ExecuteNonQuery();
+
+			// Vérifier si la mise à jour a réussi
+			if (rowsAffected > 0) {
+				MessageBox::Show("Suppression réussie.");
+			}
+			else {
+				MessageBox::Show("Aucune donnée supprimée.");
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la suppression : " + e->Message);
+		}
+		finally {
+			// Fermer la connexion
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+		majGridView();
+	}
+
+	void majGridView() {
+		// Mise à jour de la gridView
+		listView1->Items->Clear();
+		ChargerArticles();
+	}
 
 	private: System::Void GestionDuPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+
 	private: System::Void ModifArticle_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (listView1->SelectedItems->Count > 0) {
 			ListViewItem^ selectedItem = listView1->SelectedItems[0];
@@ -785,11 +830,67 @@ private: System::Windows::Forms::Button^ SupprimerArticle;
 	}
 	private: System::Void nom_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void CreerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void prix_achat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void SupprimerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void CreerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ nomArticle = nom->Text;
+		String^ descriptionArticle = description->Text;
+		String^ prix_TTC_Article = prix_TTC->Text;
+		String^ couleurArticle = couleur->Text;
+		String^ referenceArticle = reference->Text;
+		String^ prix_achatArticle = prix_achat->Text;
+		String^ prix_HT_Article = prix_HT->Text;
+		String^ remiseArticle = remise->Text;
+		String^ taux_TVA_Article = taux_TVA->Text;
+		String^ quantiteArticle = quantite->Text;
+		String^ reaprovisionnementArticle = reaprovisionnement->Text;
+
+		String^ query = "INSERT INTO Article (nom, description, prix_TTC, couleur, reference, prix_achat, prix_HT, remise, taux_TVA, quantite, reaprovisionnement) VALUES (@nom, @description, @prix_TTC, @couleur, @reference, @prix_achat, @prix_HT, @remise, @taux_TVA, @quantite, @reaprovisionnement)";
+
+		// Créer la connexion et la commande
+		SqlConnection^ conn = gcnew SqlConnection(connexionBDD);
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+
+		// Ajouter les paramètres à la commande
+		cmd->Parameters->AddWithValue("@nom", nomArticle);
+		cmd->Parameters->AddWithValue("@description", descriptionArticle);
+		cmd->Parameters->AddWithValue("@prix_TTC", prix_TTC_Article);
+		cmd->Parameters->AddWithValue("@couleur", couleurArticle);
+		cmd->Parameters->AddWithValue("@reference", referenceArticle);
+		cmd->Parameters->AddWithValue("@prix_achat", prix_achatArticle);
+		cmd->Parameters->AddWithValue("@prix_HT", prix_HT_Article);
+		cmd->Parameters->AddWithValue("@remise", remiseArticle);
+		cmd->Parameters->AddWithValue("@taux_TVA", taux_TVA_Article);
+		cmd->Parameters->AddWithValue("@quantite", quantiteArticle);
+		cmd->Parameters->AddWithValue("@reaprovisionnement", reaprovisionnementArticle);
+
+		try {
+			// Ouvrir la connexion et exécuter la commande
+			conn->Open();
+			int rowsAffected = cmd->ExecuteNonQuery();
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la création : " + e->Message);
+		}
+		finally {
+			// Fermer la connexion
+			if (conn->State == ConnectionState::Open)
+				conn->Close();
+		}
+		majGridView();
+	}
+
+	private: System::Void prix_achat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void SupprimerArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (listView1->SelectedItems->Count > 0) {
+			ListViewItem^ selectedItem = listView1->SelectedItems[0];
+			String^ nomArticle = selectedItem->Text;
+			String^ nomTable = "Article";
+
+			SupprimerArticleSelectionne(nomArticle, nomTable);
+		}
+		else {
+			MessageBox::Show("Veuillez supprimer un article.");
+		}
+	}
 };
 }

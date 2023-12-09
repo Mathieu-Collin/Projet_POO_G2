@@ -182,6 +182,7 @@ namespace ProjetPOO {
 			this->Commande->TabIndex = 0;
 			this->Commande->Text = L"Commande";
 			this->Commande->UseVisualStyleBackColor = true;
+			this->Commande->Click += gcnew System::EventHandler(this, &PageClient::AjouterPanier_Click);
 			// 
 			// AjouterPanier
 			// 
@@ -488,8 +489,8 @@ namespace ProjetPOO {
 			objetPanier--;
 		}
 	}
-		   //private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
-	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 		   void ChargerArticles()
 		   {
 			   SqlConnection^ conn = gcnew SqlConnection(connectionString);
