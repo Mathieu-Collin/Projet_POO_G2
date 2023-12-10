@@ -8,6 +8,7 @@ namespace ProjetPOO {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Description résumée de PageResponsable
@@ -81,6 +82,19 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::TabPage^ tabPageDemarque3;
 	private: System::Windows::Forms::TabPage^ tabPageDemarque5;
 	private: System::Windows::Forms::TabPage^ tabPageSimulationPerso;
+	private: System::Windows::Forms::DataGridView^ dataGridViewTVA2;
+	private: System::Windows::Forms::DataGridView^ dataGridViewTVA3;
+	private: System::Windows::Forms::DataGridView^ dataGridViewMarge5;
+	private: System::Windows::Forms::DataGridView^ dataGridViewTVA1;
+	private: System::Windows::Forms::DataGridView^ dataGridViewMarge10;
+	private: System::Windows::Forms::DataGridView^ dataGridViewMarge15;
+	private: System::Windows::Forms::DataGridView^ dataGridViewRemise5;
+	private: System::Windows::Forms::DataGridView^ dataGridViewRemise6;
+	private: System::Windows::Forms::DataGridView^ dataGridViewDemarque2;
+	private: System::Windows::Forms::DataGridView^ dataGridViewDemarque3;
+	private: System::Windows::Forms::DataGridView^ dataGridViewDemarque5;
+	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::DataGridView^ dataGridViewPerso;
 
 
 
@@ -146,6 +160,19 @@ namespace ProjetPOO {
 			this->tabPageDemarque3 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPageDemarque5 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPageSimulationPerso = (gcnew System::Windows::Forms::TabPage());
+			this->dataGridViewTVA2 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTVA3 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewMarge5 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTVA1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewMarge10 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewMarge15 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewRemise5 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewRemise6 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewDemarque2 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewDemarque3 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewDemarque5 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewPerso = (gcnew System::Windows::Forms::DataGridView());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->tabControlResponsable->SuspendLayout();
 			this->tabPagePanierMoyen->SuspendLayout();
 			this->tabPageChiffreAffaire->SuspendLayout();
@@ -161,6 +188,30 @@ namespace ProjetPOO {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->tabPageSimulation->SuspendLayout();
 			this->tabControlSimulation->SuspendLayout();
+			this->tabPageTVA1->SuspendLayout();
+			this->tabPageTVA2->SuspendLayout();
+			this->tabPageTVA3->SuspendLayout();
+			this->tabPageMarge5->SuspendLayout();
+			this->tabPageMarge10->SuspendLayout();
+			this->tabPageMarge15->SuspendLayout();
+			this->tabPageRemise5->SuspendLayout();
+			this->tabPageRemise6->SuspendLayout();
+			this->tabPageDemarque2->SuspendLayout();
+			this->tabPageDemarque3->SuspendLayout();
+			this->tabPageDemarque5->SuspendLayout();
+			this->tabPageSimulationPerso->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge5))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge10))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge15))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRemise5))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRemise6))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque5))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewPerso))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonRetour
@@ -299,6 +350,7 @@ namespace ProjetPOO {
 			this->textBoxPanierMoyen->Name = L"textBoxPanierMoyen";
 			this->textBoxPanierMoyen->Size = System::Drawing::Size(100, 20);
 			this->textBoxPanierMoyen->TabIndex = 1;
+			this->textBoxPanierMoyen->Click += gcnew System::EventHandler(this, &PageResponsable::textBoxPanierMoyen_Click);
 			// 
 			// label2
 			// 
@@ -495,6 +547,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageTVA1
 			// 
+			this->tabPageTVA1->Controls->Add(this->dataGridViewTVA1);
 			this->tabPageTVA1->Location = System::Drawing::Point(4, 22);
 			this->tabPageTVA1->Name = L"tabPageTVA1";
 			this->tabPageTVA1->Padding = System::Windows::Forms::Padding(3);
@@ -505,6 +558,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageTVA2
 			// 
+			this->tabPageTVA2->Controls->Add(this->dataGridViewTVA2);
 			this->tabPageTVA2->Location = System::Drawing::Point(4, 22);
 			this->tabPageTVA2->Name = L"tabPageTVA2";
 			this->tabPageTVA2->Padding = System::Windows::Forms::Padding(3);
@@ -515,6 +569,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageTVA3
 			// 
+			this->tabPageTVA3->Controls->Add(this->dataGridViewTVA3);
 			this->tabPageTVA3->Location = System::Drawing::Point(4, 22);
 			this->tabPageTVA3->Name = L"tabPageTVA3";
 			this->tabPageTVA3->Size = System::Drawing::Size(584, 303);
@@ -524,6 +579,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageMarge5
 			// 
+			this->tabPageMarge5->Controls->Add(this->dataGridViewMarge5);
 			this->tabPageMarge5->Location = System::Drawing::Point(4, 22);
 			this->tabPageMarge5->Name = L"tabPageMarge5";
 			this->tabPageMarge5->Size = System::Drawing::Size(584, 303);
@@ -533,15 +589,17 @@ namespace ProjetPOO {
 			// 
 			// tabPageMarge10
 			// 
+			this->tabPageMarge10->Controls->Add(this->dataGridViewMarge10);
 			this->tabPageMarge10->Location = System::Drawing::Point(4, 22);
 			this->tabPageMarge10->Name = L"tabPageMarge10";
 			this->tabPageMarge10->Size = System::Drawing::Size(584, 303);
 			this->tabPageMarge10->TabIndex = 4;
-			this->tabPageMarge10->Text = L"Marge Commerciale 1Marge Commerciale 10%";
+			this->tabPageMarge10->Text = L"Marge Commerciale 10%";
 			this->tabPageMarge10->UseVisualStyleBackColor = true;
 			// 
 			// tabPageMarge15
 			// 
+			this->tabPageMarge15->Controls->Add(this->dataGridViewMarge15);
 			this->tabPageMarge15->Location = System::Drawing::Point(4, 22);
 			this->tabPageMarge15->Name = L"tabPageMarge15";
 			this->tabPageMarge15->Size = System::Drawing::Size(584, 303);
@@ -551,6 +609,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageRemise5
 			// 
+			this->tabPageRemise5->Controls->Add(this->dataGridViewRemise5);
 			this->tabPageRemise5->Location = System::Drawing::Point(4, 22);
 			this->tabPageRemise5->Name = L"tabPageRemise5";
 			this->tabPageRemise5->Size = System::Drawing::Size(584, 303);
@@ -560,6 +619,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageRemise6
 			// 
+			this->tabPageRemise6->Controls->Add(this->dataGridViewRemise6);
 			this->tabPageRemise6->Location = System::Drawing::Point(4, 22);
 			this->tabPageRemise6->Name = L"tabPageRemise6";
 			this->tabPageRemise6->Size = System::Drawing::Size(584, 303);
@@ -569,6 +629,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageDemarque2
 			// 
+			this->tabPageDemarque2->Controls->Add(this->dataGridViewDemarque2);
 			this->tabPageDemarque2->Location = System::Drawing::Point(4, 22);
 			this->tabPageDemarque2->Name = L"tabPageDemarque2";
 			this->tabPageDemarque2->Size = System::Drawing::Size(584, 303);
@@ -578,6 +639,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageDemarque3
 			// 
+			this->tabPageDemarque3->Controls->Add(this->dataGridViewDemarque3);
 			this->tabPageDemarque3->Location = System::Drawing::Point(4, 22);
 			this->tabPageDemarque3->Name = L"tabPageDemarque3";
 			this->tabPageDemarque3->Size = System::Drawing::Size(584, 303);
@@ -587,6 +649,7 @@ namespace ProjetPOO {
 			// 
 			// tabPageDemarque5
 			// 
+			this->tabPageDemarque5->Controls->Add(this->dataGridViewDemarque5);
 			this->tabPageDemarque5->Location = System::Drawing::Point(4, 22);
 			this->tabPageDemarque5->Name = L"tabPageDemarque5";
 			this->tabPageDemarque5->Size = System::Drawing::Size(584, 303);
@@ -596,12 +659,120 @@ namespace ProjetPOO {
 			// 
 			// tabPageSimulationPerso
 			// 
+			this->tabPageSimulationPerso->Controls->Add(this->listBox1);
+			this->tabPageSimulationPerso->Controls->Add(this->dataGridViewPerso);
 			this->tabPageSimulationPerso->Location = System::Drawing::Point(4, 22);
 			this->tabPageSimulationPerso->Name = L"tabPageSimulationPerso";
 			this->tabPageSimulationPerso->Size = System::Drawing::Size(584, 303);
 			this->tabPageSimulationPerso->TabIndex = 11;
 			this->tabPageSimulationPerso->Text = L"Simulation Personnalisée";
 			this->tabPageSimulationPerso->UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewTVA2
+			// 
+			this->dataGridViewTVA2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewTVA2->Location = System::Drawing::Point(7, 7);
+			this->dataGridViewTVA2->Name = L"dataGridViewTVA2";
+			this->dataGridViewTVA2->Size = System::Drawing::Size(571, 291);
+			this->dataGridViewTVA2->TabIndex = 0;
+			this->dataGridViewTVA2->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PageResponsable::dataGridViewTVA2_CellContentClick);
+			// 
+			// dataGridViewTVA3
+			// 
+			this->dataGridViewTVA3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewTVA3->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewTVA3->Name = L"dataGridViewTVA3";
+			this->dataGridViewTVA3->Size = System::Drawing::Size(577, 296);
+			this->dataGridViewTVA3->TabIndex = 0;
+			// 
+			// dataGridViewMarge5
+			// 
+			this->dataGridViewMarge5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewMarge5->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewMarge5->Name = L"dataGridViewMarge5";
+			this->dataGridViewMarge5->Size = System::Drawing::Size(577, 294);
+			this->dataGridViewMarge5->TabIndex = 0;
+			// 
+			// dataGridViewTVA1
+			// 
+			this->dataGridViewTVA1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewTVA1->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewTVA1->Name = L"dataGridViewTVA1";
+			this->dataGridViewTVA1->Size = System::Drawing::Size(574, 296);
+			this->dataGridViewTVA1->TabIndex = 0;
+			// 
+			// dataGridViewMarge10
+			// 
+			this->dataGridViewMarge10->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewMarge10->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewMarge10->Name = L"dataGridViewMarge10";
+			this->dataGridViewMarge10->Size = System::Drawing::Size(577, 296);
+			this->dataGridViewMarge10->TabIndex = 0;
+			// 
+			// dataGridViewMarge15
+			// 
+			this->dataGridViewMarge15->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewMarge15->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewMarge15->Name = L"dataGridViewMarge15";
+			this->dataGridViewMarge15->Size = System::Drawing::Size(577, 294);
+			this->dataGridViewMarge15->TabIndex = 0;
+			// 
+			// dataGridViewRemise5
+			// 
+			this->dataGridViewRemise5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewRemise5->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewRemise5->Name = L"dataGridViewRemise5";
+			this->dataGridViewRemise5->Size = System::Drawing::Size(577, 296);
+			this->dataGridViewRemise5->TabIndex = 0;
+			// 
+			// dataGridViewRemise6
+			// 
+			this->dataGridViewRemise6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewRemise6->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewRemise6->Name = L"dataGridViewRemise6";
+			this->dataGridViewRemise6->Size = System::Drawing::Size(577, 294);
+			this->dataGridViewRemise6->TabIndex = 0;
+			// 
+			// dataGridViewDemarque2
+			// 
+			this->dataGridViewDemarque2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewDemarque2->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewDemarque2->Name = L"dataGridViewDemarque2";
+			this->dataGridViewDemarque2->Size = System::Drawing::Size(577, 294);
+			this->dataGridViewDemarque2->TabIndex = 0;
+			// 
+			// dataGridViewDemarque3
+			// 
+			this->dataGridViewDemarque3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewDemarque3->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewDemarque3->Name = L"dataGridViewDemarque3";
+			this->dataGridViewDemarque3->Size = System::Drawing::Size(577, 296);
+			this->dataGridViewDemarque3->TabIndex = 0;
+			// 
+			// dataGridViewDemarque5
+			// 
+			this->dataGridViewDemarque5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewDemarque5->Location = System::Drawing::Point(4, 4);
+			this->dataGridViewDemarque5->Name = L"dataGridViewDemarque5";
+			this->dataGridViewDemarque5->Size = System::Drawing::Size(577, 294);
+			this->dataGridViewDemarque5->TabIndex = 0;
+			// 
+			// dataGridViewPerso
+			// 
+			this->dataGridViewPerso->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewPerso->Location = System::Drawing::Point(11, 126);
+			this->dataGridViewPerso->Name = L"dataGridViewPerso";
+			this->dataGridViewPerso->Size = System::Drawing::Size(570, 172);
+			this->dataGridViewPerso->TabIndex = 0;
+			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(11, 3);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(91, 69);
+			this->listBox1->TabIndex = 1;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &PageResponsable::listBox1_SelectedIndexChanged);
 			// 
 			// PageResponsable
 			// 
@@ -636,6 +807,30 @@ namespace ProjetPOO {
 			this->tabPageSimulation->ResumeLayout(false);
 			this->tabPageSimulation->PerformLayout();
 			this->tabControlSimulation->ResumeLayout(false);
+			this->tabPageTVA1->ResumeLayout(false);
+			this->tabPageTVA2->ResumeLayout(false);
+			this->tabPageTVA3->ResumeLayout(false);
+			this->tabPageMarge5->ResumeLayout(false);
+			this->tabPageMarge10->ResumeLayout(false);
+			this->tabPageMarge15->ResumeLayout(false);
+			this->tabPageRemise5->ResumeLayout(false);
+			this->tabPageRemise6->ResumeLayout(false);
+			this->tabPageDemarque2->ResumeLayout(false);
+			this->tabPageDemarque3->ResumeLayout(false);
+			this->tabPageDemarque5->ResumeLayout(false);
+			this->tabPageSimulationPerso->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge5))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewTVA1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge10))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewMarge15))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRemise5))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRemise6))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDemarque5))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewPerso))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -653,6 +848,25 @@ private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dataGridViewTVA2_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBoxPanierMoyen_Click(System::Object^ sender, System::EventArgs^ e) //Va chercher dans la table facture les différentes prix et en fait la moyenne
+{
+	SqlClient::SqlConnection^ sqlConnection1 = gcnew SqlClient::SqlConnection();
+	sqlConnection1->ConnectionString = "Data Source=PC-MATHIEU;Initial Catalog=Projet;Integrated Security=True";
+	sqlConnection1->Open();
+	SqlClient::SqlCommand^ cmd = gcnew SqlClient::SqlCommand();
+	cmd->CommandText = "SELECT AVG(montant_total_TTC) FROM Facture";
+	cmd->Connection = sqlConnection1;
+	SqlClient::SqlDataReader^ reader = cmd->ExecuteReader();
+	while (reader->Read())
+	{
+		textBoxPanierMoyen->Text = reader->GetDouble(0).ToString();
+	}
+	sqlConnection1->Close();
 }
 };
 }
