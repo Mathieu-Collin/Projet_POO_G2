@@ -161,6 +161,9 @@ private: System::Void buttonManager_Click(System::Object^ sender, System::EventA
 	PageChoixUtilisateur::Hide();
 }
 private: System::Void buttonResponsable_Click(System::Object^ sender, System::EventArgs^ e) {
+	PageResponsable^ pageResponsableForm = gcnew PageResponsable();
+	pageResponsableForm->Show();
+	PageChoixUtilisateur::Hide();
 }
 };
 }

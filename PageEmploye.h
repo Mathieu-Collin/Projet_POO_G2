@@ -59,6 +59,7 @@ namespace ProjetPOO {
 
 	private: System::Windows::Forms::TextBox^ textBoxNom;
 	private: System::Windows::Forms::Button^ buttonCreerCompte;
+	private: System::Windows::Forms::Button^ buttonRetour;
 
 
 
@@ -93,14 +94,15 @@ namespace ProjetPOO {
 			this->textBoxRecherche = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
-			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
-			this->textBoxMdp = (gcnew System::Windows::Forms::TextBox());
-			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->buttonCreerCompte = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxMdp = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
+			this->buttonRetour = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -119,6 +121,7 @@ namespace ProjetPOO {
 			// 
 			// tabPage1
 			// 
+			this->tabPage1->Controls->Add(this->buttonRetour);
 			this->tabPage1->Controls->Add(this->pictureBox1);
 			this->tabPage1->Controls->Add(this->buttonAfficher);
 			this->tabPage1->Controls->Add(this->textBoxQuantite);
@@ -196,7 +199,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxRecherche
 			// 
-			this->textBoxRecherche->Location = System::Drawing::Point(23, 33);
+			this->textBoxRecherche->Location = System::Drawing::Point(23, 66);
 			this->textBoxRecherche->Name = L"textBoxRecherche";
 			this->textBoxRecherche->Size = System::Drawing::Size(187, 20);
 			this->textBoxRecherche->TabIndex = 1;
@@ -206,9 +209,9 @@ namespace ProjetPOO {
 			// listView1
 			// 
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(23, 66);
+			this->listView1->Location = System::Drawing::Point(23, 97);
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(187, 371);
+			this->listView1->Size = System::Drawing::Size(187, 340);
 			this->listView1->TabIndex = 0;
 			this->listView1->UseCompatibleStateImageBehavior = false;
 			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &PageEmploye::listView1_SelectedIndexChanged);
@@ -231,26 +234,42 @@ namespace ProjetPOO {
 			this->tabPage2->Text = L"Création Compte client";
 			this->tabPage2->UseVisualStyleBackColor = true;
 			// 
-			// textBoxNom
+			// buttonCreerCompte
 			// 
-			this->textBoxNom->Location = System::Drawing::Point(324, 106);
-			this->textBoxNom->Name = L"textBoxNom";
-			this->textBoxNom->Size = System::Drawing::Size(100, 20);
-			this->textBoxNom->TabIndex = 0;
+			this->buttonCreerCompte->Location = System::Drawing::Point(236, 370);
+			this->buttonCreerCompte->Name = L"buttonCreerCompte";
+			this->buttonCreerCompte->Size = System::Drawing::Size(177, 23);
+			this->buttonCreerCompte->TabIndex = 7;
+			this->buttonCreerCompte->Text = L"Créer le compte";
+			this->buttonCreerCompte->UseVisualStyleBackColor = true;
+			this->buttonCreerCompte->Click += gcnew System::EventHandler(this, &PageEmploye::buttonCreerCompte_Click);
 			// 
-			// textBoxMdp
+			// label4
 			// 
-			this->textBoxMdp->Location = System::Drawing::Point(324, 233);
-			this->textBoxMdp->Name = L"textBoxMdp";
-			this->textBoxMdp->Size = System::Drawing::Size(100, 20);
-			this->textBoxMdp->TabIndex = 1;
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(17, 14);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(135, 13);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"Création d\'un compte client";
 			// 
-			// textBoxPrenom
+			// label3
 			// 
-			this->textBoxPrenom->Location = System::Drawing::Point(324, 170);
-			this->textBoxPrenom->Name = L"textBoxPrenom";
-			this->textBoxPrenom->Size = System::Drawing::Size(100, 20);
-			this->textBoxPrenom->TabIndex = 2;
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(191, 240);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(71, 13);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"Mot de passe";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(216, 177);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(46, 13);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Prénom:";
 			// 
 			// label1
 			// 
@@ -262,42 +281,36 @@ namespace ProjetPOO {
 			this->label1->Text = L"Nom:";
 			this->label1->Click += gcnew System::EventHandler(this, &PageEmploye::label1_Click);
 			// 
-			// label2
+			// textBoxPrenom
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(216, 177);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(46, 13);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Prénom:";
+			this->textBoxPrenom->Location = System::Drawing::Point(324, 170);
+			this->textBoxPrenom->Name = L"textBoxPrenom";
+			this->textBoxPrenom->Size = System::Drawing::Size(100, 20);
+			this->textBoxPrenom->TabIndex = 2;
 			// 
-			// label3
+			// textBoxMdp
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(191, 240);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(71, 13);
-			this->label3->TabIndex = 5;
-			this->label3->Text = L"Mot de passe";
+			this->textBoxMdp->Location = System::Drawing::Point(324, 233);
+			this->textBoxMdp->Name = L"textBoxMdp";
+			this->textBoxMdp->Size = System::Drawing::Size(100, 20);
+			this->textBoxMdp->TabIndex = 1;
 			// 
-			// label4
+			// textBoxNom
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(17, 14);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(135, 13);
-			this->label4->TabIndex = 6;
-			this->label4->Text = L"Création d\'un compte client";
+			this->textBoxNom->Location = System::Drawing::Point(324, 106);
+			this->textBoxNom->Name = L"textBoxNom";
+			this->textBoxNom->Size = System::Drawing::Size(100, 20);
+			this->textBoxNom->TabIndex = 0;
 			// 
-			// buttonCreerCompte
+			// buttonRetour
 			// 
-			this->buttonCreerCompte->Location = System::Drawing::Point(236, 370);
-			this->buttonCreerCompte->Name = L"buttonCreerCompte";
-			this->buttonCreerCompte->Size = System::Drawing::Size(177, 23);
-			this->buttonCreerCompte->TabIndex = 7;
-			this->buttonCreerCompte->Text = L"Créer le compte";
-			this->buttonCreerCompte->UseVisualStyleBackColor = true;
-			this->buttonCreerCompte->Click += gcnew System::EventHandler(this, &PageEmploye::buttonCreerCompte_Click);
+			this->buttonRetour->Location = System::Drawing::Point(23, 18);
+			this->buttonRetour->Name = L"buttonRetour";
+			this->buttonRetour->Size = System::Drawing::Size(75, 23);
+			this->buttonRetour->TabIndex = 9;
+			this->buttonRetour->Text = L"Retour";
+			this->buttonRetour->UseVisualStyleBackColor = true;
+			this->buttonRetour->Click += gcnew System::EventHandler(this, &PageEmploye::buttonRetour_Click);
 			// 
 			// PageEmploye
 			// 
@@ -413,6 +426,11 @@ private: System::Void buttonCreerCompte_Click(System::Object^ sender, System::Ev
 	catch (Exception^ e) {
 		MessageBox::Show(e->Message);
 	}
+}
+private: System::Void buttonRetour_Click(System::Object^ sender, System::EventArgs^ e) {
+	PageChoixUtilisateur^ pageChoixUtilisateurForm = gcnew PageChoixUtilisateur();
+	pageChoixUtilisateurForm->Show();
+	PageEmploye::Close();
 }
 };
 }
