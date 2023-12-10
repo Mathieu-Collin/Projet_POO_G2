@@ -320,8 +320,9 @@ namespace ProjetPOO {
 #pragma endregion
 	private: System::Void PageEmploye_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-		   //private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
-	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+
+	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 
 	private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (listView1->SelectedItems->Count > 0) {
@@ -384,11 +385,11 @@ private: System::Void buttonCreerCompte_Click(System::Object^ sender, System::Ev
 	try {
 		SqlConnection^ conn = gcnew SqlConnection(connectionString);
 		//vérification si le compte existe déjà et retunr un message d'erreur si c'est le cas
-		SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Client WHERE nom = @nom AND prenom = @prenom AND mdp = @mdp", conn);
-		cmd->Parameters->AddWithValue("@nom", textBoxNom->Text);
-		cmd->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
-		cmd->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
-		if (cmd->ExecuteReader()->HasRows) {
+		SqlCommand^ cmd1 = gcnew SqlCommand("SELECT * FROM Client WHERE nom = @nom AND prenom = @prenom AND mdp = @mdp", conn);
+		cmd1->Parameters->AddWithValue("@nom", textBoxNom->Text);
+		cmd1->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
+		cmd1->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
+		if (cmd1->ExecuteReader()->HasRows) {
 			MessageBox::Show("Ce compte existe déjà");
 			return;
 		}
@@ -398,13 +399,13 @@ private: System::Void buttonCreerCompte_Click(System::Object^ sender, System::Ev
 			return;
 		}
 		
-		SqlCommand^ cmd = gcnew SqlCommand("INSERT INTO Client (nom, prenom, mdp) VALUES (@nom, @prenom, @mdp)", conn);
-		cmd->Parameters->AddWithValue("@nom", textBoxNom->Text);
-		cmd->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
-		cmd->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
+		SqlCommand^ cmd2 = gcnew SqlCommand("INSERT INTO Client (nom, prenom, mdp) VALUES (@nom, @prenom, @mdp)", conn);
+		cmd2->Parameters->AddWithValue("@nom", textBoxNom->Text);
+		cmd2->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
+		cmd2->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
 
 		conn->Open();
-		cmd->ExecuteNonQuery();
+		cmd2->ExecuteNonQuery();
 		conn->Close();
 
 		MessageBox::Show("Compte créé avec succès");

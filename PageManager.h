@@ -47,7 +47,7 @@ namespace ProjetPOO {
 
 	private: int objetPanier = 0;
 	private: System::Windows::Forms::TabPage^ OngletGestionPersonnel;
-	private: System::Windows::Forms::Button^ SupprimerPersonnel;
+
 	private: System::Windows::Forms::RichTextBox^ date_embauche;
 
 
@@ -96,7 +96,7 @@ namespace ProjetPOO {
 
 	public:
 
-	public: System::Windows::Forms::PictureBox^ pictureBox2;
+
 	private: System::Windows::Forms::ListView^ listViewPersonnel2;
 	private: System::Windows::Forms::ListView^ listViewPersonnel1;
 	public:
@@ -142,6 +142,8 @@ namespace ProjetPOO {
 	public:
 	private: System::Windows::Forms::ListView^ listView1;
 	private: System::Windows::Forms::TabControl^ OngletsManager;
+private: System::Windows::Forms::Button^ SupprimerPersonnel;
+private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 
 
 
@@ -307,7 +309,6 @@ namespace ProjetPOO {
 		void InitializeComponent(void)
 		{
 			this->OngletGestionPersonnel = (gcnew System::Windows::Forms::TabPage());
-			this->SupprimerPersonnel = (gcnew System::Windows::Forms::Button());
 			this->date_embauche = (gcnew System::Windows::Forms::RichTextBox());
 			this->superieurPersonnel = (gcnew System::Windows::Forms::RichTextBox());
 			this->titreDate_embauche = (gcnew System::Windows::Forms::RichTextBox());
@@ -319,7 +320,6 @@ namespace ProjetPOO {
 			this->RecherchePersonnel = (gcnew System::Windows::Forms::TextBox());
 			this->CréerPersonnel = (gcnew System::Windows::Forms::Button());
 			this->modifPersonnel = (gcnew System::Windows::Forms::Button());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->listViewPersonnel2 = (gcnew System::Windows::Forms::ListView());
 			this->listViewPersonnel1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletGestionStocks = (gcnew System::Windows::Forms::TabPage());
@@ -351,8 +351,9 @@ namespace ProjetPOO {
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
+			this->SupprimerPersonnel = (gcnew System::Windows::Forms::Button());
+			this->motDePassePersonnel = (gcnew System::Windows::Forms::RichTextBox());
 			this->OngletGestionPersonnel->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->OngletsManager->SuspendLayout();
@@ -361,6 +362,7 @@ namespace ProjetPOO {
 			// OngletGestionPersonnel
 			// 
 			this->OngletGestionPersonnel->AutoScroll = true;
+			this->OngletGestionPersonnel->Controls->Add(this->motDePassePersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->SupprimerPersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->date_embauche);
 			this->OngletGestionPersonnel->Controls->Add(this->superieurPersonnel);
@@ -373,7 +375,6 @@ namespace ProjetPOO {
 			this->OngletGestionPersonnel->Controls->Add(this->RecherchePersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->CréerPersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->modifPersonnel);
-			this->OngletGestionPersonnel->Controls->Add(this->pictureBox2);
 			this->OngletGestionPersonnel->Controls->Add(this->listViewPersonnel2);
 			this->OngletGestionPersonnel->Controls->Add(this->listViewPersonnel1);
 			this->OngletGestionPersonnel->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
@@ -385,17 +386,6 @@ namespace ProjetPOO {
 			this->OngletGestionPersonnel->TabIndex = 2;
 			this->OngletGestionPersonnel->Text = L"Gestion du personnel";
 			this->OngletGestionPersonnel->UseVisualStyleBackColor = true;
-			// 
-			// SupprimerPersonnel
-			// 
-			this->SupprimerPersonnel->Location = System::Drawing::Point(476, 308);
-			this->SupprimerPersonnel->Margin = System::Windows::Forms::Padding(2);
-			this->SupprimerPersonnel->Name = L"SupprimerPersonnel";
-			this->SupprimerPersonnel->Size = System::Drawing::Size(211, 39);
-			this->SupprimerPersonnel->TabIndex = 29;
-			this->SupprimerPersonnel->Text = L"SUPPRIMER LE PERSONNEL";
-			this->SupprimerPersonnel->UseVisualStyleBackColor = true;
-			this->SupprimerPersonnel->Click += gcnew System::EventHandler(this, &PageManager::SupprimerPersonnel_Click);
 			// 
 			// date_embauche
 			// 
@@ -457,7 +447,7 @@ namespace ProjetPOO {
 			// prenomPersonnel
 			// 
 			this->prenomPersonnel->AccessibleName = L"prenom";
-			this->prenomPersonnel->Location = System::Drawing::Point(476, 50);
+			this->prenomPersonnel->Location = System::Drawing::Point(230, 106);
 			this->prenomPersonnel->Margin = System::Windows::Forms::Padding(2);
 			this->prenomPersonnel->Name = L"prenomPersonnel";
 			this->prenomPersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -479,7 +469,7 @@ namespace ProjetPOO {
 			// nomPersonnelRichTextBox
 			// 
 			this->nomPersonnelRichTextBox->AccessibleName = L"nom";
-			this->nomPersonnelRichTextBox->Location = System::Drawing::Point(476, 21);
+			this->nomPersonnelRichTextBox->Location = System::Drawing::Point(229, 77);
 			this->nomPersonnelRichTextBox->Margin = System::Windows::Forms::Padding(2);
 			this->nomPersonnelRichTextBox->Name = L"nomPersonnelRichTextBox";
 			this->nomPersonnelRichTextBox->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
@@ -518,15 +508,6 @@ namespace ProjetPOO {
 			this->modifPersonnel->Text = L"Valider les modifications";
 			this->modifPersonnel->UseVisualStyleBackColor = true;
 			this->modifPersonnel->Click += gcnew System::EventHandler(this, &PageManager::modifPersonnel_Click);
-			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->Location = System::Drawing::Point(197, 73);
-			this->pictureBox2->Margin = System::Windows::Forms::Padding(2);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(262, 256);
-			this->pictureBox2->TabIndex = 10;
-			this->pictureBox2->TabStop = false;
 			// 
 			// listViewPersonnel2
 			// 
@@ -918,6 +899,26 @@ namespace ProjetPOO {
 			this->OngletsManager->Size = System::Drawing::Size(728, 407);
 			this->OngletsManager->TabIndex = 3;
 			// 
+			// SupprimerPersonnel
+			// 
+			this->SupprimerPersonnel->Location = System::Drawing::Point(476, 308);
+			this->SupprimerPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->SupprimerPersonnel->Name = L"SupprimerPersonnel";
+			this->SupprimerPersonnel->Size = System::Drawing::Size(211, 39);
+			this->SupprimerPersonnel->TabIndex = 29;
+			this->SupprimerPersonnel->Text = L"SUPPRIMER LE PERSONNEL";
+			this->SupprimerPersonnel->UseVisualStyleBackColor = true;
+			this->SupprimerPersonnel->Click += gcnew System::EventHandler(this, &PageManager::SupprimerPersonnel_Click);
+			// 
+			// motDePassePersonnel
+			// 
+			this->motDePassePersonnel->AccessibleName = L"MotDePasse";
+			this->motDePassePersonnel->Location = System::Drawing::Point(230, 134);
+			this->motDePassePersonnel->Name = L"motDePassePersonnel";
+			this->motDePassePersonnel->Size = System::Drawing::Size(210, 23);
+			this->motDePassePersonnel->TabIndex = 30;
+			this->motDePassePersonnel->Text = L"Mot de passe";
+			// 
 			// PageManager
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -930,7 +931,6 @@ namespace ProjetPOO {
 			this->Load += gcnew System::EventHandler(this, &PageManager::PageManager_Load);
 			this->OngletGestionPersonnel->ResumeLayout(false);
 			this->OngletGestionPersonnel->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->OngletGestionStocks->ResumeLayout(false);
 			this->OngletGestionStocks->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -1023,6 +1023,7 @@ namespace ProjetPOO {
 					superieurPersonnel->Text = reader["superieur"]->ToString();
 					date_embauche->Text = reader["date_embauche"]->ToString();
 					IdPersonnel->Text = reader["id_Personnel"]->ToString();
+					motDePassePersonnel->Text = reader["MotDePasse"]->ToString();
 				}
 				reader->Close();
 			}
@@ -1383,6 +1384,7 @@ private: System::Void modifPersonnel_Click(System::Object^ sender, System::Event
 	boxModifier->Add(adressePersonnel);
 	boxModifier->Add(superieurPersonnel);
 	boxModifier->Add(date_embauche);
+	boxModifier->Add(motDePassePersonnel);
 
 	if (listViewPersonnel1->SelectedItems->Count > 0) {
 		ListViewItem^ selectedItem = listViewPersonnel1->SelectedItems[0];
@@ -1414,6 +1416,7 @@ private: System::Void CréerPersonnel_Click(System::Object^ sender, System::Event
 	nomColonnes->Add("adresse");
 	nomColonnes->Add("superieur");
 	nomColonnes->Add("date_embauche");
+	nomColonnes->Add("MotDePasse");
 
 	List<String^>^ valeurs = gcnew List<String^>;
 	valeurs->Add(nomPersonnel);
@@ -1421,6 +1424,7 @@ private: System::Void CréerPersonnel_Click(System::Object^ sender, System::Event
 	valeurs->Add(adressePersonnel->Text);
 	valeurs->Add(superieurPersonnel->Text);
 	valeurs->Add(date_embauche->Text);
+	valeurs->Add(motDePassePersonnel->Text);
 
 	ListView^ list1 = listViewPersonnel1;
 	ListView^ list2 = listViewPersonnel2;

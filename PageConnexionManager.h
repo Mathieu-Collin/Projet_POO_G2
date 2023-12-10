@@ -56,7 +56,7 @@ namespace ProjetPOO {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -83,7 +83,7 @@ namespace ProjetPOO {
 			this->buttonConnect->TabIndex = 0;
 			this->buttonConnect->Text = L"Se connecter";
 			this->buttonConnect->UseVisualStyleBackColor = true;
-			this->buttonConnect->Click += gcnew System::EventHandler(this, &PageConnexionManager::button1_Click);
+			this->buttonConnect->Click += gcnew System::EventHandler(this, &PageConnexionManager::Connect_Button_Click);
 			// 
 			// textBoxNom
 			// 
@@ -105,6 +105,7 @@ namespace ProjetPOO {
 			this->textBoxMdp->Name = L"textBoxMdp";
 			this->textBoxMdp->Size = System::Drawing::Size(100, 20);
 			this->textBoxMdp->TabIndex = 3;
+			this->textBoxMdp->UseSystemPasswordChar = true;
 			// 
 			// labelNom
 			// 
@@ -159,8 +160,11 @@ namespace ProjetPOO {
 	}
 	private: System::Void buttonConnect_Click(System::Object^ sender, System::EventArgs^ e) //vérifie si le manager existe dans la table Employe puis vérifie si les champs sont remplie avant de connecter le ma
 	{
-	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
-	private: System::Void Connect_Button_Click(System::Object ^ sender, System::EventArgs ^ e)// Regarde si l'utilisateur existe et si il existe alors le connecter mais si il n'existe pas, ouvrir une pop up d'erreur
+	}
+	//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+
+	private: System::Void Connect_Button_Click(System::Object^ sender, System::EventArgs^ e)// Regarde si l'utilisateur existe et si il existe alors le connecter mais si il n'existe pas, ouvrir une pop up d'erreur
 	{
 		String^ nom = textBoxNom->Text;
 		if (nom == "") {
@@ -178,29 +182,39 @@ namespace ProjetPOO {
 			return;
 		}
 
-		String^ query = "SELECT * FROM Personel WHERE nom = '" + textBoxNom + "' AND prenom = '" + textBoxPrenom + "' AND MotDePasse = '" + textBoxMdp + "'";
+		String^ query = "SELECT * FROM Personnel WHERE nom = @nom AND prenom = @prenom AND MotDePasse = @mdp";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
-		con->Open();
-		SqlDataReader^ dr = cmd->ExecuteReader();
-		int count = 0;
-		while (dr->Read()) {
-			count += 1;
-		}
-		if (count == 1) {
-			MessageBox::Show("Connexion réussie");
-			PageConnexionManager^ pageConnexionManager = gcnew PageConnexionManager();
-			pageConnexionManager->Show();
-			this->Hide();
-		}
-		else {
-			MessageBox::Show("Connexion échouée");
-		}
-		con->Close();
+		cmd->Parameters->AddWithValue("@nom", nom);
+		cmd->Parameters->AddWithValue("@prenom", prenom);
+		cmd->Parameters->AddWithValue("@mdp", mdp);
 
+		try {
+			con->Open();
+			SqlDataReader^ dr = cmd->ExecuteReader();
+			int count = 0;
+			while (dr->Read()) {
+				count += 1;
+			}
+			if (count > 0) {
+				MessageBox::Show("Connexion réussie");
+				PageManager^ pageManager = gcnew PageManager();
+				pageManager->Show();
+				this->Hide();
+			}
+			else {
+				MessageBox::Show("Connexion échouée");
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la connexion : " + e->Message);
+		}
+		finally {
+			if (con != nullptr && con->State == ConnectionState::Open)
+				con->Close();
+		}
 	}
 
-	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 };
