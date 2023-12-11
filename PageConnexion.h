@@ -128,6 +128,7 @@ namespace ProjetPOO {
 			this->textBoxMdp->Name = L"textBoxMdp";
 			this->textBoxMdp->Size = System::Drawing::Size(100, 20);
 			this->textBoxMdp->TabIndex = 6;
+			this->textBoxMdp->UseSystemPasswordChar = true;
 			// 
 			// label4
 			// 
@@ -184,9 +185,13 @@ namespace ProjetPOO {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+	//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 	private: System::Void Connect_Button_Click(System::Object^ sender, System::EventArgs^ e)// Regarde si l'utilisateur existe et si il existe alors le connecter mais si il n'existe pas, ouvrir une pop up d'erreur
 	{
+		SqlConnection^ con = gcnew SqlConnection(connectionString);
+		int IdDuClient = 0;
+
 		String^ nom = textBoxNom->Text;
 		if (nom == "") {
 			MessageBox::Show("Veuillez entrer un nom");
@@ -203,26 +208,43 @@ namespace ProjetPOO {
 			return;
 		}
 
-		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
-		SqlConnection^ con = gcnew SqlConnection(connectionString);
-		SqlCommand^ cmd = gcnew SqlCommand(query, con);
-		con->Open();
-		SqlDataReader^ dr = cmd->ExecuteReader();
-		int count = 0;
-		while (dr->Read()) {
-			count += 1;
+		try {
+			con->Open();
+
+			// Requête pour obtenir id_client et vérifier les identifiants
+			String^ query = "SELECT id_client FROM Client WHERE nom = @nom AND prenom = @prenom AND MotDePasse = @mdp";
+			SqlCommand^ cmd = gcnew SqlCommand(query, con);
+
+			// Paramètres
+			cmd->Parameters->AddWithValue("@nom", nom);
+			cmd->Parameters->AddWithValue("@prenom", prenom);
+			cmd->Parameters->AddWithValue("@mdp", mdp);
+
+			// Exécution de la requête
+			SqlDataReader^ dr = cmd->ExecuteReader();
+
+			if (dr->Read()) {
+				// Récupération de l'ID du client
+				IdDuClient = dr->GetInt32(0);
+
+				// Connexion réussie
+				MessageBox::Show("Connexion réussie");
+				PageClient^ pageClient = gcnew PageClient(IdDuClient);
+				pageClient->ShowDialog();
+			}
+			else {
+				// Identifiants incorrects
+				MessageBox::Show("Connexion échouée");
+			}
 		}
-		if (count == 1) {
-			MessageBox::Show("Connexion réussie");
-			PageClient^ pageClient = gcnew PageClient(nom, prenom, mdp);
-			pageClient->Show();
-			this->Hide();
+		catch (Exception^ e) {
+			MessageBox::Show("Erreur lors de la connexion : " + e->Message);
 		}
-		else {
-			MessageBox::Show("Connexion échouée");
+		finally {
+			if (con != nullptr && con->State == ConnectionState::Open)
+				con->Close();
 		}
-		con->Close();
-	
+
 	}
 
 
@@ -250,9 +272,12 @@ namespace ProjetPOO {
 			return;
 		}
 
-		String^ query = "SELECT * FROM Client WHERE Nom = '" + nom + "' AND Prenom = '" + prenom + "' AND MotDePasse = '" + mdp + "'";
+		String^ query = "SELECT * FROM Client WHERE Nom = @nom AND Prenom = @prenom AND MotDePasse = @mdp";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
+		cmd->Parameters->AddWithValue("@nom", nom);
+		cmd->Parameters->AddWithValue("@prenom", prenom);
+		cmd->Parameters->AddWithValue("@mdp", mdp);
 		con->Open();
 		SqlDataReader^ dr = cmd->ExecuteReader();
 		int count = 0;
@@ -278,11 +303,11 @@ namespace ProjetPOO {
 		else {
 			String^ query2 = "INSERT INTO Client (Nom, Prenom, MotDePasse) VALUES ('" + nom + "', '" + prenom + "', '" + mdp + "')";
 			SqlCommand^ cmd2 = gcnew SqlCommand(query2, con);
+			dr->Close();
 			cmd2->ExecuteNonQuery();
 			MessageBox::Show("Compte créé");
-			PageClient^ pageClient = gcnew PageClient();
-			pageClient->Show();
-			this->Hide();
+			//PageClient^ pageClient = gcnew PageClient();
+			//pageClient->ShowDialog();
 		}
 		con->Close();
 	}

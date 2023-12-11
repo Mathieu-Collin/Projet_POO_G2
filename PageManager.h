@@ -144,6 +144,9 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::TabControl^ OngletsManager;
 private: System::Windows::Forms::Button^ SupprimerPersonnel;
 private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
+private: System::Windows::Forms::RichTextBox^ role;
+
+private: System::Windows::Forms::RichTextBox^ titreRole;
 
 
 
@@ -309,6 +312,10 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 		void InitializeComponent(void)
 		{
 			this->OngletGestionPersonnel = (gcnew System::Windows::Forms::TabPage());
+			this->role = (gcnew System::Windows::Forms::RichTextBox());
+			this->titreRole = (gcnew System::Windows::Forms::RichTextBox());
+			this->motDePassePersonnel = (gcnew System::Windows::Forms::RichTextBox());
+			this->SupprimerPersonnel = (gcnew System::Windows::Forms::Button());
 			this->date_embauche = (gcnew System::Windows::Forms::RichTextBox());
 			this->superieurPersonnel = (gcnew System::Windows::Forms::RichTextBox());
 			this->titreDate_embauche = (gcnew System::Windows::Forms::RichTextBox());
@@ -351,8 +358,6 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->OngletsManager = (gcnew System::Windows::Forms::TabControl());
-			this->SupprimerPersonnel = (gcnew System::Windows::Forms::Button());
-			this->motDePassePersonnel = (gcnew System::Windows::Forms::RichTextBox());
 			this->OngletGestionPersonnel->SuspendLayout();
 			this->OngletGestionStocks->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -362,6 +367,8 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// OngletGestionPersonnel
 			// 
 			this->OngletGestionPersonnel->AutoScroll = true;
+			this->OngletGestionPersonnel->Controls->Add(this->role);
+			this->OngletGestionPersonnel->Controls->Add(this->titreRole);
 			this->OngletGestionPersonnel->Controls->Add(this->motDePassePersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->SupprimerPersonnel);
 			this->OngletGestionPersonnel->Controls->Add(this->date_embauche);
@@ -378,121 +385,166 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			this->OngletGestionPersonnel->Controls->Add(this->listViewPersonnel2);
 			this->OngletGestionPersonnel->Controls->Add(this->listViewPersonnel1);
 			this->OngletGestionPersonnel->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->OngletGestionPersonnel->Location = System::Drawing::Point(4, 22);
-			this->OngletGestionPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->OngletGestionPersonnel->Location = System::Drawing::Point(4, 25);
+			this->OngletGestionPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->OngletGestionPersonnel->Name = L"OngletGestionPersonnel";
-			this->OngletGestionPersonnel->Padding = System::Windows::Forms::Padding(2);
-			this->OngletGestionPersonnel->Size = System::Drawing::Size(720, 381);
+			this->OngletGestionPersonnel->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->OngletGestionPersonnel->Size = System::Drawing::Size(963, 472);
 			this->OngletGestionPersonnel->TabIndex = 2;
 			this->OngletGestionPersonnel->Text = L"Gestion du personnel";
 			this->OngletGestionPersonnel->UseVisualStyleBackColor = true;
 			// 
+			// role
+			// 
+			this->role->AccessibleName = L"role";
+			this->role->Location = System::Drawing::Point(680, 222);
+			this->role->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->role->Name = L"role";
+			this->role->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->role->Size = System::Drawing::Size(233, 27);
+			this->role->TabIndex = 32;
+			this->role->Text = L"";
+			this->role->TextChanged += gcnew System::EventHandler(this, &PageManager::role_TextChanged);
+			// 
+			// titreRole
+			// 
+			this->titreRole->Location = System::Drawing::Point(635, 222);
+			this->titreRole->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->titreRole->Name = L"titreRole";
+			this->titreRole->ReadOnly = true;
+			this->titreRole->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
+			this->titreRole->Size = System::Drawing::Size(39, 27);
+			this->titreRole->TabIndex = 31;
+			this->titreRole->Text = L"Role";
+			this->titreRole->TextChanged += gcnew System::EventHandler(this, &PageManager::titreRole_TextChanged);
+			// 
+			// motDePassePersonnel
+			// 
+			this->motDePassePersonnel->AccessibleName = L"MotDePasse";
+			this->motDePassePersonnel->Location = System::Drawing::Point(307, 165);
+			this->motDePassePersonnel->Margin = System::Windows::Forms::Padding(4);
+			this->motDePassePersonnel->Name = L"motDePassePersonnel";
+			this->motDePassePersonnel->Size = System::Drawing::Size(279, 27);
+			this->motDePassePersonnel->TabIndex = 30;
+			this->motDePassePersonnel->Text = L"Mot de passe";
+			// 
+			// SupprimerPersonnel
+			// 
+			this->SupprimerPersonnel->Location = System::Drawing::Point(635, 379);
+			this->SupprimerPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->SupprimerPersonnel->Name = L"SupprimerPersonnel";
+			this->SupprimerPersonnel->Size = System::Drawing::Size(281, 48);
+			this->SupprimerPersonnel->TabIndex = 29;
+			this->SupprimerPersonnel->Text = L"SUPPRIMER LE PERSONNEL";
+			this->SupprimerPersonnel->UseVisualStyleBackColor = true;
+			this->SupprimerPersonnel->Click += gcnew System::EventHandler(this, &PageManager::SupprimerPersonnel_Click);
+			// 
 			// date_embauche
 			// 
 			this->date_embauche->AccessibleName = L"date_embauche";
-			this->date_embauche->Location = System::Drawing::Point(574, 155);
-			this->date_embauche->Margin = System::Windows::Forms::Padding(2);
+			this->date_embauche->Location = System::Drawing::Point(765, 191);
+			this->date_embauche->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->date_embauche->Name = L"date_embauche";
 			this->date_embauche->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->date_embauche->Size = System::Drawing::Size(112, 23);
+			this->date_embauche->Size = System::Drawing::Size(148, 27);
 			this->date_embauche->TabIndex = 22;
 			this->date_embauche->Text = L"";
 			// 
 			// superieurPersonnel
 			// 
 			this->superieurPersonnel->AccessibleName = L"superieur";
-			this->superieurPersonnel->Location = System::Drawing::Point(533, 131);
-			this->superieurPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->superieurPersonnel->Location = System::Drawing::Point(711, 161);
+			this->superieurPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->superieurPersonnel->Name = L"superieurPersonnel";
 			this->superieurPersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->superieurPersonnel->Size = System::Drawing::Size(154, 20);
+			this->superieurPersonnel->Size = System::Drawing::Size(204, 24);
 			this->superieurPersonnel->TabIndex = 21;
 			this->superieurPersonnel->Text = L"";
 			// 
 			// titreDate_embauche
 			// 
-			this->titreDate_embauche->Location = System::Drawing::Point(476, 155);
-			this->titreDate_embauche->Margin = System::Windows::Forms::Padding(2);
+			this->titreDate_embauche->Location = System::Drawing::Point(635, 191);
+			this->titreDate_embauche->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreDate_embauche->Name = L"titreDate_embauche";
 			this->titreDate_embauche->ReadOnly = true;
 			this->titreDate_embauche->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreDate_embauche->Size = System::Drawing::Size(94, 23);
+			this->titreDate_embauche->Size = System::Drawing::Size(124, 27);
 			this->titreDate_embauche->TabIndex = 14;
 			this->titreDate_embauche->Text = L"Date d\'embauche";
 			this->titreDate_embauche->TextChanged += gcnew System::EventHandler(this, &PageManager::date_embauche_TextChanged);
 			// 
 			// IdPersonnel
 			// 
-			this->IdPersonnel->Location = System::Drawing::Point(401, 26);
-			this->IdPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->IdPersonnel->Location = System::Drawing::Point(535, 32);
+			this->IdPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->IdPersonnel->Name = L"IdPersonnel";
 			this->IdPersonnel->ReadOnly = true;
 			this->IdPersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->IdPersonnel->Size = System::Drawing::Size(58, 20);
+			this->IdPersonnel->Size = System::Drawing::Size(76, 24);
 			this->IdPersonnel->TabIndex = 13;
 			this->IdPersonnel->Text = L"Id";
 			this->IdPersonnel->Visible = false;
 			// 
 			// titreSuperieurPersonnel
 			// 
-			this->titreSuperieurPersonnel->Location = System::Drawing::Point(476, 131);
-			this->titreSuperieurPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->titreSuperieurPersonnel->Location = System::Drawing::Point(635, 161);
+			this->titreSuperieurPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreSuperieurPersonnel->Name = L"titreSuperieurPersonnel";
 			this->titreSuperieurPersonnel->ReadOnly = true;
 			this->titreSuperieurPersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreSuperieurPersonnel->Size = System::Drawing::Size(54, 20);
+			this->titreSuperieurPersonnel->Size = System::Drawing::Size(71, 24);
 			this->titreSuperieurPersonnel->TabIndex = 8;
 			this->titreSuperieurPersonnel->Text = L"Supérieur";
 			// 
 			// prenomPersonnel
 			// 
 			this->prenomPersonnel->AccessibleName = L"prenom";
-			this->prenomPersonnel->Location = System::Drawing::Point(230, 106);
-			this->prenomPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->prenomPersonnel->Location = System::Drawing::Point(307, 130);
+			this->prenomPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->prenomPersonnel->Name = L"prenomPersonnel";
 			this->prenomPersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prenomPersonnel->Size = System::Drawing::Size(210, 23);
+			this->prenomPersonnel->Size = System::Drawing::Size(279, 27);
 			this->prenomPersonnel->TabIndex = 7;
 			this->prenomPersonnel->Text = L"Prénom";
 			// 
 			// adressePersonnel
 			// 
 			this->adressePersonnel->AccessibleName = L"adresse";
-			this->adressePersonnel->Location = System::Drawing::Point(476, 77);
-			this->adressePersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->adressePersonnel->Location = System::Drawing::Point(635, 95);
+			this->adressePersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->adressePersonnel->Name = L"adressePersonnel";
 			this->adressePersonnel->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->adressePersonnel->Size = System::Drawing::Size(211, 50);
+			this->adressePersonnel->Size = System::Drawing::Size(280, 61);
 			this->adressePersonnel->TabIndex = 6;
 			this->adressePersonnel->Text = L"Adresse";
 			// 
 			// nomPersonnelRichTextBox
 			// 
 			this->nomPersonnelRichTextBox->AccessibleName = L"nom";
-			this->nomPersonnelRichTextBox->Location = System::Drawing::Point(229, 77);
-			this->nomPersonnelRichTextBox->Margin = System::Windows::Forms::Padding(2);
+			this->nomPersonnelRichTextBox->Location = System::Drawing::Point(305, 95);
+			this->nomPersonnelRichTextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->nomPersonnelRichTextBox->Name = L"nomPersonnelRichTextBox";
 			this->nomPersonnelRichTextBox->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->nomPersonnelRichTextBox->Size = System::Drawing::Size(211, 25);
+			this->nomPersonnelRichTextBox->Size = System::Drawing::Size(280, 30);
 			this->nomPersonnelRichTextBox->TabIndex = 3;
 			this->nomPersonnelRichTextBox->Text = L"Nom Personnel";
 			// 
 			// RecherchePersonnel
 			// 
-			this->RecherchePersonnel->Location = System::Drawing::Point(16, 41);
-			this->RecherchePersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->RecherchePersonnel->Location = System::Drawing::Point(21, 50);
+			this->RecherchePersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->RecherchePersonnel->Name = L"RecherchePersonnel";
-			this->RecherchePersonnel->Size = System::Drawing::Size(178, 20);
+			this->RecherchePersonnel->Size = System::Drawing::Size(236, 22);
 			this->RecherchePersonnel->TabIndex = 0;
 			this->RecherchePersonnel->Text = L"Rechercher";
 			this->RecherchePersonnel->TextChanged += gcnew System::EventHandler(this, &PageManager::RecherchePersonnel_TextChanged);
 			// 
 			// CréerPersonnel
 			// 
-			this->CréerPersonnel->Location = System::Drawing::Point(476, 253);
-			this->CréerPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->CréerPersonnel->Location = System::Drawing::Point(635, 311);
+			this->CréerPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->CréerPersonnel->Name = L"CréerPersonnel";
-			this->CréerPersonnel->Size = System::Drawing::Size(211, 28);
+			this->CréerPersonnel->Size = System::Drawing::Size(281, 34);
 			this->CréerPersonnel->TabIndex = 12;
 			this->CréerPersonnel->Text = L"CRÉER LE PERSONNEL";
 			this->CréerPersonnel->UseVisualStyleBackColor = true;
@@ -500,10 +552,10 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// 
 			// modifPersonnel
 			// 
-			this->modifPersonnel->Location = System::Drawing::Point(503, 200);
-			this->modifPersonnel->Margin = System::Windows::Forms::Padding(2);
+			this->modifPersonnel->Location = System::Drawing::Point(671, 256);
+			this->modifPersonnel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->modifPersonnel->Name = L"modifPersonnel";
-			this->modifPersonnel->Size = System::Drawing::Size(167, 22);
+			this->modifPersonnel->Size = System::Drawing::Size(223, 27);
 			this->modifPersonnel->TabIndex = 11;
 			this->modifPersonnel->Text = L"Valider les modifications";
 			this->modifPersonnel->UseVisualStyleBackColor = true;
@@ -512,11 +564,11 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// listViewPersonnel2
 			// 
 			this->listViewPersonnel2->HideSelection = false;
-			this->listViewPersonnel2->Location = System::Drawing::Point(98, 138);
-			this->listViewPersonnel2->Margin = System::Windows::Forms::Padding(2);
+			this->listViewPersonnel2->Location = System::Drawing::Point(131, 170);
+			this->listViewPersonnel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->listViewPersonnel2->MultiSelect = false;
 			this->listViewPersonnel2->Name = L"listViewPersonnel2";
-			this->listViewPersonnel2->Size = System::Drawing::Size(41, 84);
+			this->listViewPersonnel2->Size = System::Drawing::Size(53, 102);
 			this->listViewPersonnel2->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listViewPersonnel2->TabIndex = 9;
 			this->listViewPersonnel2->Tag = L"listeArticles";
@@ -527,11 +579,11 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// listViewPersonnel1
 			// 
 			this->listViewPersonnel1->HideSelection = false;
-			this->listViewPersonnel1->Location = System::Drawing::Point(16, 64);
-			this->listViewPersonnel1->Margin = System::Windows::Forms::Padding(2);
+			this->listViewPersonnel1->Location = System::Drawing::Point(21, 79);
+			this->listViewPersonnel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->listViewPersonnel1->MultiSelect = false;
 			this->listViewPersonnel1->Name = L"listViewPersonnel1";
-			this->listViewPersonnel1->Size = System::Drawing::Size(178, 266);
+			this->listViewPersonnel1->Size = System::Drawing::Size(236, 326);
 			this->listViewPersonnel1->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listViewPersonnel1->TabIndex = 4;
 			this->listViewPersonnel1->Tag = L"listeArticles";
@@ -570,11 +622,11 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			this->OngletGestionStocks->Controls->Add(this->listView2);
 			this->OngletGestionStocks->Controls->Add(this->listView1);
 			this->OngletGestionStocks->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->OngletGestionStocks->Location = System::Drawing::Point(4, 22);
-			this->OngletGestionStocks->Margin = System::Windows::Forms::Padding(2);
+			this->OngletGestionStocks->Location = System::Drawing::Point(4, 25);
+			this->OngletGestionStocks->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->OngletGestionStocks->Name = L"OngletGestionStocks";
-			this->OngletGestionStocks->Padding = System::Windows::Forms::Padding(2);
-			this->OngletGestionStocks->Size = System::Drawing::Size(720, 381);
+			this->OngletGestionStocks->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->OngletGestionStocks->Size = System::Drawing::Size(963, 472);
 			this->OngletGestionStocks->TabIndex = 0;
 			this->OngletGestionStocks->Text = L"Gestion des stocks";
 			this->OngletGestionStocks->UseVisualStyleBackColor = true;
@@ -582,10 +634,10 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// 
 			// SupprimerArticle
 			// 
-			this->SupprimerArticle->Location = System::Drawing::Point(197, 335);
-			this->SupprimerArticle->Margin = System::Windows::Forms::Padding(2);
+			this->SupprimerArticle->Location = System::Drawing::Point(263, 412);
+			this->SupprimerArticle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->SupprimerArticle->Name = L"SupprimerArticle";
-			this->SupprimerArticle->Size = System::Drawing::Size(262, 39);
+			this->SupprimerArticle->Size = System::Drawing::Size(349, 48);
 			this->SupprimerArticle->TabIndex = 29;
 			this->SupprimerArticle->Text = L"SUPPRIMER L\'ARTICLE";
 			this->SupprimerArticle->UseVisualStyleBackColor = true;
@@ -594,65 +646,65 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// reaprovisionnement
 			// 
 			this->reaprovisionnement->AccessibleName = L"reaprovisionnement";
-			this->reaprovisionnement->Location = System::Drawing::Point(589, 304);
-			this->reaprovisionnement->Margin = System::Windows::Forms::Padding(2);
+			this->reaprovisionnement->Location = System::Drawing::Point(785, 374);
+			this->reaprovisionnement->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->reaprovisionnement->Name = L"reaprovisionnement";
 			this->reaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->reaprovisionnement->Size = System::Drawing::Size(98, 19);
+			this->reaprovisionnement->Size = System::Drawing::Size(129, 22);
 			this->reaprovisionnement->TabIndex = 28;
 			this->reaprovisionnement->Text = L"";
 			// 
 			// quantite
 			// 
 			this->quantite->AccessibleName = L"quantite";
-			this->quantite->Location = System::Drawing::Point(533, 277);
-			this->quantite->Margin = System::Windows::Forms::Padding(2);
+			this->quantite->Location = System::Drawing::Point(711, 341);
+			this->quantite->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->quantite->Name = L"quantite";
-			this->quantite->Size = System::Drawing::Size(153, 23);
+			this->quantite->Size = System::Drawing::Size(203, 27);
 			this->quantite->TabIndex = 27;
 			this->quantite->Text = L"";
 			// 
 			// taux_TVA
 			// 
 			this->taux_TVA->AccessibleName = L"taux_TVA";
-			this->taux_TVA->Location = System::Drawing::Point(533, 254);
-			this->taux_TVA->Margin = System::Windows::Forms::Padding(2);
+			this->taux_TVA->Location = System::Drawing::Point(711, 313);
+			this->taux_TVA->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->taux_TVA->Name = L"taux_TVA";
 			this->taux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->taux_TVA->Size = System::Drawing::Size(153, 19);
+			this->taux_TVA->Size = System::Drawing::Size(203, 22);
 			this->taux_TVA->TabIndex = 26;
 			this->taux_TVA->Text = L"";
 			// 
 			// remise
 			// 
 			this->remise->AccessibleName = L"remise";
-			this->remise->Location = System::Drawing::Point(533, 230);
-			this->remise->Margin = System::Windows::Forms::Padding(2);
+			this->remise->Location = System::Drawing::Point(711, 283);
+			this->remise->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->remise->Name = L"remise";
 			this->remise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->remise->Size = System::Drawing::Size(153, 19);
+			this->remise->Size = System::Drawing::Size(203, 22);
 			this->remise->TabIndex = 25;
 			this->remise->Text = L"";
 			// 
 			// prix_HT
 			// 
 			this->prix_HT->AccessibleName = L"prix_HT";
-			this->prix_HT->Location = System::Drawing::Point(523, 204);
-			this->prix_HT->Margin = System::Windows::Forms::Padding(2);
+			this->prix_HT->Location = System::Drawing::Point(697, 251);
+			this->prix_HT->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->prix_HT->Name = L"prix_HT";
 			this->prix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prix_HT->Size = System::Drawing::Size(164, 22);
+			this->prix_HT->Size = System::Drawing::Size(217, 26);
 			this->prix_HT->TabIndex = 24;
 			this->prix_HT->Text = L"";
 			// 
 			// prix_achat
 			// 
 			this->prix_achat->AccessibleName = L"prix_achat";
-			this->prix_achat->Location = System::Drawing::Point(614, 182);
-			this->prix_achat->Margin = System::Windows::Forms::Padding(2);
+			this->prix_achat->Location = System::Drawing::Point(819, 224);
+			this->prix_achat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->prix_achat->Name = L"prix_achat";
 			this->prix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prix_achat->Size = System::Drawing::Size(73, 18);
+			this->prix_achat->Size = System::Drawing::Size(96, 21);
 			this->prix_achat->TabIndex = 23;
 			this->prix_achat->Text = L"";
 			this->prix_achat->TextChanged += gcnew System::EventHandler(this, &PageManager::prix_achat_TextChanged);
@@ -660,123 +712,123 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// reference
 			// 
 			this->reference->AccessibleName = L"reference";
-			this->reference->Location = System::Drawing::Point(542, 155);
-			this->reference->Margin = System::Windows::Forms::Padding(2);
+			this->reference->Location = System::Drawing::Point(723, 191);
+			this->reference->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->reference->Name = L"reference";
 			this->reference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->reference->Size = System::Drawing::Size(144, 23);
+			this->reference->Size = System::Drawing::Size(191, 27);
 			this->reference->TabIndex = 22;
 			this->reference->Text = L"";
 			// 
 			// couleur
 			// 
 			this->couleur->AccessibleName = L"couleur";
-			this->couleur->Location = System::Drawing::Point(523, 131);
-			this->couleur->Margin = System::Windows::Forms::Padding(2);
+			this->couleur->Location = System::Drawing::Point(697, 161);
+			this->couleur->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->couleur->Name = L"couleur";
 			this->couleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->couleur->Size = System::Drawing::Size(164, 20);
+			this->couleur->Size = System::Drawing::Size(217, 24);
 			this->couleur->TabIndex = 21;
 			this->couleur->Text = L"";
 			// 
 			// titrePrix_achat
 			// 
-			this->titrePrix_achat->Location = System::Drawing::Point(476, 182);
-			this->titrePrix_achat->Margin = System::Windows::Forms::Padding(2);
+			this->titrePrix_achat->Location = System::Drawing::Point(635, 224);
+			this->titrePrix_achat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titrePrix_achat->Name = L"titrePrix_achat";
 			this->titrePrix_achat->ReadOnly = true;
 			this->titrePrix_achat->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titrePrix_achat->Size = System::Drawing::Size(134, 18);
+			this->titrePrix_achat->Size = System::Drawing::Size(177, 21);
 			this->titrePrix_achat->TabIndex = 20;
 			this->titrePrix_achat->Text = L"Prix d\'achat au fournisseur";
 			// 
 			// titrePrix_HT
 			// 
-			this->titrePrix_HT->Location = System::Drawing::Point(476, 204);
-			this->titrePrix_HT->Margin = System::Windows::Forms::Padding(2);
+			this->titrePrix_HT->Location = System::Drawing::Point(635, 251);
+			this->titrePrix_HT->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titrePrix_HT->Name = L"titrePrix_HT";
 			this->titrePrix_HT->ReadOnly = true;
 			this->titrePrix_HT->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titrePrix_HT->Size = System::Drawing::Size(44, 22);
+			this->titrePrix_HT->Size = System::Drawing::Size(57, 26);
 			this->titrePrix_HT->TabIndex = 19;
 			this->titrePrix_HT->Text = L"Prix HT";
 			// 
 			// titreRemise
 			// 
-			this->titreRemise->Location = System::Drawing::Point(476, 230);
-			this->titreRemise->Margin = System::Windows::Forms::Padding(2);
+			this->titreRemise->Location = System::Drawing::Point(635, 283);
+			this->titreRemise->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreRemise->Name = L"titreRemise";
 			this->titreRemise->ReadOnly = true;
 			this->titreRemise->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreRemise->Size = System::Drawing::Size(54, 19);
+			this->titreRemise->Size = System::Drawing::Size(71, 22);
 			this->titreRemise->TabIndex = 18;
 			this->titreRemise->Text = L"Remise";
 			// 
 			// titreTaux_TVA
 			// 
-			this->titreTaux_TVA->Location = System::Drawing::Point(476, 254);
-			this->titreTaux_TVA->Margin = System::Windows::Forms::Padding(2);
+			this->titreTaux_TVA->Location = System::Drawing::Point(635, 313);
+			this->titreTaux_TVA->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreTaux_TVA->Name = L"titreTaux_TVA";
 			this->titreTaux_TVA->ReadOnly = true;
 			this->titreTaux_TVA->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreTaux_TVA->Size = System::Drawing::Size(54, 19);
+			this->titreTaux_TVA->Size = System::Drawing::Size(71, 22);
 			this->titreTaux_TVA->TabIndex = 17;
 			this->titreTaux_TVA->Text = L"Taux TVA";
 			// 
 			// titreQuantite
 			// 
-			this->titreQuantite->Location = System::Drawing::Point(476, 277);
-			this->titreQuantite->Margin = System::Windows::Forms::Padding(2);
+			this->titreQuantite->Location = System::Drawing::Point(635, 341);
+			this->titreQuantite->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreQuantite->Name = L"titreQuantite";
 			this->titreQuantite->ReadOnly = true;
 			this->titreQuantite->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreQuantite->Size = System::Drawing::Size(54, 23);
+			this->titreQuantite->Size = System::Drawing::Size(71, 27);
 			this->titreQuantite->TabIndex = 16;
 			this->titreQuantite->Text = L"Quantité";
 			// 
 			// titreReaprovisionnement
 			// 
-			this->titreReaprovisionnement->Location = System::Drawing::Point(476, 304);
-			this->titreReaprovisionnement->Margin = System::Windows::Forms::Padding(2);
+			this->titreReaprovisionnement->Location = System::Drawing::Point(635, 374);
+			this->titreReaprovisionnement->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreReaprovisionnement->Name = L"titreReaprovisionnement";
 			this->titreReaprovisionnement->ReadOnly = true;
 			this->titreReaprovisionnement->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreReaprovisionnement->Size = System::Drawing::Size(109, 19);
+			this->titreReaprovisionnement->Size = System::Drawing::Size(144, 22);
 			this->titreReaprovisionnement->TabIndex = 15;
 			this->titreReaprovisionnement->Text = L"Réaprovisionnement";
 			this->titreReaprovisionnement->TextChanged += gcnew System::EventHandler(this, &PageManager::titreReaprovisionnement_TextChanged);
 			// 
 			// titreReference
 			// 
-			this->titreReference->Location = System::Drawing::Point(476, 155);
-			this->titreReference->Margin = System::Windows::Forms::Padding(2);
+			this->titreReference->Location = System::Drawing::Point(635, 191);
+			this->titreReference->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreReference->Name = L"titreReference";
 			this->titreReference->ReadOnly = true;
 			this->titreReference->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreReference->Size = System::Drawing::Size(63, 23);
+			this->titreReference->Size = System::Drawing::Size(83, 27);
 			this->titreReference->TabIndex = 14;
 			this->titreReference->Text = L"Référence";
 			// 
 			// Id
 			// 
-			this->Id->Location = System::Drawing::Point(628, 53);
-			this->Id->Margin = System::Windows::Forms::Padding(2);
+			this->Id->Location = System::Drawing::Point(837, 65);
+			this->Id->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Id->Name = L"Id";
 			this->Id->ReadOnly = true;
 			this->Id->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->Id->Size = System::Drawing::Size(58, 20);
+			this->Id->Size = System::Drawing::Size(76, 24);
 			this->Id->TabIndex = 13;
 			this->Id->Text = L"Id";
 			this->Id->Visible = false;
 			// 
 			// titreCouleur
 			// 
-			this->titreCouleur->Location = System::Drawing::Point(476, 131);
-			this->titreCouleur->Margin = System::Windows::Forms::Padding(2);
+			this->titreCouleur->Location = System::Drawing::Point(635, 161);
+			this->titreCouleur->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->titreCouleur->Name = L"titreCouleur";
 			this->titreCouleur->ReadOnly = true;
 			this->titreCouleur->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->titreCouleur->Size = System::Drawing::Size(44, 20);
+			this->titreCouleur->Size = System::Drawing::Size(57, 24);
 			this->titreCouleur->TabIndex = 8;
 			this->titreCouleur->Text = L"Couleur";
 			this->titreCouleur->TextChanged += gcnew System::EventHandler(this, &PageManager::richTextBox5_TextChanged);
@@ -784,22 +836,22 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// prix_TTC
 			// 
 			this->prix_TTC->AccessibleName = L"prix_TTC";
-			this->prix_TTC->Location = System::Drawing::Point(476, 50);
-			this->prix_TTC->Margin = System::Windows::Forms::Padding(2);
+			this->prix_TTC->Location = System::Drawing::Point(635, 62);
+			this->prix_TTC->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->prix_TTC->Name = L"prix_TTC";
 			this->prix_TTC->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->prix_TTC->Size = System::Drawing::Size(74, 23);
+			this->prix_TTC->Size = System::Drawing::Size(97, 27);
 			this->prix_TTC->TabIndex = 7;
 			this->prix_TTC->Text = L"Prix TTC";
 			// 
 			// description
 			// 
 			this->description->AccessibleName = L"description";
-			this->description->Location = System::Drawing::Point(476, 77);
-			this->description->Margin = System::Windows::Forms::Padding(2);
+			this->description->Location = System::Drawing::Point(635, 95);
+			this->description->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->description->Name = L"description";
 			this->description->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->description->Size = System::Drawing::Size(211, 50);
+			this->description->Size = System::Drawing::Size(280, 61);
 			this->description->TabIndex = 6;
 			this->description->Text = L"Description";
 			this->description->TextChanged += gcnew System::EventHandler(this, &PageManager::description_TextChanged);
@@ -807,31 +859,31 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// nom
 			// 
 			this->nom->AccessibleName = L"nom";
-			this->nom->Location = System::Drawing::Point(476, 21);
-			this->nom->Margin = System::Windows::Forms::Padding(2);
+			this->nom->Location = System::Drawing::Point(635, 26);
+			this->nom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->nom->Name = L"nom";
 			this->nom->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-			this->nom->Size = System::Drawing::Size(211, 25);
+			this->nom->Size = System::Drawing::Size(280, 30);
 			this->nom->TabIndex = 3;
 			this->nom->Text = L"Nom article";
 			this->nom->TextChanged += gcnew System::EventHandler(this, &PageManager::nom_TextChanged);
 			// 
 			// Recherche
 			// 
-			this->Recherche->Location = System::Drawing::Point(16, 41);
-			this->Recherche->Margin = System::Windows::Forms::Padding(2);
+			this->Recherche->Location = System::Drawing::Point(21, 50);
+			this->Recherche->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Recherche->Name = L"Recherche";
-			this->Recherche->Size = System::Drawing::Size(178, 20);
+			this->Recherche->Size = System::Drawing::Size(236, 22);
 			this->Recherche->TabIndex = 0;
 			this->Recherche->Text = L"Rechercher";
 			this->Recherche->TextChanged += gcnew System::EventHandler(this, &PageManager::Recherche_TextChanged);
 			// 
 			// CreerArticle
 			// 
-			this->CreerArticle->Location = System::Drawing::Point(197, 37);
-			this->CreerArticle->Margin = System::Windows::Forms::Padding(2);
+			this->CreerArticle->Location = System::Drawing::Point(263, 46);
+			this->CreerArticle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->CreerArticle->Name = L"CreerArticle";
-			this->CreerArticle->Size = System::Drawing::Size(262, 28);
+			this->CreerArticle->Size = System::Drawing::Size(349, 34);
 			this->CreerArticle->TabIndex = 12;
 			this->CreerArticle->Text = L"CRÉER L\'ARTICLE";
 			this->CreerArticle->UseVisualStyleBackColor = true;
@@ -839,10 +891,10 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// 
 			// ModifArticle
 			// 
-			this->ModifArticle->Location = System::Drawing::Point(496, 335);
-			this->ModifArticle->Margin = System::Windows::Forms::Padding(2);
+			this->ModifArticle->Location = System::Drawing::Point(661, 412);
+			this->ModifArticle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ModifArticle->Name = L"ModifArticle";
-			this->ModifArticle->Size = System::Drawing::Size(167, 22);
+			this->ModifArticle->Size = System::Drawing::Size(223, 27);
 			this->ModifArticle->TabIndex = 11;
 			this->ModifArticle->Text = L"Valider les modifications";
 			this->ModifArticle->UseVisualStyleBackColor = true;
@@ -850,21 +902,21 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(197, 73);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
+			this->pictureBox1->Location = System::Drawing::Point(263, 90);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(262, 256);
+			this->pictureBox1->Size = System::Drawing::Size(349, 315);
 			this->pictureBox1->TabIndex = 10;
 			this->pictureBox1->TabStop = false;
 			// 
 			// listView2
 			// 
 			this->listView2->HideSelection = false;
-			this->listView2->Location = System::Drawing::Point(98, 138);
-			this->listView2->Margin = System::Windows::Forms::Padding(2);
+			this->listView2->Location = System::Drawing::Point(131, 170);
+			this->listView2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->listView2->MultiSelect = false;
 			this->listView2->Name = L"listView2";
-			this->listView2->Size = System::Drawing::Size(41, 84);
+			this->listView2->Size = System::Drawing::Size(53, 102);
 			this->listView2->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listView2->TabIndex = 9;
 			this->listView2->Tag = L"listeArticles";
@@ -876,11 +928,11 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// listView1
 			// 
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(16, 64);
-			this->listView1->Margin = System::Windows::Forms::Padding(2);
+			this->listView1->Location = System::Drawing::Point(21, 79);
+			this->listView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->listView1->MultiSelect = false;
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(178, 266);
+			this->listView1->Size = System::Drawing::Size(236, 326);
 			this->listView1->Sorting = System::Windows::Forms::SortOrder::Ascending;
 			this->listView1->TabIndex = 4;
 			this->listView1->Tag = L"listeArticles";
@@ -892,40 +944,20 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 			// 
 			this->OngletsManager->Controls->Add(this->OngletGestionStocks);
 			this->OngletsManager->Controls->Add(this->OngletGestionPersonnel);
-			this->OngletsManager->Location = System::Drawing::Point(2, 2);
-			this->OngletsManager->Margin = System::Windows::Forms::Padding(2);
+			this->OngletsManager->Location = System::Drawing::Point(3, 2);
+			this->OngletsManager->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->OngletsManager->Name = L"OngletsManager";
 			this->OngletsManager->SelectedIndex = 0;
-			this->OngletsManager->Size = System::Drawing::Size(728, 407);
+			this->OngletsManager->Size = System::Drawing::Size(971, 501);
 			this->OngletsManager->TabIndex = 3;
-			// 
-			// SupprimerPersonnel
-			// 
-			this->SupprimerPersonnel->Location = System::Drawing::Point(476, 308);
-			this->SupprimerPersonnel->Margin = System::Windows::Forms::Padding(2);
-			this->SupprimerPersonnel->Name = L"SupprimerPersonnel";
-			this->SupprimerPersonnel->Size = System::Drawing::Size(211, 39);
-			this->SupprimerPersonnel->TabIndex = 29;
-			this->SupprimerPersonnel->Text = L"SUPPRIMER LE PERSONNEL";
-			this->SupprimerPersonnel->UseVisualStyleBackColor = true;
-			this->SupprimerPersonnel->Click += gcnew System::EventHandler(this, &PageManager::SupprimerPersonnel_Click);
-			// 
-			// motDePassePersonnel
-			// 
-			this->motDePassePersonnel->AccessibleName = L"MotDePasse";
-			this->motDePassePersonnel->Location = System::Drawing::Point(230, 134);
-			this->motDePassePersonnel->Name = L"motDePassePersonnel";
-			this->motDePassePersonnel->Size = System::Drawing::Size(210, 23);
-			this->motDePassePersonnel->TabIndex = 30;
-			this->motDePassePersonnel->Text = L"Mot de passe";
 			// 
 			// PageManager
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(728, 405);
+			this->ClientSize = System::Drawing::Size(971, 498);
 			this->Controls->Add(this->OngletsManager);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"PageManager";
 			this->Text = L"PageManager";
 			this->Load += gcnew System::EventHandler(this, &PageManager::PageManager_Load);
@@ -1024,6 +1056,7 @@ private: System::Windows::Forms::RichTextBox^ motDePassePersonnel;
 					date_embauche->Text = reader["date_embauche"]->ToString();
 					IdPersonnel->Text = reader["id_Personnel"]->ToString();
 					motDePassePersonnel->Text = reader["MotDePasse"]->ToString();
+					role->Text = reader["role"]->ToString();
 				}
 				reader->Close();
 			}
@@ -1385,6 +1418,7 @@ private: System::Void modifPersonnel_Click(System::Object^ sender, System::Event
 	boxModifier->Add(superieurPersonnel);
 	boxModifier->Add(date_embauche);
 	boxModifier->Add(motDePassePersonnel);
+	boxModifier->Add(role);
 
 	if (listViewPersonnel1->SelectedItems->Count > 0) {
 		ListViewItem^ selectedItem = listViewPersonnel1->SelectedItems[0];
@@ -1417,6 +1451,7 @@ private: System::Void CréerPersonnel_Click(System::Object^ sender, System::Event
 	nomColonnes->Add("superieur");
 	nomColonnes->Add("date_embauche");
 	nomColonnes->Add("MotDePasse");
+	nomColonnes->Add("role");
 
 	List<String^>^ valeurs = gcnew List<String^>;
 	valeurs->Add(nomPersonnel);
@@ -1425,6 +1460,7 @@ private: System::Void CréerPersonnel_Click(System::Object^ sender, System::Event
 	valeurs->Add(superieurPersonnel->Text);
 	valeurs->Add(date_embauche->Text);
 	valeurs->Add(motDePassePersonnel->Text);
+	valeurs->Add(role->Text);
 
 	ListView^ list1 = listViewPersonnel1;
 	ListView^ list2 = listViewPersonnel2;
@@ -1448,6 +1484,10 @@ private: System::Void description_TextChanged(System::Object^ sender, System::Ev
 private: System::Void titreReaprovisionnement_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void date_embauche_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void titreRole_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void role_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

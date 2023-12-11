@@ -1,7 +1,8 @@
 #pragma once
 #include "PageConnexion.h"
 #include "PageConnexionManager.h"
-#include "PageEmploye.h"
+#include "PageConnexionEmploye.h"
+#include "PageConnexionResponsable.h"
 
 namespace ProjetPOO {
 
@@ -142,8 +143,7 @@ namespace ProjetPOO {
 	#pragma endregion
 	private: System::Void ouvrePageConnexionClick(System::Object^ sender, System::EventArgs^ e) {
 		PageConnexion^ pageConnexionForm = gcnew PageConnexion();
-		pageConnexionForm->Show();
-		PageChoixUtilisateur::Hide();
+		pageConnexionForm->ShowDialog();
 		
 		
 	}
@@ -151,19 +151,16 @@ namespace ProjetPOO {
 	}
 		
 private: System::Void buttonEmploye_Click(System::Object^ sender, System::EventArgs^ e) {
-	PageEmploye^ pageEmployeForm = gcnew PageEmploye();
-	pageEmployeForm->Show();
-	PageChoixUtilisateur::Hide();
+	PageConnexionEmploye^ pageConnexionEmployeForm = gcnew PageConnexionEmploye();
+	pageConnexionEmployeForm->ShowDialog();
 }
 private: System::Void buttonManager_Click(System::Object^ sender, System::EventArgs^ e) {
 	PageConnexionManager^ pageConnexionManagerForm = gcnew PageConnexionManager();
-	pageConnexionManagerForm->Show();
-	PageChoixUtilisateur::Hide();
+	pageConnexionManagerForm->ShowDialog();
 }
 private: System::Void buttonResponsable_Click(System::Object^ sender, System::EventArgs^ e) {
-	PageResponsable^ pageResponsableForm = gcnew PageResponsable();
-	pageResponsableForm->Show();
-	PageChoixUtilisateur::Hide();
+	PageConnexionResponsable^ pageConnexionResponsableForm = gcnew PageConnexionResponsable();
+	pageConnexionResponsableForm->ShowDialog();
 }
 };
 }

@@ -126,7 +126,10 @@
     <ClCompile Include="CreationCompte.cpp" />
     <ClCompile Include="PageChoixUtilisateur.cpp" />
     <ClCompile Include="PageClient.cpp" />
+    <ClCompile Include="PageCommande.cpp" />
+    <ClCompile Include="PageConnexionEmploye.cpp" />
     <ClCompile Include="PageConnexionManager.cpp" />
+    <ClCompile Include="PageConnexionResponsable.cpp" />
     <ClCompile Include="PageEmploye.cpp" />
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="PageResponsable.cpp" />
@@ -143,10 +146,19 @@
     <ClInclude Include="PageClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PageCommande.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PageConnexion.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PageConnexionEmploye.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PageConnexionManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PageConnexionResponsable.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PageEmploye.h">
@@ -169,11 +181,20 @@
     <EmbeddedResource Include="PageClient.resx">
       <DependentUpon>PageClient.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageCommande.resx">
+      <DependentUpon>PageCommande.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageConnexion.resx">
       <DependentUpon>PageConnexion.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexionEmploye.resx">
+      <DependentUpon>PageConnexionEmploye.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageConnexionManager.resx">
       <DependentUpon>PageConnexionManager.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageConnexionResponsable.resx">
+      <DependentUpon>PageConnexionResponsable.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PageEmploye.resx">
       <DependentUpon>PageEmploye.h</DependentUpon>
@@ -184,6 +205,9 @@
     <EmbeddedResource Include="PageResponsable.resx">
       <DependentUpon>PageResponsable.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

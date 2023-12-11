@@ -46,7 +46,7 @@ namespace ProjetPOO {
 	private: System::Windows::Forms::TextBox^ textBoxPrix;
 	private: System::Windows::Forms::TextBox^ textBoxDescription;
 	private: System::Windows::Forms::TextBox^ textBoxCouleur;
-	private: System::Windows::Forms::Button^ buttonAfficher;
+
 	private: System::Windows::Forms::TextBox^ textBoxQuantite;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label4;
@@ -59,7 +59,7 @@ namespace ProjetPOO {
 
 	private: System::Windows::Forms::TextBox^ textBoxNom;
 	private: System::Windows::Forms::Button^ buttonCreerCompte;
-	private: System::Windows::Forms::Button^ buttonRetour;
+	private: System::Windows::Forms::ListView^ listView2;
 
 
 
@@ -84,8 +84,8 @@ namespace ProjetPOO {
 		{
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->listView2 = (gcnew System::Windows::Forms::ListView());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->buttonAfficher = (gcnew System::Windows::Forms::Button());
 			this->textBoxQuantite = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxPrix = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxDescription = (gcnew System::Windows::Forms::TextBox());
@@ -102,7 +102,6 @@ namespace ProjetPOO {
 			this->textBoxPrenom = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxMdp = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxNom = (gcnew System::Windows::Forms::TextBox());
-			this->buttonRetour = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -121,9 +120,8 @@ namespace ProjetPOO {
 			// 
 			// tabPage1
 			// 
-			this->tabPage1->Controls->Add(this->buttonRetour);
+			this->tabPage1->Controls->Add(this->listView2);
 			this->tabPage1->Controls->Add(this->pictureBox1);
-			this->tabPage1->Controls->Add(this->buttonAfficher);
 			this->tabPage1->Controls->Add(this->textBoxQuantite);
 			this->tabPage1->Controls->Add(this->textBoxPrix);
 			this->tabPage1->Controls->Add(this->textBoxDescription);
@@ -139,6 +137,16 @@ namespace ProjetPOO {
 			this->tabPage1->Text = L"Gestion des Stocks";
 			this->tabPage1->UseVisualStyleBackColor = true;
 			// 
+			// listView2
+			// 
+			this->listView2->HideSelection = false;
+			this->listView2->Location = System::Drawing::Point(93, 196);
+			this->listView2->Name = L"listView2";
+			this->listView2->Size = System::Drawing::Size(102, 177);
+			this->listView2->TabIndex = 9;
+			this->listView2->UseCompatibleStateImageBehavior = false;
+			this->listView2->Visible = false;
+			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(240, 66);
@@ -147,20 +155,11 @@ namespace ProjetPOO {
 			this->pictureBox1->TabIndex = 8;
 			this->pictureBox1->TabStop = false;
 			// 
-			// buttonAfficher
-			// 
-			this->buttonAfficher->Location = System::Drawing::Point(452, 328);
-			this->buttonAfficher->Name = L"buttonAfficher";
-			this->buttonAfficher->Size = System::Drawing::Size(203, 23);
-			this->buttonAfficher->TabIndex = 7;
-			this->buttonAfficher->Text = L"Afficher le stock disponible";
-			this->buttonAfficher->UseVisualStyleBackColor = true;
-			// 
 			// textBoxQuantite
 			// 
-			this->textBoxQuantite->Location = System::Drawing::Point(452, 391);
+			this->textBoxQuantite->Location = System::Drawing::Point(452, 318);
 			this->textBoxQuantite->Name = L"textBoxQuantite";
-			this->textBoxQuantite->Size = System::Drawing::Size(203, 20);
+			this->textBoxQuantite->Size = System::Drawing::Size(53, 20);
 			this->textBoxQuantite->TabIndex = 6;
 			this->textBoxQuantite->Text = L"Quantité";
 			// 
@@ -199,7 +198,7 @@ namespace ProjetPOO {
 			// 
 			// textBoxRecherche
 			// 
-			this->textBoxRecherche->Location = System::Drawing::Point(23, 66);
+			this->textBoxRecherche->Location = System::Drawing::Point(23, 33);
 			this->textBoxRecherche->Name = L"textBoxRecherche";
 			this->textBoxRecherche->Size = System::Drawing::Size(187, 20);
 			this->textBoxRecherche->TabIndex = 1;
@@ -209,11 +208,12 @@ namespace ProjetPOO {
 			// listView1
 			// 
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(23, 97);
+			this->listView1->Location = System::Drawing::Point(23, 66);
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(187, 340);
+			this->listView1->Size = System::Drawing::Size(187, 371);
 			this->listView1->TabIndex = 0;
 			this->listView1->UseCompatibleStateImageBehavior = false;
+			this->listView1->View = System::Windows::Forms::View::List;
 			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &PageEmploye::listView1_SelectedIndexChanged);
 			// 
 			// tabPage2
@@ -301,16 +301,7 @@ namespace ProjetPOO {
 			this->textBoxNom->Name = L"textBoxNom";
 			this->textBoxNom->Size = System::Drawing::Size(100, 20);
 			this->textBoxNom->TabIndex = 0;
-			// 
-			// buttonRetour
-			// 
-			this->buttonRetour->Location = System::Drawing::Point(23, 18);
-			this->buttonRetour->Name = L"buttonRetour";
-			this->buttonRetour->Size = System::Drawing::Size(75, 23);
-			this->buttonRetour->TabIndex = 9;
-			this->buttonRetour->Text = L"Retour";
-			this->buttonRetour->UseVisualStyleBackColor = true;
-			this->buttonRetour->Click += gcnew System::EventHandler(this, &PageEmploye::buttonRetour_Click);
+			this->textBoxNom->TextChanged += gcnew System::EventHandler(this, &PageEmploye::textBoxNom_TextChanged);
 			// 
 			// PageEmploye
 			// 
@@ -332,6 +323,7 @@ namespace ProjetPOO {
 		}
 #pragma endregion
 	private: System::Void PageEmploye_Load(System::Object^ sender, System::EventArgs^ e) {
+		ChargerArticles();
 	}
 
 	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
@@ -357,7 +349,7 @@ namespace ProjetPOO {
 			try {
 				// Charger les informations de l'article
 				SqlConnection^ conn = gcnew SqlConnection(connectionString);
-				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Presente WHERE nom = @nom", conn);
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article WHERE nom = @nom", conn);
 				cmd->Parameters->AddWithValue("@nom", selectedItem->Text);
 
 				conn->Open();
@@ -368,6 +360,7 @@ namespace ProjetPOO {
 					textBoxDescription->Text = reader["description"]->ToString();
 					textBoxPrix->Text = reader["prix_TTC"]->ToString();
 					textBoxCouleur->Text = reader["couleur"]->ToString();
+					textBoxQuantite->Text = reader["quantite"]->ToString();
 				}
 				reader->Close();
 			}
@@ -383,54 +376,109 @@ namespace ProjetPOO {
 		String^ recherche = textBoxRecherche->Text->ToLower();
 		listView1->Items->Clear();
 
-		for each (ListViewItem ^ itemOrigine in listView1->Items) {
+		for each (ListViewItem ^ itemOrigine in listView2->Items) {
 			if (itemOrigine->SubItems[0]->Text->ToLower()->Contains(recherche)) {
 				ListViewItem^ itemClone = dynamic_cast<ListViewItem^>(itemOrigine->Clone());
 				listView1->Items->Add(itemClone);
 			}
 		};
-
-
 	}
+
+	private: System::String^ connectionStringListView = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
+		//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+		void ChargerArticles()
+		{
+			SqlConnection^ conn = gcnew SqlConnection(connectionStringListView);
+			SqlCommand^ cmd = gcnew SqlCommand("SELECT * FROM Article", conn);
+
+			try {
+				conn->Open();
+				SqlDataReader^ reader = cmd->ExecuteReader();
+
+				while (reader->Read()) {
+					ListViewItem^ item = gcnew ListViewItem(reader["nom"]->ToString());
+					item->SubItems->Add(reader["nom"]->ToString());
+
+					// Ajout d'autres items ICI
+
+					listView1->Items->Add(item);
+					ClonerListViewItems(listView1, listView2);
+
+				}
+				reader->Close();
+			}
+			catch (Exception^ e) {
+				MessageBox::Show(e->Message);
+			}
+			finally {
+				if (conn->State == ConnectionState::Open)
+					conn->Close();
+			}
+		}
+
+		void ClonerListViewItems(ListView^ sourceListView, ListView^ destinationListView) {
+			destinationListView->Items->Clear(); // Effacer les éléments existants dans la destination
+
+			for each (ListViewItem ^ item in sourceListView->Items) {
+				// Créer un nouvel ListViewItem
+				ListViewItem^ newItem = gcnew ListViewItem(item->Text);
+
+				// Cloner les sous-éléments
+				for each (ListViewItem::ListViewSubItem ^ subItem in item->SubItems) {
+					newItem->SubItems->Add(subItem->Text);
+				}
+
+				// Ajouter le nouvel élément cloné à la destination ListView
+				destinationListView->Items->Add(newItem);
+			}
+		}
+
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void buttonCreerCompte_Click(System::Object^ sender, System::EventArgs^ e) {
+	SqlConnection^ conn = gcnew SqlConnection(connectionString);
+	
 	try {
-		SqlConnection^ conn = gcnew SqlConnection(connectionString);
-		//vérification si le compte existe déjà et retunr un message d'erreur si c'est le cas
-		SqlCommand^ cmd1 = gcnew SqlCommand("SELECT * FROM Client WHERE nom = @nom AND prenom = @prenom AND mdp = @mdp", conn);
-		cmd1->Parameters->AddWithValue("@nom", textBoxNom->Text);
-		cmd1->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
-		cmd1->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
-		if (cmd1->ExecuteReader()->HasRows) {
-			MessageBox::Show("Ce compte existe déjà");
-			return;
-		}
-
 		if (textBoxNom->Text == "" || textBoxPrenom->Text == "" || textBoxMdp->Text == "") {
 			MessageBox::Show("Veuillez remplir tous les champs");
 			return;
 		}
-		
-		SqlCommand^ cmd2 = gcnew SqlCommand("INSERT INTO Client (nom, prenom, mdp) VALUES (@nom, @prenom, @mdp)", conn);
+
+		SqlConnection^ conn = gcnew SqlConnection(connectionString);
+		conn->Open();
+
+		SqlCommand^ cmd1 = gcnew SqlCommand("SELECT * FROM Client WHERE nom = @nom AND prenom = @prenom AND MotDePasse = @mdp", conn);
+		cmd1->Parameters->AddWithValue("@nom", textBoxNom->Text);
+		cmd1->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
+		cmd1->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
+
+		SqlDataReader^ reader = cmd1->ExecuteReader();
+		if (reader->HasRows) { //vérification si le compte existe déjà et retunr un message d'erreur si c'est le cas
+			MessageBox::Show("Ce compte existe déjà");
+			reader->Close();
+			conn->Close();
+			return;
+		}
+		reader->Close();
+
+		SqlCommand^ cmd2 = gcnew SqlCommand("INSERT INTO Client (nom, prenom, MotDePasse) VALUES (@nom, @prenom, @mdp)", conn);
 		cmd2->Parameters->AddWithValue("@nom", textBoxNom->Text);
 		cmd2->Parameters->AddWithValue("@prenom", textBoxPrenom->Text);
 		cmd2->Parameters->AddWithValue("@mdp", textBoxMdp->Text);
 
-		conn->Open();
 		cmd2->ExecuteNonQuery();
-		conn->Close();
-
 		MessageBox::Show("Compte créé avec succès");
 	}
 	catch (Exception^ e) {
 		MessageBox::Show(e->Message);
 	}
+	finally {
+		if (conn != nullptr && conn->State == ConnectionState::Open)
+			conn->Close();
+	}
+
 }
-private: System::Void buttonRetour_Click(System::Object^ sender, System::EventArgs^ e) {
-	PageChoixUtilisateur^ pageChoixUtilisateurForm = gcnew PageChoixUtilisateur();
-	pageChoixUtilisateurForm->Show();
-	PageEmploye::Close();
+private: System::Void textBoxNom_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

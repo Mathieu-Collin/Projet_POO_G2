@@ -1,5 +1,5 @@
 #pragma once
-#include "PageManager.h"
+#include "PageEmploye.h"
 
 namespace ProjetPOO {
 
@@ -11,12 +11,12 @@ namespace ProjetPOO {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de PageConnexionManager
+	/// Description résumée de PageConnexionEmploye
 	/// </summary>
-	public ref class PageConnexionManager : public System::Windows::Forms::Form
+	public ref class PageConnexionEmploye : public System::Windows::Forms::Form
 	{
 	public:
-		PageConnexionManager(void)
+		PageConnexionEmploye(void)
 		{
 			InitializeComponent();
 			//
@@ -28,7 +28,7 @@ namespace ProjetPOO {
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
 		/// </summary>
-		~PageConnexionManager()
+		~PageConnexionEmploye()
 		{
 			if (components)
 			{
@@ -83,7 +83,7 @@ namespace ProjetPOO {
 			this->buttonConnect->TabIndex = 0;
 			this->buttonConnect->Text = L"Se connecter";
 			this->buttonConnect->UseVisualStyleBackColor = true;
-			this->buttonConnect->Click += gcnew System::EventHandler(this, &PageConnexionManager::Connect_Button_Click);
+			this->buttonConnect->Click += gcnew System::EventHandler(this, &PageConnexionEmploye::Connect_Button_Click);
 			// 
 			// textBoxNom
 			// 
@@ -115,7 +115,7 @@ namespace ProjetPOO {
 			this->labelNom->Size = System::Drawing::Size(32, 13);
 			this->labelNom->TabIndex = 4;
 			this->labelNom->Text = L"Nom:";
-			this->labelNom->Click += gcnew System::EventHandler(this, &PageConnexionManager::label1_Click);
+			this->labelNom->Click += gcnew System::EventHandler(this, &PageConnexionEmploye::label1_Click);
 			// 
 			// labelPrenom
 			// 
@@ -135,7 +135,7 @@ namespace ProjetPOO {
 			this->labelMdp->TabIndex = 6;
 			this->labelMdp->Text = L"Mot de Passe:";
 			// 
-			// PageConnexionManager
+			// PageConnexionEmploye
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -148,20 +148,20 @@ namespace ProjetPOO {
 			this->Controls->Add(this->textBoxNom);
 			this->Controls->Add(this->buttonConnect);
 			this->Margin = System::Windows::Forms::Padding(2);
-			this->Name = L"PageConnexionManager";
-			this->Text = L"PageConnexionManager";
-			this->Load += gcnew System::EventHandler(this, &PageConnexionManager::PageManager_Load);
+			this->Name = L"PageConnexionEmploye";
+			this->Text = L"PageConnexionEmploye";
+			this->Load += gcnew System::EventHandler(this, &PageConnexionEmploye::PageEmploye_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void PageManager_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void PageEmploye_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void buttonConnect_Click(System::Object^ sender, System::EventArgs^ e) //vérifie si le manager existe dans la table Employe puis vérifie si les champs sont remplie avant de connecter le ma
+	private: System::Void buttonConnect_Click(System::Object^ sender, System::EventArgs^ e) //vérifie si l'employé existe dans la table Employe puis vérifie si les champs sont remplie avant de connecter le ma
 	{
 	}
-	//private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
+		   //private: System::String^ connectionString = "Server=PC-MATHIEU; Database=Projet; Integrated Security=True;";
 	private: System::String^ connectionString = "Server=DYGUERG; Database=Projet; Integrated Security=True;";
 
 	private: System::Void Connect_Button_Click(System::Object^ sender, System::EventArgs^ e)// Regarde si l'utilisateur existe et si il existe alors le connecter mais si il n'existe pas, ouvrir une pop up d'erreur
@@ -182,13 +182,13 @@ namespace ProjetPOO {
 			return;
 		}
 
-		String^ query = "SELECT * FROM Personnel WHERE nom = @nom AND prenom = @prenom AND MotDePasse = @mdp AND role = @manager";
+		String^ query = "SELECT * FROM Personnel WHERE nom = @nom AND prenom = @prenom AND MotDePasse = @mdp AND role = @employe";
 		SqlConnection^ con = gcnew SqlConnection(connectionString);
 		SqlCommand^ cmd = gcnew SqlCommand(query, con);
 		cmd->Parameters->AddWithValue("@nom", nom);
 		cmd->Parameters->AddWithValue("@prenom", prenom);
 		cmd->Parameters->AddWithValue("@mdp", mdp);
-		cmd->Parameters->AddWithValue("@manager", "manager");
+		cmd->Parameters->AddWithValue("@employe", "employe");
 
 		try {
 			con->Open();
@@ -199,8 +199,8 @@ namespace ProjetPOO {
 			}
 			if (count > 0) {
 				MessageBox::Show("Connexion réussie");
-				PageManager^ pageManager = gcnew PageManager();
-				pageManager->ShowDialog();
+				PageEmploye^ pageEmploye = gcnew PageEmploye();
+				pageEmploye->ShowDialog();
 			}
 			else {
 				MessageBox::Show("Connexion échouée");
@@ -217,5 +217,5 @@ namespace ProjetPOO {
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-};
+	};
 }
